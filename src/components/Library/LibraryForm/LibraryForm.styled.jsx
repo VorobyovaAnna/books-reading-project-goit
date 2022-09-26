@@ -13,6 +13,21 @@ export const FormItem = styled(Form.Item)`
   @media (min-width: ${p => p.theme.breakpoints.desktop}) {
     margin-right: 16px;
     margin-bottom: 0;
+
+    :nth-child(2) {
+      width: 150px;
+    }
+    :nth-child(3) {
+      width: 150px;
+    }
+  }
+  @media (min-width: ${p => p.theme.breakpoints.tablet}) {
+    :nth-child(2) {
+      width: 152px;
+    }
+    :nth-child(3) {
+      width: 152px;
+    }
   }
 `;
 
@@ -32,13 +47,17 @@ export const StyledInput = styled(Input)`
 
 export const TitleInput = styled(StyledInput)`
   @media (min-width: ${p => p.theme.breakpoints.desktop}) {
-    min-width: 346px;
+    width: 346px;
   }
 `;
 
 export const AuthorInput = styled(StyledInput)`
   @media (min-width: ${p => p.theme.breakpoints.tablet}) {
-    min-width: 336px;
+    width: 336px;
+  }
+
+  @media (min-width: ${p => p.theme.breakpoints.desktop}) {
+    width: 250px;
   }
 `;
 
@@ -80,6 +99,8 @@ export const Box = styled.div`
 `;
 
 export const StyledForm = styled(Form)`
+  font-family: 'Montserrat';
+
   @media (min-width: ${p => p.theme.breakpoints.desktop}) {
     display: flex;
   }
