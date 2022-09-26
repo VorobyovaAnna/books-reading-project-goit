@@ -8,4 +8,4 @@ export default function App() {
       <Container>React homework template</Container>
     </>
   );
-};
+}
