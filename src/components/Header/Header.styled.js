@@ -30,7 +30,7 @@ export const Logo = styled.p`
   color: ${p => p.theme.colors.mainFontColor};
 `;
 
-export const TrainingLink = styled(NavLink)`
+export const StyledLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +52,7 @@ export const TrainingLink = styled(NavLink)`
   }
 `;
 
-export const LibraryLink = styled(TrainingLink)`
+export const StatsLink = styled(StyledLink)`
   position: relative;
   margin-right: 22px;
 

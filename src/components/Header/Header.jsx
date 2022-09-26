@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import { MdOutlineHome } from 'react-icons/md';
+import { ImStatsDots } from 'react-icons/im';
 import {
   HeaderWrapper,
   Logo,
-  TrainingLink,
-  LibraryLink,
+  StatsLink,
+  StyledLink,
   UserLogo,
   UserName,
   ExitButton,
@@ -21,7 +22,6 @@ const Header = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   window.onresize = e => {
     setScreenWidth(e.target.outerWidth);
-    //  console.log(screenWidth);
   };
 
   return (
@@ -30,12 +30,15 @@ const Header = () => {
         <>
           <Logo>BR</Logo>
           <FlexWrapper>
-            <TrainingLink to="/training">
-              <HiOutlineBookOpen size={18} />
-            </TrainingLink>
-            <LibraryLink to="/library">
+            <StyledLink to="/library">
               <MdOutlineHome size={18} />
-            </LibraryLink>
+            </StyledLink>
+            <StyledLink to="/training">
+              <HiOutlineBookOpen size={18} />
+            </StyledLink>
+            <StatsLink to="/statistics">
+              <ImStatsDots size={18} />
+            </StatsLink>
             <UserLogo>{firstLetter}</UserLogo>
             <ExitButton>Вихід</ExitButton>
           </FlexWrapper>
@@ -49,12 +52,15 @@ const Header = () => {
             <UserName>{user.name}</UserName>
           </FlexWrapper>
           <FlexWrapper>
-            <TrainingLink to="/training">
-              <HiOutlineBookOpen size={18} />
-            </TrainingLink>
-            <LibraryLink to="/library">
-              <MdOutlineHome size={18} />
-            </LibraryLink>
+            <StyledLink to="/library">
+              <MdOutlineHome size={20} />
+            </StyledLink>
+            <StyledLink to="/training">
+              <HiOutlineBookOpen size={20} />
+            </StyledLink>
+            <StatsLink to="/statistics">
+              <ImStatsDots size={16} />
+            </StatsLink>
             <ExitButton>Вихід</ExitButton>
           </FlexWrapper>
         </>
