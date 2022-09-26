@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderWrapper = styled.header`
   display: flex;
@@ -29,7 +30,7 @@ export const Logo = styled.p`
   color: ${p => p.theme.colors.mainFontColor};
 `;
 
-export const Link = styled.a`
+export const TrainingLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,9 +47,12 @@ export const Link = styled.a`
   &:hover {
     background-color: ${p => p.theme.colors.inputBackground};
   }
+  &.active {
+    background-color: ${p => p.theme.colors.inputBackground};
+  }
 `;
 
-export const Home = styled(Link)`
+export const LibraryLink = styled(TrainingLink)`
   position: relative;
   margin-right: 22px;
 
