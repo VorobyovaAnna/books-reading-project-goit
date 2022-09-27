@@ -101,7 +101,12 @@ export const Box = styled.div`
 export const StyledForm = styled(Form)`
   font-family: 'Montserrat';
 
+  @media (min-width: ${p => p.theme.breakpoints.tablet}) {
+    margin-bottom: 40px;
+  }
+
   @media (min-width: ${p => p.theme.breakpoints.desktop}) {
     display: flex;
+    margin-bottom: 80px;
   }
 `;

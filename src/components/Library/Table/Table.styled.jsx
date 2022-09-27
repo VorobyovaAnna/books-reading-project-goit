@@ -63,3 +63,15 @@ export const StyledTitle = styled.h3`
   font-size: 19px;
   line-height: 1.2;
 `;
+
+export const Wrapper = styled.div`
+  :not(:last-child) {
+    @media (min-width: ${p => p.theme.breakpoints.tablet}) {
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: ${p => p.theme.breakpoints.desktop}) {
+      margin-bottom: 32px;
+    }
+  }
+`;

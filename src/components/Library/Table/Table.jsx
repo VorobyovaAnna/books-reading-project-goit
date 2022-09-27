@@ -1,12 +1,12 @@
 import { flexRender } from '@tanstack/react-table';
-import { StyledTable, StyledTitle } from './Table.styled';
+import { StyledTable, StyledTitle, Wrapper } from './Table.styled';
 import useTable from './useTable';
 
 const Table = ({ title, status, data }) => {
   const { table } = useTable(status, data);
 
   return (
-    <>
+    <Wrapper>
       <StyledTitle>{title}</StyledTitle>
       <StyledTable>
         <thead>
@@ -37,7 +37,7 @@ const Table = ({ title, status, data }) => {
           ))}
         </tbody>
       </StyledTable>
-    </>
+    </Wrapper>
   );
 };
 

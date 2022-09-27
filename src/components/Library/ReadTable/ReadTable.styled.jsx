@@ -108,3 +108,15 @@ export const StyledBtn = styled(Button)`
     min-width: 130px;
   }
 `;
+
+export const Wrapper = styled.div`
+  :not(:last-child) {
+    @media (min-width: ${p => p.theme.breakpoints.tablet}) {
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: ${p => p.theme.breakpoints.desktop}) {
+      margin-bottom: 32px;
+    }
+  }
+`;
