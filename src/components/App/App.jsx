@@ -2,6 +2,10 @@ import GlobalStyle from '../../styles/GlobalStyle';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import SharedLayout from 'components/SharedLayout';
+// import Container from 'components/Container';
+// import Header from 'components/Header';
+// import MyGoal from 'components/MyGoal';
+// import { LoginForm } from 'components/LoginForm/LoginForm';
 
 const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
@@ -13,7 +17,11 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
-      {/* <div>React homework template</div> */}
+      // <Container>
+        // <Header />
+        // <LoginForm />
+        // <MyGoal />
+      // </Container>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="register" element={<Register />} />
@@ -26,4 +34,4 @@ export default function App() {
       </Routes>
     </>
   );
-}
+};
