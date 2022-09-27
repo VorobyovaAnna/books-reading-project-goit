@@ -6,17 +6,17 @@ const Container = styled.div`
 
   @media ${device.mobile} {
     width: 320px;
-    /* padding: 0 20px; */
+    padding: 0 20px;
   }
 
   @media ${device.tablet} {
     width: 768px;
-    /* padding: 0 32px; */
+    padding: 0 32px;
   }
 
   @media ${device.desktop} {
     width: 1280px;
-    /* padding: 0 16px; */
+    padding: 0 16px;
   }
 `;
 
