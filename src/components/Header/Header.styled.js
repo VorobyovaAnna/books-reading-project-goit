@@ -1,14 +1,27 @@
 import styled from 'styled-components';
+import { Button } from 'antd';
 import { NavLink } from 'react-router-dom';
+import device from 'styles/device';
 
 export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
+  padding: 0 20px;
+
+  background-color: ${p => p.theme.colors.white};
   border: 1px solid rgba(224, 229, 235, 1);
   backdrop-filter: blur(2px);
   box-shadow: ${p => p.theme.shadows.header};
+
+  @media ${device.tablet} {
+    padding: 0 32px;
+  }
+
+  @media ${device.desktop} {
+    padding: 0 16px;
+  }
 `;
 
 export const FlexWrapper = styled.div`
@@ -19,7 +32,7 @@ export const FlexWrapper = styled.div`
 export const Logo = styled.p`
   width: 28px;
   height: 27px;
-  margin: 0 70px 0 0;
+  /* margin: 0 70px 0 0; */
 
   font-family: 'Abril Fatface';
   font-style: normal;
@@ -90,7 +103,7 @@ export const UserLogo = styled.p`
   color: ${p => p.theme.colors.mainFontColor};
 `;
 
-export const ExitButton = styled.button`
+export const ExitButton = styled(Button)`
   width: 40px;
   height: 17px;
   padding: 0;
@@ -104,7 +117,6 @@ export const ExitButton = styled.button`
   text-decoration-line: underline;
   color: ${p => p.theme.colors.mainFontColor};
   border: none;
-  background-color: ${p => p.theme.colors.white};
 
   transition: color ${p => p.theme.transition.transitionFunction};
 
