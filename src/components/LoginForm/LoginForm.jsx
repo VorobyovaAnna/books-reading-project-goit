@@ -1,7 +1,6 @@
 // import { Link } from 'react-router-dom';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-
 import { FcGoogle } from 'react-icons/fc';
 
 import {
@@ -43,7 +42,7 @@ export const LoginForm = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={(values, actions) => {
-            console.log(values);
+            // console.log(values);
             // setFormValues(values);
 
             const timeOut = setTimeout(() => {
@@ -54,7 +53,7 @@ export const LoginForm = () => {
           }}
         >
           {props => {
-            console.log(props);
+            // console.log(props);
             return (
               <Form
                 name="LoginForm"
