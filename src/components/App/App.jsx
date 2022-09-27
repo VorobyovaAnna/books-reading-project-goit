@@ -3,6 +3,7 @@ import GlobalStyle from '../../styles/GlobalStyle';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import MyGoal from 'components/MyGoal';
+import { LoginForm } from 'components/LoginForm/LoginForm';
 
 export default function App() {
   return (
@@ -10,8 +11,8 @@ export default function App() {
       <GlobalStyle />
       <Container>
         <Header />
+        <LoginForm />
         <MyGoal />
-        {/* <div>React homework template</div> */}
       </Container>
     </>
   );

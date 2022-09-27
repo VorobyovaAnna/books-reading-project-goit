@@ -2,9 +2,9 @@ import { useState, useLayoutEffect } from 'react';
 import device from 'styles/device';
 
 const queries = [
-  `(min-width: ${device.mobile}) and (max-width: 76px)`,
-  `(min-width: ${device.tablet}) and (max-width: 1279px)`,
-  `(min-width: ${device.desktop})`,
+  `${device.mobile} and (max-width: 767px)`,
+  `${device.tablet} and (max-width: 1279px)`,
+  `${device.desktop}`,
 ];
 
 const useMatchMedia = () => {
