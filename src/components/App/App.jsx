@@ -2,6 +2,8 @@ import GlobalStyle from '../../styles/GlobalStyle';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import SharedLayout from 'components/SharedLayout';
+import PrivateRoute from 'components/PrivateRoute';
+import PublicRoute from 'components/PublicRoute';
 // import MyGoal from 'components/MyGoal';
 // import { LoginForm } from 'components/LoginForm/LoginForm';
 
@@ -19,11 +21,46 @@ export default function App() {
       <MyGoal /> */}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="library" element={<Library />} />
-          <Route path="training" element={<Training />} />
-          <Route path="statistics" element={<Statistics />} />
+          <Route
+            path="register"
+            element={
+              <PublicRoute restricted>
+                <Register />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute restricted>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="library"
+            element={
+              <PrivateRoute>
+                <Library />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="training"
+            element={
+              <PrivateRoute>
+                <Training />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="statistics"
+            element={
+              <PrivateRoute>
+                <Statistics />
+              </PrivateRoute>
+            }
+          />
         </Route>
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
