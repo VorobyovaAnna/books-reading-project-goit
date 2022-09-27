@@ -1,5 +1,7 @@
+import LibraryComponent from 'components/Library/LibraryComponent';
+
 const Library = () => {
-  return <div>Library page</div>;
+  return <LibraryComponent />;
 };
 
 export default Library;
