@@ -11,7 +11,10 @@ import {
   UserName,
   ExitButton,
   FlexWrapper,
+  BackgroundWrapper,
 } from './Header.styled';
+import Container from 'components/Container';
+import { useMatchMedia } from 'hooks';
 
 const Header = () => {
   const user = {
@@ -19,53 +22,54 @@ const Header = () => {
   };
   const firstLetter = user.name[0];
 
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  window.onresize = e => {
-    setScreenWidth(e.target.outerWidth);
-  };
+  const { isMobile } = useMatchMedia();
 
   return (
-    <HeaderWrapper>
-      {screenWidth < 768 && (
-        <>
-          <Logo>BR</Logo>
-          <FlexWrapper>
-            <StyledLink to="/library">
-              <MdOutlineHome size={18} />
-            </StyledLink>
-            <StyledLink to="/training">
-              <HiOutlineBookOpen size={18} />
-            </StyledLink>
-            <StatsLink to="/statistics">
-              <ImStatsDots size={18} />
-            </StatsLink>
-            <UserLogo>{firstLetter}</UserLogo>
-            <ExitButton text>Вихід</ExitButton>
-          </FlexWrapper>
-        </>
-      )}
-      {screenWidth > 767 && (
-        <>
-          <Logo>BR</Logo>
-          <FlexWrapper>
-            <UserLogo>{firstLetter}</UserLogo>
-            <UserName>{user.name}</UserName>
-          </FlexWrapper>
-          <FlexWrapper>
-            <StyledLink to="/library">
-              <MdOutlineHome size={20} />
-            </StyledLink>
-            <StyledLink to="/training">
-              <HiOutlineBookOpen size={20} />
-            </StyledLink>
-            <StatsLink to="/statistics">
-              <ImStatsDots size={16} />
-            </StatsLink>
-            <ExitButton>Вихід</ExitButton>
-          </FlexWrapper>
-        </>
-      )}
-    </HeaderWrapper>
+    <BackgroundWrapper>
+      <Container>
+        <HeaderWrapper>
+          {isMobile && (
+            <>
+              <Logo>BR</Logo>
+              <FlexWrapper>
+                <StyledLink to="/library">
+                  <MdOutlineHome size={18} />
+                </StyledLink>
+                <StyledLink to="/training">
+                  <HiOutlineBookOpen size={18} />
+                </StyledLink>
+                <StatsLink to="/statistics">
+                  <ImStatsDots size={18} />
+                </StatsLink>
+                <UserLogo>{firstLetter}</UserLogo>
+                <ExitButton text>Вихід</ExitButton>
+              </FlexWrapper>
+            </>
+          )}
+          {!isMobile && (
+            <>
+              <Logo>BR</Logo>
+              <FlexWrapper>
+                <UserLogo>{firstLetter}</UserLogo>
+                <UserName>{user.name}</UserName>
+              </FlexWrapper>
+              <FlexWrapper>
+                <StyledLink to="/library">
+                  <MdOutlineHome size={20} />
+                </StyledLink>
+                <StyledLink to="/training">
+                  <HiOutlineBookOpen size={20} />
+                </StyledLink>
+                <StatsLink to="/statistics">
+                  <ImStatsDots size={16} />
+                </StatsLink>
+                <ExitButton>Вихід</ExitButton>
+              </FlexWrapper>
+            </>
+          )}
+        </HeaderWrapper>
+      </Container>
+    </BackgroundWrapper>
   );
 };
 
