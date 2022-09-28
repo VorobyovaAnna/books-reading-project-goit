@@ -16,8 +16,8 @@ const booksSlice = createSlice({
     [booksOperations.deleteBook.fulfilled](state, action) {
       return state.filter(item => item._id !== action.payload._id);
     },
-    [booksOperations.fetchBookById.fulfilled](_, action) {
-      return action.payload;
+    [booksOperations.fetchBookById.fulfilled](state, action) {
+      return state.filter(book => book._id === action.payload._id);
     },
     [booksOperations.updateBookReview.fulfilled](state, action) {
       state = state.map(book =>

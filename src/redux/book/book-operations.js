@@ -8,19 +8,18 @@ const fetchBooks = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.get('/books');
-      return data;
+      return data.data.books;
     } catch (error) {
       rejectWithValue(error);
     }
   }
 );
-
 const createBook = createAsyncThunk(
   'books/create',
   async (book, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/books', book);
-      return data;
+      return data.data.book;
     } catch (error) {
       rejectWithValue(error);
     }
@@ -31,7 +30,7 @@ const deleteBook = createAsyncThunk(
   async (bookId, { rejectWithValue }) => {
     try {
       const { data } = await axios.delete(`/contacts/${bookId}`);
-      return data;
+      return data.data.book;
     } catch (error) {
       rejectWithValue(error);
     }
@@ -43,7 +42,7 @@ const fetchBookById = createAsyncThunk(
   async (bookId, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/books/${bookId}`);
-      return data;
+      return data.data.book;
     } catch (error) {
       rejectWithValue(error);
     }
@@ -54,7 +53,7 @@ const updateBookReview = createAsyncThunk(
   async ({ bookId, review }, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch(`/books/${bookId}/review`, review);
-      return data;
+      return data.data.book;
     } catch (error) {
       rejectWithValue(error);
     }
