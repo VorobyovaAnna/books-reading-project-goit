@@ -17,6 +17,7 @@ body {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: ${p => p.theme.colors.mainBackground};
 }
 
 code {
