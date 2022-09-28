@@ -1,7 +1,8 @@
-// import { Link } from 'react-router-dom';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FcGoogle } from 'react-icons/fc';
+
+// import Container from 'components/Container';
 
 import {
   FormWrapper,
@@ -10,9 +11,11 @@ import {
   FieldWrapper,
   FieldName,
   AccentedMark,
-  Input,
+  StyledField,
+  ValidationError,
   GoogleButton,
   SubmitButton,
+  StyledLink,
 } from './LoginForm.styled';
 
 const validationSchema = yup.object().shape({
@@ -31,7 +34,7 @@ const initialValues = {
   password: '',
 };
 
-export const LoginForm = () => {
+const LoginForm = () => {
   //   const [formValues, setFormValues] = useState();
 
   return (
@@ -72,7 +75,7 @@ export const LoginForm = () => {
                   <FieldName htmlFor="email">
                     Електронна адреса <AccentedMark>*</AccentedMark>
                   </FieldName>
-                  <Input
+                  <StyledField
                     id="email"
                     name="email"
                     type="text"
@@ -82,7 +85,7 @@ export const LoginForm = () => {
                     error={props.touched.email && props.errors.email}
                   />
                   {props.errors.email && props.touched.email && (
-                    <ErrorMessage name="email" component="div" />
+                    <ValidationError name="email" component="div" />
                   )}
                 </FieldWrapper>
 
@@ -90,7 +93,7 @@ export const LoginForm = () => {
                   <FieldName htmlFor="email">
                     Пароль <AccentedMark>*</AccentedMark>
                   </FieldName>
-                  <Input
+                  <StyledField
                     id="password"
                     name="password"
                     type="password"
@@ -100,7 +103,7 @@ export const LoginForm = () => {
                     error={props.touched.password && props.errors.password}
                   />
                   {props.errors.password && props.touched.password && (
-                    <ErrorMessage name="password" component="div" />
+                    <ValidationError name="password" component="div" />
                   )}
                 </FieldWrapper>
 
@@ -110,7 +113,7 @@ export const LoginForm = () => {
                 >
                   Увійти
                 </SubmitButton>
-                {/* <Link to="/signup">Реєстрація</Link> */}
+                <StyledLink to="/register">Реєстрація</StyledLink>
               </Form>
             );
           }}
@@ -119,3 +122,5 @@ export const LoginForm = () => {
     </>
   );
 };
+
+export default LoginForm;
