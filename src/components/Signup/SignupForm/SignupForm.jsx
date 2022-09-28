@@ -2,8 +2,6 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FcGoogle } from 'react-icons/fc';
 
-// import Container from 'components/Container';
-
 import {
   FormWrapper,
   Overlay,
@@ -16,9 +14,12 @@ import {
   GoogleButton,
   SubmitButton,
   StyledLink,
-} from './LoginForm.styled';
+  IsRegistredParagraph,
+  LoginLinkWrapper,
+} from './SignupForm.styled';
 
 const validationSchema = yup.object().shape({
+  name: yup.string('Enter your name').required('Name is a required field'),
   email: yup
     .string('Enter your email')
     .email('Enter a valid email')
@@ -26,7 +27,11 @@ const validationSchema = yup.object().shape({
   password: yup
     .string('Enter your password')
     .min(8, 'Password is too short - should be 8 chars minimum.')
-    .required('Password is a required field'), //можна додати npm yup-password
+    .required('Password is a required field'),
+  confirmPassword: yup
+    .string('Confirm your password')
+    .oneOf([yup.ref('password')], 'Passwords do not match')
+    .required('Password confirmation is a required field'), //можна додати npm yup-password
 });
 
 const initialValues = {
@@ -34,7 +39,7 @@ const initialValues = {
   password: '',
 };
 
-const LoginForm = () => {
+const SignupForm = () => {
   //   const [formValues, setFormValues] = useState();
 
   return (
@@ -59,7 +64,7 @@ const LoginForm = () => {
             // console.log(props);
             return (
               <Form
-                name="LoginForm"
+                name="SignupForm"
                 method="post"
                 onSubmit={props.handleSubmit}
               >
@@ -68,8 +73,27 @@ const LoginForm = () => {
                   onClick={() => alert('Нажали на гугл-кнопку')}
                 >
                   <FcGoogle />
+                  {/* <a href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"> Google</a> */}
                   Google
                 </GoogleButton>
+
+                <FieldWrapper>
+                  <FieldName htmlFor="name">
+                    Ім'я <AccentedMark>*</AccentedMark>
+                  </FieldName>
+                  <StyledField
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="..."
+                    autoComplete="off"
+                    // valid={props.touched.email && !props.errors.email}
+                    // error={props.touched.email && props.errors.email}
+                  />
+                  {props.errors.name && props.touched.name && (
+                    <ValidationError name="name" component="div" />
+                  )}
+                </FieldWrapper>
 
                 <FieldWrapper>
                   <FieldName htmlFor="email">
@@ -81,8 +105,8 @@ const LoginForm = () => {
                     type="text"
                     placeholder="your@email.com"
                     autoComplete="off"
-                    valid={props.touched.email && !props.errors.email}
-                    error={props.touched.email && props.errors.email}
+                    // valid={props.touched.email && !props.errors.email}
+                    // error={props.touched.email && props.errors.email}
                   />
                   {props.errors.email && props.touched.email && (
                     <ValidationError name="email" component="div" />
@@ -97,23 +121,45 @@ const LoginForm = () => {
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Пароль"
+                    placeholder="..."
                     autoComplete="off"
-                    valid={props.touched.password && !props.errors.password}
-                    error={props.touched.password && props.errors.password}
+                    // valid={props.touched.password && !props.errors.password}
+                    // error={props.touched.password && props.errors.password}
                   />
                   {props.errors.password && props.touched.password && (
                     <ValidationError name="password" component="div" />
                   )}
                 </FieldWrapper>
 
+                <FieldWrapper>
+                  <FieldName htmlFor="email">
+                    Підтвердити пароль <AccentedMark>*</AccentedMark>
+                  </FieldName>
+                  <StyledField
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="..."
+                    autoComplete="off"
+                    // valid={props.touched.password && !props.errors.password}
+                    // error={props.touched.password && props.errors.password}
+                  />
+                  {props.errors.confirmPassword &&
+                    props.touched.confirmPassword && (
+                      <ValidationError name="confirmPassword" component="div" />
+                    )}
+                </FieldWrapper>
+
                 <SubmitButton
                   type="submit"
                   disabled={!props.isValid || props.isSubmitting}
                 >
-                  Увійти
+                  Зареєструватися
                 </SubmitButton>
-                <StyledLink to="/register">Реєстрація</StyledLink>
+                <LoginLinkWrapper>
+                  <IsRegistredParagraph>Вже з нами?</IsRegistredParagraph>
+                  <StyledLink to="/login">Увійти</StyledLink>
+                </LoginLinkWrapper>
               </Form>
             );
           }}
@@ -123,4 +169,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;

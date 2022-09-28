@@ -8,9 +8,9 @@ import theme from 'styles/theme';
 
 // import FilteredPropsInputField from './FilteredPropsInputField';
 
-import mobileBackground from 'images/auth-background/login-background-mob.jpg';
-import tabletBackground from 'images/auth-background/login-background-tablet.jpg';
-import desktopBackground from 'images/auth-background/login-background-desktop.jpg';
+import mobileBackground from 'images/auth-background/signup-background-mob.jpg';
+import tabletBackground from 'images/auth-background/signup-background-tablet.jpg';
+import desktopBackground from 'images/auth-background/signup-background-desktop.jpg';
 
 export const FormWrapper = styled.div`
   position: relative;
@@ -23,8 +23,6 @@ export const FormWrapper = styled.div`
 
   background-repeat: no-repeat;
   background-position: center;
-
-  font-family: Montserrat;
 
   @media ${device.mobile} {
     /* padding: 20px; */
@@ -66,7 +64,6 @@ export const Form = styled.form`
   @media ${device.mobile} {
     padding: 32px 20px;
     width: 320px;
-    /* background-image: url(${mobileBackground}); */
   }
 
   @media ${device.tablet} {
@@ -103,7 +100,6 @@ export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  /* width: 280px; */
 
   @media ${device.mobile} {
   }
@@ -177,83 +173,19 @@ export const SubmitButton = styled.button`
   }
 `;
 
+export const LoginLinkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 8px;
+`;
+
 export const StyledLink = styled(Link)`
   text-align: center;
-  margin-top: 16px;
+
   text-decoration: underline;
 `;
 
-// export const Input = styled(FilteredPropsInputField)`
-//   border: 1px solid lightgrey;
-//   border-radius: 4px;
-//   font-size: 1rem;
-//   line-height: 1.5rem;
-//   font-style: normal;
-//   font-weight: 400;
-//   width: 100%;
-//   margin-top: 0.5rem;
-//   padding: 0.75rem 0.75rem;
-
-//   &:focus,
-//   &:active {
-//     box-shadow: rgb(210, 213, 217) 0px 0px 2px 1px,
-//       rgb(227, 230, 232) 0px 0px 0px 3px;
-//     border: 1px solid rgb(26, 33, 43);
-//     outline: none;
-//   }
-
-//   /* Autocomplete styles in Chrome*/
-//   &:-webkit-autofill,
-//   &:-webkit-autofill:hover,
-//   &:-webkit-autofill:focus {
-//     background-color: white;
-//     border: 1px solid lightgrey;
-//     box-shadow: 0 0 0px 1000px #fff inset;
-//     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-//     transition: background-color 5000s ease-in-out 0s;
-//     -webkit-text-fill-color: black;
-//   }
-
-//   ${({ valid }) =>
-//     valid &&
-//     css`
-//       border: 1px solid rgb(0, 156, 38);
-
-//       &:focus,
-//       &:active {
-//         border: 1px solid rgb(0, 156, 38);
-//         box-shadow: rgb(106, 237, 97) 0px 0px 2px 1px,
-//           rgb(177, 247, 160) 0px 0px 0px 3px;
-//         outline: none;
-//       }
-
-//       /* Autocomplete styles in Chrome*/
-//       &:-webkit-autofill,
-//       &:-webkit-autofill:hover,
-//       &:-webkit-autofill:focus {
-//         border: 1px solid rgb(0, 156, 38);
-//       }
-//     `}
-
-//   ${({ error }) =>
-//     error &&
-//     css`
-//       border: 1px solid rgb(191, 49, 12);
-//       outline: none;
-
-//       &:focus,
-//       &:active {
-//         box-shadow: rgb(244, 129, 116) 0px 0px 2px 1px,
-//           rgb(251, 178, 174) 0px 0px 0px 3px;
-//         border: 1px solid rgb(191, 49, 12);
-//         outline: none;
-//       }
-
-//       /* Autocomplete styles in Chrome*/
-//       &:-webkit-autofill,
-//       &:-webkit-autofill:hover,
-//       &:-webkit-autofill:focus {
-//         border: 1px solid rgb(191, 49, 12);
-//       }
-//     `}
-// `;
+export const IsRegistredParagraph = styled.p`
+  color: ${theme.colors.secondaryFontColor};
+`;
