@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3001/api';
+axios.defaults.baseURL = 'https://nodejs-final-project-goit.herokuapp.com/api';
 
 const fetchBooks = createAsyncThunk(
   'books/fetch',
