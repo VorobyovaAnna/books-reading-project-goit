@@ -3,6 +3,9 @@ import GlobalStyle from '../../styles/GlobalStyle';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import MyGoal from 'components/MyGoal';
+import CongratsModal from 'components/modals/CongratsModal';
+import WellDoneModal from 'components/modals/WellDoneModal';
+import ExitModal from 'components/modals/ExitModal';
 
 export default function App() {
   return (
@@ -12,6 +15,9 @@ export default function App() {
         <Header />
         <MyGoal />
         {/* <div>React homework template</div> */}
+        <CongratsModal/>
+        <WellDoneModal/> 
+        <ExitModal/>
       </Container>
     </>
   );
