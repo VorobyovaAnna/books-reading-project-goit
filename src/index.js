@@ -7,6 +7,9 @@ import 'antd/dist/antd.variable.min.css';
 import { ConfigProvider } from 'antd';
 import { atndTheme } from 'styles/antdTheme';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store, persistor } from 'redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 ConfigProvider.config({
   theme: atndTheme,
@@ -15,10 +18,14 @@ ConfigProvider.config({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <PersistGate persistor={persistor}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </PersistGate>
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
