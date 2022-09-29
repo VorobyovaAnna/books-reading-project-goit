@@ -40,7 +40,7 @@ const Header = () => {
               <ImStatsDots size={18} />
             </StatsLink>
             <UserLogo>{firstLetter}</UserLogo>
-            <ExitButton>Вихід</ExitButton>
+            <ExitButton text>Вихід</ExitButton>
           </FlexWrapper>
         </>
       )}
