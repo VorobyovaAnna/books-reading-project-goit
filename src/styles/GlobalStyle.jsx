@@ -11,12 +11,12 @@ const GlobalStyle = createGlobalStyle`
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Roboto',
-    'Abril Fatface', 'Montserrat', 'Open Sans'
-    sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Roboto',
+    'Abril Fatface',  'Open Sans', sans-serif;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: ${p => p.theme.colors.mainBackground};
 }
 
 code {

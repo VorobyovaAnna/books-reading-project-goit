@@ -8,6 +8,7 @@ const theme = {
     white: '#ffffff',
     mainBackground: '#f6f7fb',
     inputBackground: '#f5f7fa',
+    btnBackground: '#6D7A8D',
     mainFontColor: '#242a37',
     secondaryFontColor: '#898f9f',
     placeholderFontColor: '#a6abb9',
