@@ -2,6 +2,9 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FcGoogle } from 'react-icons/fc';
 
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
+
 import {
   FormWrapper,
   Overlay,
@@ -35,12 +38,23 @@ const validationSchema = yup.object().shape({
 });
 
 const initialValues = {
+  name: '',
   email: '',
   password: '',
+  confirmPassword: '',
 };
 
 const SignupForm = () => {
+  const dispatch = useDispatch();
   //   const [formValues, setFormValues] = useState();
+  const handleSubmit = (values, actions) => {
+    const { name, email, password } = values;
+
+    dispatch(authOperations.register(name, email, password));
+
+    actions.resetForm();
+    // setFormValues(values);
+  };
 
   return (
     <>
@@ -49,16 +63,7 @@ const SignupForm = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values, actions) => {
-            // console.log(values);
-            // setFormValues(values);
-
-            const timeOut = setTimeout(() => {
-              actions.setSubmitting(false);
-
-              clearTimeout(timeOut);
-            }, 1000);
-          }}
+          onSubmit={handleSubmit}
         >
           {props => {
             // console.log(props);
@@ -66,14 +71,13 @@ const SignupForm = () => {
               <Form
                 name="SignupForm"
                 method="post"
-                onSubmit={props.handleSubmit}
+                // onSubmit={props.handleSubmit}
               >
                 <GoogleButton
-                  type="button"
-                  onClick={() => alert('Нажали на гугл-кнопку')}
+                  href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
+                  target="_blank"
                 >
                   <FcGoogle />
-                  {/* <a href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"> Google</a> */}
                   Google
                 </GoogleButton>
 

@@ -80,7 +80,7 @@ export const Form = styled.form`
   }
 `;
 
-export const GoogleButton = styled.button`
+export const GoogleButton = styled.a`
   align-self: center;
   display: flex;
   align-items: center;
@@ -95,8 +95,9 @@ export const GoogleButton = styled.button`
   font-family: Roboto;
   font-size: 16px;
   font-weight: 700;
+  background-color: ${theme.colors.inputBackground};
   box-shadow: ${theme.shadows.google};
-  cursor: 'pointer';
+  cursor: pointer;
 `;
 
 export const FieldWrapper = styled.div`

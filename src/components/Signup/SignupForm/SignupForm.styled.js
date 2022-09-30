@@ -25,23 +25,16 @@ export const FormWrapper = styled.div`
   background-position: center;
 
   @media ${device.mobile} {
-    /* padding: 20px; */
     background-image: url(${mobileBackground});
-
-    /* width: 100%; */
   }
 
   @media ${device.tablet} {
     padding: 65px;
     background-image: url(${tabletBackground});
-
-    /* width: 100%; */
   }
   @media ${device.desktop} {
-    padding: 158px 75px;
+    padding: 91px 75px;
     background-image: url(${desktopBackground});
-
-    /* width: 100%; */
   }
 `;
 
@@ -77,7 +70,7 @@ export const Form = styled.form`
   }
 `;
 
-export const GoogleButton = styled.button`
+export const GoogleButton = styled.a`
   align-self: center;
   display: flex;
   align-items: center;
@@ -92,8 +85,9 @@ export const GoogleButton = styled.button`
   font-family: Roboto;
   font-size: 16px;
   font-weight: 700;
+  background-color: ${p => p.theme.colors.inputBackground};
   box-shadow: ${theme.shadows.google};
-  cursor: 'pointer';
+  cursor: pointer;
 `;
 
 export const FieldWrapper = styled.div`

@@ -2,7 +2,8 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FcGoogle } from 'react-icons/fc';
 
-// import Container from 'components/Container';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 
 import {
   FormWrapper,
@@ -35,7 +36,14 @@ const initialValues = {
 };
 
 const LoginForm = () => {
-  //   const [formValues, setFormValues] = useState();
+  const dispatch = useDispatch();
+  const handleSubmit = (values, actions) => {
+    const { email, password } = values;
+
+    dispatch(authOperations.register(email, password));
+
+    actions.resetForm();
+  };
 
   return (
     <>
@@ -44,16 +52,7 @@ const LoginForm = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values, actions) => {
-            // console.log(values);
-            // setFormValues(values);
-
-            const timeOut = setTimeout(() => {
-              actions.setSubmitting(false);
-
-              clearTimeout(timeOut);
-            }, 1000);
-          }}
+          onSubmit={handleSubmit}
         >
           {props => {
             // console.log(props);
@@ -61,11 +60,11 @@ const LoginForm = () => {
               <Form
                 name="LoginForm"
                 method="post"
-                onSubmit={props.handleSubmit}
+                // onSubmit={props.handleSubmit}
               >
                 <GoogleButton
-                  type="button"
-                  onClick={() => alert('Нажали на гугл-кнопку')}
+                  href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
+                  target="_blank"
                 >
                   <FcGoogle />
                   Google
@@ -81,8 +80,8 @@ const LoginForm = () => {
                     type="text"
                     placeholder="your@email.com"
                     autoComplete="off"
-                    valid={props.touched.email && !props.errors.email}
-                    error={props.touched.email && props.errors.email}
+                    // valid={props.touched.email && !props.errors.email}
+                    // error={props.touched.email && props.errors.email}
                   />
                   {props.errors.email && props.touched.email && (
                     <ValidationError name="email" component="div" />
@@ -99,8 +98,8 @@ const LoginForm = () => {
                     type="password"
                     placeholder="Пароль"
                     autoComplete="off"
-                    valid={props.touched.password && !props.errors.password}
-                    error={props.touched.password && props.errors.password}
+                    // valid={props.touched.password && !props.errors.password}
+                    // error={props.touched.password && props.errors.password}
                   />
                   {props.errors.password && props.touched.password && (
                     <ValidationError name="password" component="div" />
