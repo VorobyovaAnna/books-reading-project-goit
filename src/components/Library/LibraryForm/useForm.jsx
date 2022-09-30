@@ -1,4 +1,6 @@
 import { Form, message } from 'antd';
+import { useDispatch } from 'react-redux';
+import { booksOperations } from 'redux/book';
 import * as yup from 'yup';
 
 const Fields = {
@@ -21,6 +23,8 @@ const Fields = {
 };
 
 const useForm = () => {
+  const dispatch = useDispatch();
+
   const [form] = Form.useForm();
 
   const date = new Date();
@@ -53,8 +57,9 @@ const useForm = () => {
   };
 
   const onFinish = values => {
-    message.success('Submit success!');
+    message.success('Книгу успішно додано!');
     console.log(values);
+    dispatch(booksOperations.createBook(values));
   };
 
   return { form, onFinish, Fields, yupSync };

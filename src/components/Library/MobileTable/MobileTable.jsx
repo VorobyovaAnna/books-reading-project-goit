@@ -52,7 +52,7 @@ const MobileTable = ({ title, status, data }) => {
                   </Box>
                   <StyledButton
                     onClick={() => {
-                      console.log(item.id);
+                      console.log(item._id);
                     }}
                   >
                     Резюме
