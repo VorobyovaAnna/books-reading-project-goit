@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
-import { Field, ErrorMessage } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 
 import device from 'styles/device';
 import theme from 'styles/theme';
@@ -56,7 +56,7 @@ export const Overlay = styled.div`
   background-color: #091e3fcc;
 `;
 
-export const Form = styled.form`
+export const StyledForm = styled(Form)`
   position: relative;
   z-index: 100;
   display: flex;

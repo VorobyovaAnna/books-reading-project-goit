@@ -8,7 +8,7 @@ import { authOperations } from 'redux/auth';
 import {
   FormWrapper,
   Overlay,
-  Form,
+  StyledForm,
   FieldWrapper,
   FieldName,
   AccentedMark,
@@ -37,11 +37,9 @@ const initialValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
-    const { email, password } = values;
-
-    dispatch(authOperations.register(email, password));
-
+    dispatch(authOperations.logIn(values));
     actions.resetForm();
   };
 
@@ -54,68 +52,51 @@ const LoginForm = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {props => {
-            // console.log(props);
-            return (
-              <Form
-                name="LoginForm"
-                method="post"
-                // onSubmit={props.handleSubmit}
-              >
-                <GoogleButton
-                  href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
-                  target="_blank"
-                >
-                  <FcGoogle />
-                  Google
-                </GoogleButton>
+          <StyledForm name="LoginForm">
+            <GoogleButton
+              href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
+              target="_blank"
+            >
+              <FcGoogle />
+              Google
+            </GoogleButton>
 
-                <FieldWrapper>
-                  <FieldName htmlFor="email">
-                    Електронна адреса <AccentedMark>*</AccentedMark>
-                  </FieldName>
-                  <StyledField
-                    id="email"
-                    name="email"
-                    type="text"
-                    placeholder="your@email.com"
-                    autoComplete="off"
-                    // valid={props.touched.email && !props.errors.email}
-                    // error={props.touched.email && props.errors.email}
-                  />
-                  {props.errors.email && props.touched.email && (
-                    <ValidationError name="email" component="div" />
-                  )}
-                </FieldWrapper>
+            <FieldWrapper>
+              <FieldName htmlFor="email">
+                Електронна адреса <AccentedMark>*</AccentedMark>
+              </FieldName>
+              <StyledField
+                id="email"
+                name="email"
+                type="text"
+                placeholder="your@email.com"
+                autoComplete="off"
+              />
+              <ValidationError name="email" component="div" />
+            </FieldWrapper>
 
-                <FieldWrapper>
-                  <FieldName htmlFor="password">
-                    Пароль <AccentedMark>*</AccentedMark>
-                  </FieldName>
-                  <StyledField
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Пароль"
-                    autoComplete="off"
-                    // valid={props.touched.password && !props.errors.password}
-                    // error={props.touched.password && props.errors.password}
-                  />
-                  {props.errors.password && props.touched.password && (
-                    <ValidationError name="password" component="div" />
-                  )}
-                </FieldWrapper>
+            <FieldWrapper>
+              <FieldName htmlFor="password">
+                Пароль <AccentedMark>*</AccentedMark>
+              </FieldName>
+              <StyledField
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Пароль"
+                autoComplete="off"
+              />
+              <ValidationError name="password" component="div" />
+            </FieldWrapper>
 
-                <SubmitButton
-                  type="submit"
-                  disabled={!props.isValid || props.isSubmitting}
-                >
-                  Увійти
-                </SubmitButton>
-                <StyledLink to="/register">Реєстрація</StyledLink>
-              </Form>
-            );
-          }}
+            <SubmitButton
+              type="submit"
+              // disabled={!props.isValid || props.isSubmitting}
+            >
+              Увійти
+            </SubmitButton>
+            <StyledLink to="/register">Реєстрація</StyledLink>
+          </StyledForm>
         </Formik>
       </FormWrapper>
     </>
