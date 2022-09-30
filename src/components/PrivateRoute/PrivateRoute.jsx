@@ -1,14 +1,12 @@
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-// import { getIsAuthenticated } from 'path/to/selector';
+import { getIsLoggedIn } from 'redux/auth';
 import PropTypes from 'prop-types';
 
 const PrivateRoute = ({ children }) => {
-  //Розкоментувати селектор після написання Redux
-  //const isAuthenticated = useSelector(getIsAuthenticated);
-  const isAuthenticated = true;
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  return isLoggedIn ? children : <Navigate to="/login" />;
 };
 
 PrivateRoute.propTypes = {

@@ -2,12 +2,13 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FcGoogle } from 'react-icons/fc';
 
-// import Container from 'components/Container';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 
 import {
   FormWrapper,
   Overlay,
-  Form,
+  StyledForm,
   FieldWrapper,
   FieldName,
   AccentedMark,
@@ -35,7 +36,12 @@ const initialValues = {
 };
 
 const LoginForm = () => {
-  //   const [formValues, setFormValues] = useState();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    dispatch(authOperations.logIn(values));
+    actions.resetForm();
+  };
 
   return (
     <>
@@ -44,79 +50,53 @@ const LoginForm = () => {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values, actions) => {
-            // console.log(values);
-            // setFormValues(values);
-
-            const timeOut = setTimeout(() => {
-              actions.setSubmitting(false);
-
-              clearTimeout(timeOut);
-            }, 1000);
-          }}
+          onSubmit={handleSubmit}
         >
-          {props => {
-            // console.log(props);
-            return (
-              <Form
-                name="LoginForm"
-                method="post"
-                onSubmit={props.handleSubmit}
-              >
-                <GoogleButton
-                  type="button"
-                  onClick={() => alert('Нажали на гугл-кнопку')}
-                >
-                  <FcGoogle />
-                  Google
-                </GoogleButton>
+          <StyledForm name="LoginForm">
+            <GoogleButton
+              href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
+              target="_blank"
+            >
+              <FcGoogle />
+              Google
+            </GoogleButton>
 
-                <FieldWrapper>
-                  <FieldName htmlFor="email">
-                    Електронна адреса <AccentedMark>*</AccentedMark>
-                  </FieldName>
-                  <StyledField
-                    id="email"
-                    name="email"
-                    type="text"
-                    placeholder="your@email.com"
-                    autoComplete="off"
-                    valid={props.touched.email && !props.errors.email}
-                    error={props.touched.email && props.errors.email}
-                  />
-                  {props.errors.email && props.touched.email && (
-                    <ValidationError name="email" component="div" />
-                  )}
-                </FieldWrapper>
+            <FieldWrapper>
+              <FieldName htmlFor="email">
+                Електронна адреса <AccentedMark>*</AccentedMark>
+              </FieldName>
+              <StyledField
+                id="email"
+                name="email"
+                type="text"
+                placeholder="your@email.com"
+                autoComplete="off"
+              />
+              <ValidationError name="email" component="div" />
+            </FieldWrapper>
 
-                <FieldWrapper>
-                  <FieldName htmlFor="password">
-                    Пароль <AccentedMark>*</AccentedMark>
-                  </FieldName>
-                  <StyledField
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Пароль"
-                    autoComplete="off"
-                    valid={props.touched.password && !props.errors.password}
-                    error={props.touched.password && props.errors.password}
-                  />
-                  {props.errors.password && props.touched.password && (
-                    <ValidationError name="password" component="div" />
-                  )}
-                </FieldWrapper>
+            <FieldWrapper>
+              <FieldName htmlFor="password">
+                Пароль <AccentedMark>*</AccentedMark>
+              </FieldName>
+              <StyledField
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Пароль"
+                autoComplete="off"
+              />
+              <ValidationError name="password" component="div" />
+            </FieldWrapper>
 
-                <SubmitButton
-                  type="submit"
-                  disabled={!props.isValid || props.isSubmitting}
-                >
-                  Увійти
-                </SubmitButton>
-                <StyledLink to="/register">Реєстрація</StyledLink>
-              </Form>
-            );
-          }}
+            <SubmitButton
+              type="submit"
+              // disabled={!props.isValid || props.isSubmitting}
+            >
+              Увійти
+            </SubmitButton>
+            <StyledLink to="/register">Реєстрація</StyledLink>
+          </StyledForm>
         </Formik>
       </FormWrapper>
     </>
