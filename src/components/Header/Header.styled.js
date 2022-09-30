@@ -1,27 +1,12 @@
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { NavLink } from 'react-router-dom';
-import device from 'styles/device';
 
 export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  padding: 0 20px;
-
-  background-color: ${p => p.theme.colors.white};
-  border: 1px solid rgba(224, 229, 235, 1);
-  backdrop-filter: blur(2px);
-  box-shadow: ${p => p.theme.shadows.header};
-
-  @media ${device.tablet} {
-    padding: 0 32px;
-  }
-
-  @media ${device.desktop} {
-    padding: 0 16px;
-  }
 `;
 
 export const FlexWrapper = styled.div`
@@ -32,7 +17,6 @@ export const FlexWrapper = styled.div`
 export const Logo = styled.p`
   width: 28px;
   height: 27px;
-  /* margin: 0 70px 0 0; */
 
   font-family: 'Abril Fatface';
   font-style: normal;
@@ -114,7 +98,7 @@ export const ExitButton = styled(Button)`
   font-size: 14px;
   line-height: 1.21;
 
-  text-decoration-line: underline;
+  text-decoration: underline;
   color: ${p => p.theme.colors.mainFontColor};
   border: none;
 
@@ -133,4 +117,11 @@ export const UserName = styled.p`
   line-height: 1.21;
 
   color: ${p => p.theme.colors.mainFontColor};
+`;
+
+export const BackgroundWrapper = styled.div`
+  background-color: ${p => p.theme.colors.white};
+  border: 1px solid rgba(224, 229, 235, 1);
+  backdrop-filter: blur(2px);
+  box-shadow: ${p => p.theme.shadows.header};
 `;

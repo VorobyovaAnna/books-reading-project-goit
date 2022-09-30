@@ -15,6 +15,8 @@ import storage from 'redux-persist/lib/storage';
 
 import { authReducer } from './auth';
 import { booksReducer } from './book';
+import { trainingReducer } from './training';
+import { statisticsReducer } from './statistic.js';
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -25,6 +27,8 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     books: booksReducer,
+    trainings: trainingReducer,
+    statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

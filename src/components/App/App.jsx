@@ -9,6 +9,7 @@ import PublicRoute from 'components/PublicRoute';
 // import CongratsModal from 'components/modals/CongratsModal';
 // import WellDoneModal from 'components/modals/WellDoneModal';
 // import ExitModal from 'components/modals/ExitModal';
+// import ProgressChart from 'components/ProgressChart';
 
 const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
@@ -20,11 +21,13 @@ export default function App() {
   return (
     <>
       <GlobalStyle />
+      {/* <ProgressChart /> */}
       {/* <LoginForm />
       <MyGoal />
       <CongratsModal />
       <WellDoneModal />
-      <ExitModal /> */}
+      <ExitModal /> 
+      */}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route

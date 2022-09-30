@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { WrapperOverlay } from './Modal.styled';
 
-const modalRoot = document.querySelector('#root');
+const modalRoot = document.querySelector('#modalRoot');
 
 export default function Modal({ onClose, children }) {
   useEffect(() => {
@@ -25,6 +25,6 @@ export default function Modal({ onClose, children }) {
 
   return createPortal(
     <WrapperOverlay onClick={handleBackdropClick}>{children}</WrapperOverlay>,
-    modalRoot,
+    modalRoot
   );
 }

@@ -41,9 +41,13 @@ export const ButtonWhite = styled.button`
   line-height: 1.21;
   border: 1px solid #000000;
   background: ${({ theme }) => theme.colors.white};
-  color: ${({ theme }) => theme.colors.accentColor};
+  color: ${({ theme }) => theme.colors.mainFontColor};
   box-shadow: ${({ theme }) => theme.shadows.instrustion};
-  transition: ${({ theme }) => theme.transition},
+  transition: ${({ theme }) => theme.transition};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    min-width: 130px;
+  }
 
   &:hover,
   &:focus {
@@ -59,7 +63,7 @@ export const ButtonOrange = styled(ButtonWhite)`
   color: ${({ theme }) => theme.colors.white};
   background: ${({ theme }) => theme.colors.accentColor};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-left: 30px;
   }
 `;

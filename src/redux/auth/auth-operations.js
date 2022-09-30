@@ -15,7 +15,18 @@ const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/signup', credentials);
+      const { data } = await axios.post('/auth/register', credentials);
+      token.set(data.data.token);
+      return data.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+const registerGoogle = createAsyncThunk(
+  'auth/google/register',
+  async (data, { rejectWithValue }) => {
+    try {
       token.set(data.data.token);
       return data.data;
     } catch (error) {
@@ -29,6 +40,17 @@ const logIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', credentials);
+      token.set(data.data.token);
+      return data.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+const logInGoogle = createAsyncThunk(
+  'auth/google/login',
+  async (data, { rejectWithValue }) => {
+    try {
       token.set(data.data.token);
       return data.data;
     } catch (error) {
@@ -67,8 +89,10 @@ const fetchCurrentUser = createAsyncThunk(
 
 const operations = {
   register,
+  registerGoogle,
   logOut,
   logIn,
+  logInGoogle,
   fetchCurrentUser,
 };
 export default operations;
