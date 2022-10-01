@@ -14,6 +14,8 @@ const theme = {
     placeholderFontColor: '#a6abb9',
     accentColor: '#ff6b08',
     headerBackground: '#b1b5c2',
+    hover: '#DC5309',
+    modalBackground: 'rgba(43, 43, 43, 0.1)',
   },
   shadows: {
     input: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',

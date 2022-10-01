@@ -15,7 +15,6 @@ const LibraryComponent = () => {
   const { isMobile } = useMatchMedia();
   const navigate = useNavigate();
 
-  console.log(isMobile);
   return (
     <Container>
       <StyledSection>
