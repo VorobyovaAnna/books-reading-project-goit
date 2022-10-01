@@ -17,6 +17,7 @@ import { authReducer } from './auth';
 import { booksReducer } from './book';
 import { trainingReducer } from './training';
 import { statisticsReducer } from './statistic.js';
+import { booksApi } from './RTKQuery/booksApi';
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -29,6 +30,7 @@ export const store = configureStore({
     books: booksReducer,
     trainings: trainingReducer,
     statistics: statisticsReducer,
+    [booksApi.reducerPath]: booksApi.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -36,6 +38,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    booksApi.middleware,
   ],
 
   devTools: process.env.NODE_ENV !== 'production',

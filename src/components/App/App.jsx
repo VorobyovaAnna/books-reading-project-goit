@@ -1,10 +1,15 @@
 import GlobalStyle from '../../styles/GlobalStyle';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 import GoogleRedirect from 'components/Login/GoogleRedirect';
+
+import MobileRoute from 'components/MobileRoute/MobileRoute';
+import MobileAddBook from 'pages/MobileAddBook';
 // import MyGoal from 'components/MyGoal';
 // import { LoginForm } from 'components/LoginForm/LoginForm';
 // import CongratsModal from 'components/modals/CongratsModal';
@@ -19,6 +24,12 @@ const Training = lazy(() => import('pages/Training'));
 const Statistics = lazy(() => import('pages/Statistics'));
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <GlobalStyle />
@@ -60,6 +71,16 @@ export default function App() {
             element={
               <PrivateRoute>
                 <Library />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="library/addBook"
+            element={
+              <PrivateRoute>
+                <MobileRoute>
+                  <MobileAddBook />
+                </MobileRoute>
               </PrivateRoute>
             }
           />
