@@ -150,6 +150,10 @@ export const ValidationError = styled(ErrorMessage)`
 `;
 
 export const SubmitButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   height: 60px;
   outline: none;
   border: none;
