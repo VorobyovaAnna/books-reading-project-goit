@@ -6,6 +6,9 @@ import { authOperations } from 'redux/auth';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
+
+import MobileRoute from 'components/MobileRoute/MobileRoute';
+import MobileAddBook from 'pages/MobileAddBook';
 // import MyGoal from 'components/MyGoal';
 // import { LoginForm } from 'components/LoginForm/LoginForm';
 // import CongratsModal from 'components/modals/CongratsModal';
@@ -59,6 +62,16 @@ export default function App() {
             element={
               <PrivateRoute>
                 <Library />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="library/addBook"
+            element={
+              <PrivateRoute>
+                <MobileRoute>
+                  <MobileAddBook />
+                </MobileRoute>
               </PrivateRoute>
             }
           />
