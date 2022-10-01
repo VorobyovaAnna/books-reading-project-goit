@@ -54,8 +54,8 @@ const LoginForm = () => {
         >
           <StyledForm name="LoginForm">
             <GoogleButton
-              href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
-              target="_blank"
+              // href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
+              href="http://localhost:3001/api/auth/google"
             >
               <FcGoogle />
               Google

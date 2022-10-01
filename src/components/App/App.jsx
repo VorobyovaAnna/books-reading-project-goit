@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
+import GoogleRedirect from 'components/Login/GoogleRedirect';
 // import MyGoal from 'components/MyGoal';
 // import { LoginForm } from 'components/LoginForm/LoginForm';
 // import CongratsModal from 'components/modals/CongratsModal';
@@ -43,6 +44,14 @@ export default function App() {
             element={
               <PublicRoute restricted>
                 <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="google-redirect"
+            element={
+              <PublicRoute restricted>
+                <GoogleRedirect />
               </PublicRoute>
             }
           />
