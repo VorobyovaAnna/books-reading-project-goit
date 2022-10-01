@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import openNotificationWithIcon from 'components/Notification';
 axios.defaults.baseURL = 'https://nodejs-final-project-goit.herokuapp.com/api';
 
 const token = {
@@ -20,6 +21,7 @@ const register = createAsyncThunk(
       return data.data;
     } catch (error) {
       rejectWithValue(error);
+      openNotificationWithIcon('warning', error.response.data.message);
     }
   }
 );
@@ -31,6 +33,7 @@ const registerGoogle = createAsyncThunk(
       return data.data;
     } catch (error) {
       rejectWithValue(error);
+      openNotificationWithIcon('error', error.response.data.message);
     }
   }
 );
@@ -44,6 +47,7 @@ const logIn = createAsyncThunk(
       return data.data;
     } catch (error) {
       rejectWithValue(error);
+      openNotificationWithIcon('error', error.response.data.message);
     }
   }
 );
@@ -62,7 +66,7 @@ const logOut = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      await axios.post('/auth/logout');
+      await axios.get('/auth/logout');
       token.unset();
     } catch (error) {
       rejectWithValue(error);
