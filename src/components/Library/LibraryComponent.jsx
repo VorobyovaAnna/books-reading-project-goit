@@ -6,72 +6,103 @@ import ReadTable from './ReadTable/ReadTable';
 // import { tableData2 } from './Table/data';
 // import { tableData3 } from './ReadTable/data';
 import Container from 'components/Container';
-import { StyledButton, StyledSection } from './LibraryComponent.styled';
-
+import {
+  MobileAddBtn,
+  StyledButton,
+  StyledSection,
+} from './LibraryComponent.styled';
 import useLibraryComponent from './useLibraryComponent';
+// import { Navigate } from 'react-router-dom';
+import { ReactComponent as PlusIcon } from './assets/plus.svg';
 
 const LibraryComponent = () => {
-  const { isMobile, alreadyBooks, nowBooks, planBooks, navigate } =
-    useLibraryComponent();
-
-  console.log(alreadyBooks.length);
+  const {
+    isMobile,
+    alreadyBooks,
+    nowBooks,
+    planBooks,
+    navigate,
+    isEmpty,
+    isLoading,
+    error,
+  } = useLibraryComponent();
 
   return (
-    <Container>
-      <StyledSection>
-        <LibraryForm />
-        {isMobile ? (
-          <>
-            {!!alreadyBooks.length && (
-              <MobileTable
-                title={'Прочитано'}
-                status={false}
-                data={alreadyBooks}
-              />
-            )}
-            {!!nowBooks.length && (
-              <MobileTable title={'Читаю'} status={true} data={nowBooks} />
-            )}
-            {!!planBooks.length && (
-              <MobileTable
-                title={'Маю намір прочитати'}
-                status={false}
-                data={planBooks}
-              />
-            )}
-          </>
-        ) : (
-          <>
-            {!!alreadyBooks.length && (
-              <ReadTable
-                title={'Прочитано'}
-                status={false}
-                data={alreadyBooks}
-              />
+    <>
+      <Container>
+        {error && <p>{error?.data?.message}</p>}
+        {!isLoading && (
+          <StyledSection>
+            {isMobile ? (
+              <>
+                {!isEmpty && (
+                  <p>Library is empty. Please add books to library :)</p>
+                )}
+
+                {!!alreadyBooks.length && (
+                  <MobileTable
+                    title={'Прочитано'}
+                    status={false}
+                    data={alreadyBooks}
+                  />
+                )}
+                {!!nowBooks.length && (
+                  <MobileTable title={'Читаю'} status={true} data={nowBooks} />
+                )}
+                {!!planBooks.length && (
+                  <MobileTable
+                    title={'Маю намір прочитати'}
+                    status={false}
+                    data={planBooks}
+                  />
+                )}
+                <MobileAddBtn
+                  type="primary"
+                  onClick={() => {
+                    navigate('/library/addBook');
+                  }}
+                >
+                  <PlusIcon />
+                </MobileAddBtn>
+              </>
+            ) : (
+              <>
+                <LibraryForm />
+                {!!alreadyBooks.length && (
+                  <ReadTable
+                    title={'Прочитано'}
+                    status={false}
+                    data={alreadyBooks}
+                  />
+                )}
+
+                {!!nowBooks.length && (
+                  <Table title={'Читаю'} status={true} data={nowBooks} />
+                )}
+                {!!planBooks.length && (
+                  <Table
+                    title={'Маю намір прочитати'}
+                    status={false}
+                    data={planBooks}
+                  />
+                )}
+              </>
             )}
 
-            {!!nowBooks.length && (
-              <Table title={'Читаю'} status={true} data={nowBooks} />
+            {isEmpty && (
+              <StyledButton
+                type="primary"
+                onClick={() => {
+                  navigate('/training');
+                }}
+              >
+                Моє тренування
+              </StyledButton>
             )}
-            {!!planBooks.length && (
-              <Table
-                title={'Маю намір прочитати'}
-                status={false}
-                data={planBooks}
-              />
-            )}
-          </>
+          </StyledSection>
         )}
-        <StyledButton
-          type="primary"
-          onClick={() => {
-            navigate('/training');
-          }}
-        >
-          Моє тренування
-        </StyledButton>
-      </StyledSection>
-    </Container>
+      </Container>
+    </>
   );
 };
 

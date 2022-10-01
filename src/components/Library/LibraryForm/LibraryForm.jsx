@@ -14,7 +14,7 @@ import {
 import useForm from './useForm';
 
 const LibraryForm = () => {
-  const { form, onFinish, Fields, yupSync } = useForm();
+  const { form, onFinish, Fields, yupSync, isLoading } = useForm();
 
   return (
     <StyledForm
@@ -56,7 +56,9 @@ const LibraryForm = () => {
         </Box>
       </Wrapper>
       <StyledBox>
-        <StyledButton htmlType="submit">Додати</StyledButton>
+        <StyledButton disabled={isLoading} htmlType="submit">
+          Додати
+        </StyledButton>
       </StyledBox>
     </StyledForm>
   );

@@ -16,4 +16,25 @@ export const StyledButton = styled(Button)`
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
+
+  @media (min-width: ${p => p.theme.breakpoints.mobile}) {
+    margin-bottom: 128px;
+  }
+`;
+
+export const MobileAddBtn = styled(Button)`
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+
+  position: fixed;
+  bottom: 12px;
+  left: calc(50% - 26px);
 `;

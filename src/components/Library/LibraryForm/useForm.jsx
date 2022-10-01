@@ -1,6 +1,5 @@
 import { Form, message } from 'antd';
-import { useDispatch } from 'react-redux';
-import { booksOperations } from 'redux/book';
+import { useAddBookMutation } from 'redux/RTKQuery/booksApi';
 import * as yup from 'yup';
 
 const Fields = {
@@ -23,7 +22,7 @@ const Fields = {
 };
 
 const useForm = () => {
-  const dispatch = useDispatch();
+  const [addBook, { isLoading }] = useAddBookMutation();
 
   const [form] = Form.useForm();
 
@@ -56,13 +55,18 @@ const useForm = () => {
     },
   };
 
-  const onFinish = values => {
-    message.success('Книгу успішно додано!');
-    console.log(values);
-    dispatch(booksOperations.createBook(values));
+  const onFinish = async values => {
+    const result = await addBook(values);
+
+    if ('error' in result) {
+      message.error(result.error.data.message);
+    } else {
+      message.success('Книгу успішно додано!');
+      form.resetFields();
+    }
   };
 
-  return { form, onFinish, Fields, yupSync };
+  return { form, onFinish, Fields, yupSync, isLoading };
 };
 
 export default useForm;

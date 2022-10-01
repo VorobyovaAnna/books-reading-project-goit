@@ -23,7 +23,7 @@ const MobileTable = ({ title, status, data }) => {
       <StyledTitle>{title}</StyledTitle>
       <StyledList>
         {data.map(item => (
-          <StyledItem>
+          <StyledItem key={item._id}>
             <StyledIconBox>
               {status ? <BookIconOrange /> : <BookIconGrey />}
             </StyledIconBox>
