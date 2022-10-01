@@ -16,6 +16,7 @@ const theme = {
     headerBackground: '#b1b5c2',
     hover: '#DC5309',
     modalBackground: 'rgba(43, 43, 43, 0.1)',
+    borderColor: '#E0E5EB',
   },
   shadows: {
     input: 'inset 0px 1px 2px rgba(29, 29, 27, 0.15)',
