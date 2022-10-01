@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import openNotificationWithIcon from 'components/Notification';
 axios.defaults.baseURL = 'https://nodejs-final-project-goit.herokuapp.com/api';
 

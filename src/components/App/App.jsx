@@ -6,6 +6,7 @@ import { authOperations } from 'redux/auth';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
+import GoogleRedirect from 'components/Login/GoogleRedirect';
 
 import MobileRoute from 'components/MobileRoute/MobileRoute';
 import MobileAddBook from 'pages/MobileAddBook';
@@ -54,6 +55,14 @@ export default function App() {
             element={
               <PublicRoute restricted>
                 <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="google-redirect"
+            element={
+              <PublicRoute restricted>
+                <GoogleRedirect />
               </PublicRoute>
             }
           />
