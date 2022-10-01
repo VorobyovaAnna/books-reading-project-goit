@@ -1,6 +1,8 @@
 import GlobalStyle from '../../styles/GlobalStyle';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
@@ -18,6 +20,12 @@ const Training = lazy(() => import('pages/Training'));
 const Statistics = lazy(() => import('pages/Statistics'));
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <GlobalStyle />
