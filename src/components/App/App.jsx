@@ -9,6 +9,7 @@ import PublicRoute from 'components/PublicRoute';
 // import CongratsModal from 'components/modals/CongratsModal';
 // import WellDoneModal from 'components/modals/WellDoneModal';
 // import ExitModal from 'components/modals/ExitModal';
+import RatingModal from 'components/modals/RatingModal';
 
 const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
@@ -25,6 +26,7 @@ export default function App() {
       <CongratsModal />
       <WellDoneModal />
       <ExitModal /> */}
+      <RatingModal/>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route

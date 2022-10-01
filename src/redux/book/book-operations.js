@@ -50,10 +50,17 @@ const fetchBookById = createAsyncThunk(
 );
 const updateBookReview = createAsyncThunk(
   'books/review',
-  async ({ bookId, review }, { rejectWithValue }) => {
+  // async ({ bookId, review }, { rejectWithValue }) => {
+  //   try {
+  //     const { data } = await axios.patch(`/books/${bookId}/review`, review);
+  //     return data.data.book;
+  async (reqparams, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(`/books/${bookId}/review`, review);
-      return data.data.book;
+      const { data } = await axios.patch(
+        `/books/${reqparams.index}`,
+        reqparams.body
+      );
+      return data;
     } catch (error) {
       rejectWithValue(error);
     }
