@@ -6,7 +6,7 @@ export const booksApi = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: 'https://nodejs-final-project-goit.herokuapp.com/api',
   }),
-  tagTypes: ['Books'],
+  tagTypes: ['Books', 'BookById'],
   endpoints: builder => ({
     getBooks: builder.query({
       query: () => ({ url: '/books', method: 'GET' }),
@@ -22,14 +22,15 @@ export const booksApi = createApi({
     }),
     getBookById: builder.query({
       query: id => ({ url: `/books/${id}`, method: 'GET' }),
+      providesTags: ['BookById'],
     }),
     updateBookReview: builder.mutation({
-      query: (id, review) => ({
-        url: `/books/${id}/review`,
-        method: 'POST',
-        data: review,
+      query: params => ({
+        url: `/books/${params.id}/review`,
+        method: 'PATCH',
+        data: params.data,
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Books', 'BookById'],
     }),
   }),
 });

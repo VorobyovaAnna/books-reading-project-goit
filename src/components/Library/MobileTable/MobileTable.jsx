@@ -1,4 +1,3 @@
-import React from 'react';
 import { ReactComponent as BookIconOrange } from '../assets/Flat.svg';
 import { ReactComponent as BookIconGrey } from '../assets/Group.svg';
 
@@ -16,8 +15,14 @@ import {
   StyledTitle,
   Wrapper,
 } from './MobileTable.styled';
+import Modal from 'components/modals/Modal/Modal';
+import RatingModal from 'components/modals/RatingModal';
+import useMobileTable from './useMobileTable';
 
 const MobileTable = ({ title, status, data }) => {
+  const { setBookId, toggleModal, isModalVisible, onModalClose, bookId } =
+    useMobileTable();
+
   return (
     <Wrapper>
       <StyledTitle>{title}</StyledTitle>
@@ -48,11 +53,16 @@ const MobileTable = ({ title, status, data }) => {
                 <>
                   <Box>
                     <PropertyName>Рейтинг:</PropertyName>
-                    <Rate value={item?.rating} />
+                    <Rate
+                      style={{ width: '120px', fontSize: '17px' }}
+                      disabled
+                      value={item?.rating}
+                    />
                   </Box>
                   <StyledButton
                     onClick={() => {
-                      console.log(item._id);
+                      setBookId(item?._id);
+                      toggleModal();
                     }}
                   >
                     Резюме
@@ -63,6 +73,11 @@ const MobileTable = ({ title, status, data }) => {
           </StyledItem>
         ))}
       </StyledList>
+      {isModalVisible && (
+        <Modal onClose={onModalClose}>
+          <RatingModal onClose={onModalClose} bookId={bookId} />
+        </Modal>
+      )}
     </Wrapper>
   );
 };

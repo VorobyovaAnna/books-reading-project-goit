@@ -60,10 +60,7 @@ const LoginForm = () => {
           {({ isValid, touched, isSubmitting }) => {
             return (
               <StyledForm name="LoginForm">
-                <GoogleButton
-                  href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
-                  target="_blank"
-                >
+                <GoogleButton href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google">
                   <FcGoogle />
                   Google
                 </GoogleButton>
