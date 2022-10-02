@@ -26,19 +26,6 @@ const register = createAsyncThunk(
     }
   }
 );
-const registerGoogle = createAsyncThunk(
-  'auth/google/register',
-  async (data, { rejectWithValue }) => {
-    try {
-      token.set(data.data.token);
-      return data.data;
-    } catch (error) {
-      rejectWithValue(error);
-      openNotificationWithIcon('error', error.response.data.message);
-    }
-  }
-);
-
 const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
@@ -52,12 +39,12 @@ const logIn = createAsyncThunk(
     }
   }
 );
-const logInGoogle = createAsyncThunk(
+const authGoogle = createAsyncThunk(
   'auth/google/login',
   async (data, { rejectWithValue }) => {
     try {
-      token.set(data.data.token);
-      return data.data;
+      token.set(data.token);
+      return data;
     } catch (error) {
       rejectWithValue(error);
     }
@@ -94,10 +81,9 @@ const fetchCurrentUser = createAsyncThunk(
 
 const operations = {
   register,
-  registerGoogle,
   logOut,
   logIn,
-  logInGoogle,
+  authGoogle,
   fetchCurrentUser,
 };
 export default operations;

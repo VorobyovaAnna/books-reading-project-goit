@@ -69,10 +69,7 @@ const SignupForm = () => {
           {({ isValid, touched, isSubmitting }) => {
             return (
               <StyledForm name="SignupForm">
-                <GoogleButton
-                  href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
-                  target="_blank"
-                >
+                <GoogleButton href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google">
                   <FcGoogle />
                   Google
                 </GoogleButton>
