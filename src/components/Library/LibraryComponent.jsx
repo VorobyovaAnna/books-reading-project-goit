@@ -36,7 +36,7 @@ const LibraryComponent = () => {
             {isMobile ? (
               <>
                 {!isEmpty && (
-                  <p>Library is empty. Please add books to library :)</p>
+                  <p>. Please add books to library :)</p>
                 )}
 
                 {!!alreadyBooks.length && (
