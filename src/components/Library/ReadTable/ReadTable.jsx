@@ -1,9 +1,14 @@
 import { flexRender } from '@tanstack/react-table';
+import Modal from 'components/modals/Modal/Modal';
+import RatingModal from 'components/modals/RatingModal';
 import { StyledTable, StyledTitle, Wrapper } from './ReadTable.styled';
 import useTable from './useTable';
 
 const ReadTable = ({ title, status, data }) => {
-  const { table } = useTable(status, data);
+  const { table, isModalVisible, bookId, onModalClose } = useTable(
+    status,
+    data
+  );
 
   return (
     <Wrapper>
@@ -37,6 +42,11 @@ const ReadTable = ({ title, status, data }) => {
           ))}
         </tbody>
       </StyledTable>
+      {isModalVisible && (
+        <Modal onClose={onModalClose}>
+          <RatingModal onClose={onModalClose} bookId={bookId} />
+        </Modal>
+      )}
     </Wrapper>
   );
 };

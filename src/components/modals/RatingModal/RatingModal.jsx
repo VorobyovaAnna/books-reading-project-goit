@@ -1,96 +1,86 @@
-import { useRef, useState } from 'react';
-import { toast } from 'react-toastify';
-
 import {
+  FormItem,
   StyledBox,
   StyledRatingBox,
-  StyledRatingButtonBack,
-  StyledRatingButtonSave,
-  StyledRatingForm,
+  StyledRatingButton,
   StyledRatingLabel,
   StyledRatingResumeText,
   StyledRatingText,
-  StyledRatingTextArea,
+  StyledTextArea,
 } from './RatingModal.styled';
-import Rating from 'react-rating';
-import { SvgEmptyStar, SvgFullStar } from './RatingModal.styled';
-import { useDispatch } from 'react-redux';
-import operations from 'redux/book/book-operations';
-import { useSelector } from 'react-redux';
-import { getFinishedBooks } from 'redux/book';
 
-const RatingModal = ({ onClose, index }) => {
-  // const books = useSelector(getFinishedBooks);
-  // const book = books.find(book => book.id === index);
-  // const [review, setReview] = useState(() => book.review ?? '');
-  // const [rating, setRating] = useState(() => Number(book.rating) || 0);
+import Loader from 'components/Loader';
+import { Form, Rate } from 'antd';
+import useRatingModal from './useRatingModal';
 
-  const saveBtnRef = useRef(null);
-
-  const dispatch = useDispatch();
-
-  const handleRating = rate => {
-    // if (saveBtnRef.current.disabled) {
-    //   saveBtnRef.current.disabled = false;
-    // }
-    // setRating(rate);
-  };
-
-  const handleChange = event => {
-    // if (saveBtnRef.current.disabled) {
-    //   saveBtnRef.current.disabled = false;
-    // }
-    // setReview(event.target.value);
-  };
-
-  const handleSubmit = event => {
-    // event.preventDefault();
-    // if (!review) {
-    //   toast.info('Заповніть відгук');
-    //   return;
-    // }
-    // if (!rating) {
-    //   toast.info('Вкажіть рейтинг');
-    //   return;
-    // }
-    // dispatch(operations.updateBookReview({ index, body: { rating, review } }));
-    // onClose();
-  };
+const RatingModal = ({ onClose, bookId }) => {
+  const {
+    isLoading,
+    error,
+    form,
+    onFinish,
+    rating,
+    setRating,
+    resume,
+    setResume,
+    isDisabled,
+  } = useRatingModal(bookId, onClose);
 
   return (
-    <StyledRatingBox>
-      <StyledRatingForm onSubmit={handleSubmit}>
-        <StyledRatingText>Обрати рейтинг книги</StyledRatingText>
-        <Rating
-          onClick={handleRating}
-          // initialRating={rating}
-          fullSymbol={<SvgFullStar />}
-          emptySymbol={<SvgEmptyStar />}
-        />
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <StyledRatingBox>
+          {error ? (
+            error.data.message
+          ) : (
+            <>
+              <Form
+                form={form}
+                layout="vertical"
+                onFinish={onFinish}
+                autoComplete="off"
+              >
+                <StyledRatingText>Обрати рейтинг книги</StyledRatingText>
+                <Rate
+                  style={{ width: '120px', fontSize: '17px' }}
+                  value={rating}
+                  onChange={value => {
+                    setRating(value);
+                  }}
+                />
+                <FormItem name={'resume'}>
+                  <StyledRatingLabel>
+                    <StyledRatingResumeText>Резюме</StyledRatingResumeText>
+                    <StyledTextArea
+                      value={resume}
+                      onChange={e => {
+                        setResume(e.currentTarget.value);
+                      }}
+                      autoSize={{ minRows: 7 }}
+                    />
+                  </StyledRatingLabel>
+                </FormItem>
 
-        <StyledRatingLabel>
-          <StyledRatingResumeText>Резюме</StyledRatingResumeText>
-
-          <StyledRatingTextArea
-// value={review}
-            onChange={handleChange}
-          ></StyledRatingTextArea>
-        </StyledRatingLabel>
-
-        <StyledBox>
-          <StyledRatingButtonBack onClick={onClose} marginRight="16px">
-          Назад
-          </StyledRatingButtonBack>
-          <StyledRatingButtonSave
-            type="submit"
-            ref={saveBtnRef}
-            disabled={true}
-          >
-            Зберегти
-          </StyledRatingButtonSave>
-        </StyledBox>
-      </StyledRatingForm>
-    </StyledRatingBox>
+                <StyledBox>
+                  <StyledRatingButton onClick={onClose}>
+                    Назад
+                  </StyledRatingButton>
+                  <StyledRatingButton
+                    type="primary"
+                    htmlType="submit"
+                    disabled={!isDisabled}
+                  >
+                    Зберегти
+                  </StyledRatingButton>
+                </StyledBox>
+              </Form>
+            </>
+          )}
+        </StyledRatingBox>
+      )}
+    </>
   );
 };
 export default RatingModal;
