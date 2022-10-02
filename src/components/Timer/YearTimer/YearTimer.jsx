@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { TimerСontainer, TimerHeader } from './YearTimer.styled';
+import { TimerСontainer, TimerHeader, Timer, LabelTimer } from './YearTimer.styled';
 
 const YearTimer = () => {
   const [days, setDays] = useState(0);
@@ -33,7 +33,9 @@ const YearTimer = () => {
     <>  
       <TimerHeader>До закінчення року залишилось</TimerHeader>
       <TimerСontainer>
-        <p><span>ДН</span>{addLeadingZero(days)}:<span>ГОД</span>{addLeadingZero(hours)}:<span>ХВ</span>{addLeadingZero(minutes)}:<span>СЕК</span>{addLeadingZero(seconds)}</p>
+          {/* <p><span>ДН</span>{addLeadingZero(days)}:<span>ГОД</span>{addLeadingZero(hours)}:<span>ХВ</span>{addLeadingZero(minutes)}:<span>СЕК</span>{addLeadingZero(seconds)}</p> */}
+          <Timer><span>{addLeadingZero(days)}</span><span>:</span><span>{addLeadingZero(hours)}</span><span>:</span><span>{addLeadingZero(minutes)}</span><span>:</span><span>{addLeadingZero(seconds)}</span></Timer>
+          <LabelTimer><span>ДН</span><span>ГОД</span><span>ХВ</span><span>СЕК</span></LabelTimer>
       </TimerСontainer>
     </>
   );
