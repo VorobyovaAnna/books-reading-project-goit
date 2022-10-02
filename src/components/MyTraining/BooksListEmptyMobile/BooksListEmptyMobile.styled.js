@@ -16,7 +16,7 @@ export const StyledTable = styled.table`
 
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.25;
+  line-height: 2;
 
   color: ${p => p.theme.colors.mainFontColor};
 

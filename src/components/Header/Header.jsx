@@ -5,7 +5,7 @@ import operations from 'redux/auth/auth-operations';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import { MdOutlineHome } from 'react-icons/md';
 import { ImStatsDots } from 'react-icons/im';
-import { ReactComponent as BookIconGrey } from 'images/svg/bookIconGrey.svg';
+// import { ReactComponent as BookIconGrey } from 'images/svg/bookIconGrey.svg';
 import {
   HeaderWrapper,
   Logo,
@@ -55,7 +55,7 @@ const Header = () => {
                       <MdOutlineHome size={20} />
                     </StyledLink>
                     <StyledLink to="/training">
-                      <BookIconGrey />
+                      <HiOutlineBookOpen size={18} />
                     </StyledLink>
                     <StatsLink to="/statistics">
                       <ImStatsDots size={18} />
@@ -80,7 +80,7 @@ const Header = () => {
                         <MdOutlineHome size={20} />
                       </StyledLink>
                       <StyledLink to="/training">
-                        <HiOutlineBookOpen size={20} />
+                        <HiOutlineBookOpen size={18} />
                       </StyledLink>
                       <StatsLink to="/statistics">
                         <ImStatsDots size={16} />

@@ -2,7 +2,7 @@ import moment from 'moment';
 import {
   StyledHeading,
   StyledButtonBack,
-  ModalWrapper,
+  Wrapper,
   StyledForm,
   StyledInput,
   StyledSelect,
@@ -24,7 +24,7 @@ const AddTrainingComponent = () => {
 
   return (
     <Container>
-      <ModalWrapper>
+      <Wrapper>
         <StyledButtonBack type="button" onClick={handleClick}>
           <IconBack />
         </StyledButtonBack>
@@ -53,7 +53,7 @@ const AddTrainingComponent = () => {
           </StyledSelect>
           <SubmitButton>Додати</SubmitButton>
         </StyledForm>
-      </ModalWrapper>
+      </Wrapper>
     </Container>
   );
 };

@@ -25,6 +25,13 @@ const Training = () => {
           </StyledAddButton>
         </Container>
       )}
+      {!isMobile && (
+        <Container>
+          {/* <MyGoal /> */}
+          <MyTraining />
+          {/* <ProgressChart /> */}
+        </Container>
+      )}
     </>
   );
 };
