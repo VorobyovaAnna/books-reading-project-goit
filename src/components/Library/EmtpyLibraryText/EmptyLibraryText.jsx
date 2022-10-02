@@ -4,7 +4,7 @@ import {
   StyledLibButton,
   StyledNameBook,
   StyledBox,
-} from './EmtpyLibraryText.styled';
+} from './EmptyLibraryText.styled';
 import { useContext } from 'react';
 
 import { PageFormatContext, format } from 'context/pageFormatContext';

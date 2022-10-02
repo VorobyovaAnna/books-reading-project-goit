@@ -13,13 +13,12 @@ import MobileAddBook from 'pages/MobileAddBook';
 import { getFetchingCurrent } from 'redux/auth';
 
 // import MyGoal from 'components/MyGoal';
-// import { LoginForm } from 'components/LoginForm/LoginForm';
 // import CongratsModal from 'components/modals/CongratsModal';
 // import WellDoneModal from 'components/modals/WellDoneModal';
 // import ExitModal from 'components/modals/ExitModal';
 // import RatingModal from 'components/modals/RatingModal';
 // import ProgressChart from 'components/ProgressChart';
-import EmtpyLibraryText from 'components/Library/emtpyLibraryText/EmtpyLibraryText';
+// import EmtpyLibraryText from 'components/Library/EmtpyLibraryText';
 
 const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
@@ -38,14 +37,13 @@ export default function App() {
     !isFetchingUser && (
       <>
         <GlobalStyle />
-        {/* <ProgressChart /> */}
-        {/* <LoginForm />
-      <MyGoal />
-      <CongratsModal />
-      <WellDoneModal />
-      <RatingModal/>
-      <ExitModal /> */}
-      <EmtpyLibraryText/>
+        {/* <ProgressChart />
+        <MyGoal />
+        <CongratsModal />
+        <WellDoneModal />
+        <RatingModal/>
+        <ExitModal />
+        <EmtpyLibraryText/> */}
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route
