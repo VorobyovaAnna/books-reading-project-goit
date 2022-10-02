@@ -11,6 +11,7 @@ const theme = {
     btnBackground: '#6D7A8D',
     mainFontColor: '#242a37',
     secondaryFontColor: '#898f9f',
+    googleFontColor: '#707375',
     placeholderFontColor: '#a6abb9',
     accentColor: '#ff6b08',
     headerBackground: '#b1b5c2',

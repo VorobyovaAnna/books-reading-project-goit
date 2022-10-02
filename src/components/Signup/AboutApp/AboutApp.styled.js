@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import device from 'styles/device';
 import { theme } from 'styles';
 import listStyleImage from 'images/svg/list-style-image.svg';
@@ -56,3 +58,40 @@ export const BulletList = styled.ul`
 `;
 
 export const Bullet = styled.li``;
+
+export const ButtonsDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+export const ButtonWhite = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 40px;
+  margin-top: 60px;
+  padding: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #000000;
+  background-color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.mainFontColor};
+  box-shadow: ${p => p.theme.shadows.hero};
+  transition: ${p => p.theme.transition.transitionFunction};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.hover};
+    box-shadow: ${p => p.theme.shadows.google};
+  }
+`;
+
+export const ButtonOrange = styled(ButtonWhite)`
+  border: none;
+  margin-left: 16px;
+  color: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.accentColor};
+`;

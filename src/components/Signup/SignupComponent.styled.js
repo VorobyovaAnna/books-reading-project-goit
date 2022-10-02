@@ -8,6 +8,5 @@ export const SignupSection = styled.section`
   @media ${device.desktop} {
     display: flex;
     justify-content: center;
-    /* flex-wrap: no-wrap; */
   } ;
 `;
