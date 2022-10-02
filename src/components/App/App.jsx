@@ -11,6 +11,7 @@ import GoogleRedirect from 'components/Login/GoogleRedirect';
 import MobileRoute from 'components/MobileRoute/MobileRoute';
 import MobileAddBook from 'pages/MobileAddBook';
 import { getFetchingCurrent } from 'redux/auth';
+
 // import MyGoal from 'components/MyGoal';
 // import { LoginForm } from 'components/LoginForm/LoginForm';
 // import CongratsModal from 'components/modals/CongratsModal';
