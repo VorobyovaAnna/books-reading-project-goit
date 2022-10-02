@@ -15,6 +15,7 @@ import MobileAddBook from 'pages/MobileAddBook';
 // import CongratsModal from 'components/modals/CongratsModal';
 // import WellDoneModal from 'components/modals/WellDoneModal';
 // import ExitModal from 'components/modals/ExitModal';
+// import RatingModal from 'components/modals/RatingModal';
 // import ProgressChart from 'components/ProgressChart';
 
 const Register = lazy(() => import('pages/Register'));
@@ -38,8 +39,8 @@ export default function App() {
       <MyGoal />
       <CongratsModal />
       <WellDoneModal />
-      <ExitModal /> 
-      */}
+      <RatingModal/>
+      <ExitModal /> */}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route
