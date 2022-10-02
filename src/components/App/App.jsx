@@ -1,6 +1,6 @@
 import GlobalStyle from '../../styles/GlobalStyle';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import SharedLayout from 'components/SharedLayout';
@@ -19,22 +19,29 @@ import { getFetchingCurrent } from 'redux/auth';
 // import RatingModal from 'components/modals/RatingModal';
 // import ProgressChart from 'components/ProgressChart';
 // import EmtpyLibraryText from 'components/Library/EmtpyLibraryText';
+// import YearTimer from 'components/Timer/YearTimer';
+// import GoalTimer from 'components/Timer/GoalTimer';
 
 const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
 const Library = lazy(() => import('pages/Library'));
 const Training = lazy(() => import('pages/Training'));
+const AddTraining = lazy(() => import('pages/AddTraining'));
 const Statistics = lazy(() => import('pages/Statistics'));
 
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingUser = useSelector(getFetchingCurrent);
+  const [firstRenderEnded, setFirstRenderEnded] = useState(false);
+
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+    setFirstRenderEnded(true);
   }, [dispatch]);
 
   return (
-    !isFetchingUser && (
+    !isFetchingUser &&
+    firstRenderEnded && (
       <>
         <GlobalStyle />
         {/* <ProgressChart />
@@ -43,7 +50,9 @@ export default function App() {
         <WellDoneModal />
         <RatingModal/>
         <ExitModal />
-        <EmtpyLibraryText/> */}
+        <EmtpyLibraryText/>
+        <YearTimer />
+        <GoalTimer /> */}
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route
@@ -93,6 +102,14 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <Training />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="training/add"
+              element={
+                <PrivateRoute>
+                  <AddTraining />
                 </PrivateRoute>
               }
             />

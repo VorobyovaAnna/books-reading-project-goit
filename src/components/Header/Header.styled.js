@@ -14,7 +14,7 @@ export const FlexWrapper = styled.div`
   align-items: center;
 `;
 
-export const Logo = styled.p`
+export const Logo = styled(NavLink)`
   width: 28px;
   height: 27px;
 
@@ -25,6 +25,10 @@ export const Logo = styled.p`
   line-height: 1.35;
 
   color: ${p => p.theme.colors.mainFontColor};
+
+  &:hover {
+    color: ${p => p.theme.colors.mainFontColor};
+  }
 `;
 
 export const StyledLink = styled(NavLink)`
