@@ -1,6 +1,6 @@
 import GlobalStyle from '../../styles/GlobalStyle';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import SharedLayout from 'components/SharedLayout';
@@ -30,12 +30,16 @@ const Statistics = lazy(() => import('pages/Statistics'));
 export default function App() {
   const dispatch = useDispatch();
   const isFetchingUser = useSelector(getFetchingCurrent);
+  const [firstRenderEnded, setFirstRenderEnded] = useState(false);
+
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
+    setFirstRenderEnded(true);
   }, [dispatch]);
 
   return (
-    !isFetchingUser && (
+    !isFetchingUser &&
+    firstRenderEnded && (
       <>
         <GlobalStyle />
         {/* <ProgressChart />
