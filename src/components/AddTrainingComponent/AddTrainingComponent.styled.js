@@ -29,6 +29,7 @@ export const StyledButtonBack = styled(Button)`
   border: none;
 
   margin-bottom: 32px;
+  padding: 0;
 
   &:hover {
     background: none;

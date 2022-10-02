@@ -29,7 +29,7 @@ const deleteBook = createAsyncThunk(
   'books/delete',
   async (bookId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/contacts/${bookId}`);
+      const { data } = await axios.delete(`/books/${bookId}`);
       return data.data.book;
     } catch (error) {
       rejectWithValue(error);

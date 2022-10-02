@@ -48,7 +48,7 @@ const Header = () => {
           <HeaderWrapper>
             {isMobile && (
               <>
-                <Logo>BR</Logo>
+                <Logo to="/library">BR</Logo>
                 {isLoggedIn && (
                   <FlexWrapper>
                     <StyledLink to="/library">
@@ -68,7 +68,7 @@ const Header = () => {
             )}
             {!isMobile && (
               <>
-                <Logo>BR</Logo>
+                <Logo to="/library">BR</Logo>
                 {isLoggedIn && (
                   <>
                     <FlexWrapper>

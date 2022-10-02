@@ -1,13 +1,22 @@
-import BookCard from '../BookCard';
-// import { tableData } from '../../Library/Table/data';
+import { StyledTable, StyledBookIcon } from './BooksTable.styled';
+import TableRow from './TableRow';
 import PropTypes from 'prop-types';
 
-const BooksListFilledMobile = ({ books }) => {
+const BooksTable = ({ books }) => {
   return (
-    <>
-      <ul>
+    <StyledTable>
+      <thead>
+        <tr>
+          <td>Назва книги</td>
+          <td>Автор</td>
+          <td>Рік</td>
+          <td>Стор.</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
         {books.map(({ _id, title, author, publication, pages }) => (
-          <BookCard
+          <TableRow
             key={_id}
             id={_id}
             title={title}
@@ -16,12 +25,18 @@ const BooksListFilledMobile = ({ books }) => {
             pages={pages}
           />
         ))}
-      </ul>
-    </>
+        <tr>
+          <td>
+            <StyledBookIcon />
+            <>...</>
+          </td>
+        </tr>
+      </tbody>
+    </StyledTable>
   );
 };
 
-BooksListFilledMobile.propTypes = {
+BooksTable.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
@@ -33,4 +48,4 @@ BooksListFilledMobile.propTypes = {
   ).isRequired,
 };
 
-export default BooksListFilledMobile;
+export default BooksTable;
