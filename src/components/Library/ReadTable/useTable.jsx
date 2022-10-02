@@ -39,7 +39,7 @@ const useTable = (status, data) => {
         header: 'Рейтинг книги',
         cell: info => <Rate value={info.getValue()} />,
       }),
-      columnHelper.accessor('id', {
+      columnHelper.accessor('_id', {
         header: '',
         cell: info => (
           <StyledBtn

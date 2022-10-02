@@ -1,9 +1,12 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { FcGoogle } from 'react-icons/fc';
-
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import PulseLoader from 'react-spinners/PulseLoader';
+
 import { authOperations } from 'redux/auth';
+import { getIsLoggedIn } from 'redux/auth';
 
 import {
   FormWrapper,
@@ -46,10 +49,12 @@ const initialValues = {
 
 const SignupForm = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   const handleSubmit = (values, actions) => {
     dispatch(authOperations.register(values));
-    actions.resetForm();
+
+    isLoggedIn && actions.resetForm();
   };
 
   return (
@@ -61,83 +66,91 @@ const SignupForm = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          <StyledForm name="SignupForm">
-            <GoogleButton
-              href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
-              target="_blank"
-            >
-              <FcGoogle />
-              Google
-            </GoogleButton>
+          {({ isValid, touched, isSubmitting }) => {
+            return (
+              <StyledForm name="SignupForm">
+                <GoogleButton href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google">
+                  <FcGoogle />
+                  Google
+                </GoogleButton>
 
-            <FieldWrapper>
-              <FieldName htmlFor="name">
-                Ім'я <AccentedMark>*</AccentedMark>
-              </FieldName>
-              <StyledField
-                id="name"
-                name="name"
-                type="text"
-                placeholder="..."
-                autoComplete="off"
-              />
-              <ValidationError name="name" component="div" />
-            </FieldWrapper>
+                <FieldWrapper>
+                  <FieldName htmlFor="name">
+                    Ім'я <AccentedMark>*</AccentedMark>
+                  </FieldName>
+                  <StyledField
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="..."
+                    autoComplete="off"
+                  />
+                  <ValidationError name="name" component="div" />
+                </FieldWrapper>
 
-            <FieldWrapper>
-              <FieldName htmlFor="email">
-                Електронна адреса <AccentedMark>*</AccentedMark>
-              </FieldName>
-              <StyledField
-                id="email"
-                name="email"
-                type="email"
-                placeholder="your@email.com"
-                autoComplete="off"
-              />
-              <ValidationError name="email" component="div" />
-            </FieldWrapper>
+                <FieldWrapper>
+                  <FieldName htmlFor="email">
+                    Електронна адреса <AccentedMark>*</AccentedMark>
+                  </FieldName>
+                  <StyledField
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    autoComplete="off"
+                  />
+                  <ValidationError name="email" component="div" />
+                </FieldWrapper>
 
-            <FieldWrapper>
-              <FieldName htmlFor="password">
-                Пароль <AccentedMark>*</AccentedMark>
-              </FieldName>
-              <StyledField
-                id="password"
-                name="password"
-                type="password"
-                placeholder="..."
-                autoComplete="off"
-              />
+                <FieldWrapper>
+                  <FieldName htmlFor="password">
+                    Пароль <AccentedMark>*</AccentedMark>
+                  </FieldName>
+                  <StyledField
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="..."
+                    autoComplete="off"
+                  />
 
-              <ValidationError name="password" component="div" />
-            </FieldWrapper>
+                  <ValidationError name="password" component="div" />
+                </FieldWrapper>
 
-            <FieldWrapper>
-              <FieldName htmlFor="repeatPassword">
-                Підтвердити пароль <AccentedMark>*</AccentedMark>
-              </FieldName>
-              <StyledField
-                id="repeatPassword"
-                name="repeatPassword"
-                type="password"
-                placeholder="..."
-                autoComplete="off"
-              />
-              <ValidationError name="repeatPassword" component="div" />
-            </FieldWrapper>
+                <FieldWrapper>
+                  <FieldName htmlFor="repeatPassword">
+                    Підтвердити пароль <AccentedMark>*</AccentedMark>
+                  </FieldName>
+                  <StyledField
+                    id="repeatPassword"
+                    name="repeatPassword"
+                    type="password"
+                    placeholder="..."
+                    autoComplete="off"
+                  />
+                  <ValidationError name="repeatPassword" component="div" />
+                </FieldWrapper>
 
-            <SubmitButton
-              type="submit"
-              //   disabled={!props.isValid || props.isSubmitting}
-            >
-              Зареєструватися
-            </SubmitButton>
-            <LoginLinkWrapper>
-              <IsRegistredParagraph>Вже з нами?</IsRegistredParagraph>
-              <StyledLink to="/login">Увійти</StyledLink>
-            </LoginLinkWrapper>
-          </StyledForm>
+                <SubmitButton
+                  type="submit"
+                  disabled={
+                    (!touched.name &&
+                      !touched.email &&
+                      !touched.password &&
+                      !touched.repeatPassword) ||
+                    !isValid
+                  }
+                >
+                  Зареєструватися
+                  {isSubmitting && <PulseLoader color="white" size="4px" />}
+                </SubmitButton>
+                <LoginLinkWrapper>
+                  <IsRegistredParagraph>Вже з нами?</IsRegistredParagraph>
+                  <StyledLink to="/login">Увійти</StyledLink>
+                </LoginLinkWrapper>
+              </StyledForm>
+            );
+          }}
         </Formik>
       </FormWrapper>
     </>
