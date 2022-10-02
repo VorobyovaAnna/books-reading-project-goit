@@ -16,12 +16,13 @@ import MobileAddBook from 'pages/MobileAddBook';
 // import WellDoneModal from 'components/modals/WellDoneModal';
 // import ExitModal from 'components/modals/ExitModal';
 // import ProgressChart from 'components/ProgressChart';
+import YearTimer from 'components/Timer/YearTimer';
 
-const Register = lazy(() => import('pages/Register'));
-const Login = lazy(() => import('pages/Login'));
-const Library = lazy(() => import('pages/Library'));
-const Training = lazy(() => import('pages/Training'));
-const Statistics = lazy(() => import('pages/Statistics'));
+// const Register = lazy(() => import('pages/Register'));
+// const Login = lazy(() => import('pages/Login'));
+// const Library = lazy(() => import('pages/Library'));
+// const Training = lazy(() => import('pages/Training'));
+// const Statistics = lazy(() => import('pages/Statistics'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -40,7 +41,8 @@ export default function App() {
       <WellDoneModal />
       <ExitModal /> 
       */}
-      <Routes>
+      <YearTimer />
+      {/* <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route
             path="register"
@@ -102,7 +104,7 @@ export default function App() {
           />
         </Route>
         <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
+      </Routes> */}
     </>
   );
 }
