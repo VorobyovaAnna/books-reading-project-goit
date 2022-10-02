@@ -17,15 +17,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [authOperations.registerGoogle.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-    },
     [authOperations.register.rejected](state) {
-      state.isLoggedIn = true;
-    },
-    [authOperations.registerGoogle.rejected](state) {
       state.isLoggedIn = true;
     },
     [authOperations.logIn.fulfilled](state, action) {
@@ -33,7 +25,7 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
-    [authOperations.logInGoogle.fulfilled](state, action) {
+    [authOperations.authGoogle.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
@@ -48,8 +40,8 @@ const authSlice = createSlice({
       state.isFetchingUser = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
-      state.user.name = action.payload.name;
-      state.user.email = action.payload.email;
+      state.user.name = action.payload.user.name;
+      state.user.email = action.payload.user.email;
       state.isLoggedIn = true;
       state.isFetchingUser = false;
     },
