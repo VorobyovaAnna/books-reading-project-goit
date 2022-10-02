@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
-import { Field, ErrorMessage } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
 
 import device from 'styles/device';
 import theme from 'styles/theme';
@@ -56,7 +56,7 @@ export const Overlay = styled.div`
   background-color: #091e3fcc;
 `;
 
-export const Form = styled.form`
+export const StyledForm = styled(Form)`
   position: relative;
   z-index: 100;
   display: flex;
@@ -80,7 +80,7 @@ export const Form = styled.form`
   }
 `;
 
-export const GoogleButton = styled.button`
+export const GoogleButton = styled.a`
   align-self: center;
   display: flex;
   align-items: center;
@@ -95,8 +95,9 @@ export const GoogleButton = styled.button`
   font-family: Roboto;
   font-size: 16px;
   font-weight: 700;
+  background-color: ${theme.colors.inputBackground};
   box-shadow: ${theme.shadows.google};
-  cursor: 'pointer';
+  cursor: pointer;
 `;
 
 export const FieldWrapper = styled.div`
@@ -160,6 +161,10 @@ export const ValidationError = styled(ErrorMessage)`
 `;
 
 export const SubmitButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   height: 60px;
   outline: none;
   border: none;
@@ -182,78 +187,3 @@ export const StyledLink = styled(Link)`
   margin-top: 16px;
   text-decoration: underline;
 `;
-
-// export const Input = styled(FilteredPropsInputField)`
-//   border: 1px solid lightgrey;
-//   border-radius: 4px;
-//   font-size: 1rem;
-//   line-height: 1.5rem;
-//   font-style: normal;
-//   font-weight: 400;
-//   width: 100%;
-//   margin-top: 0.5rem;
-//   padding: 0.75rem 0.75rem;
-
-//   &:focus,
-//   &:active {
-//     box-shadow: rgb(210, 213, 217) 0px 0px 2px 1px,
-//       rgb(227, 230, 232) 0px 0px 0px 3px;
-//     border: 1px solid rgb(26, 33, 43);
-//     outline: none;
-//   }
-
-//   /* Autocomplete styles in Chrome*/
-//   &:-webkit-autofill,
-//   &:-webkit-autofill:hover,
-//   &:-webkit-autofill:focus {
-//     background-color: white;
-//     border: 1px solid lightgrey;
-//     box-shadow: 0 0 0px 1000px #fff inset;
-//     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-//     transition: background-color 5000s ease-in-out 0s;
-//     -webkit-text-fill-color: black;
-//   }
-
-//   ${({ valid }) =>
-//     valid &&
-//     css`
-//       border: 1px solid rgb(0, 156, 38);
-
-//       &:focus,
-//       &:active {
-//         border: 1px solid rgb(0, 156, 38);
-//         box-shadow: rgb(106, 237, 97) 0px 0px 2px 1px,
-//           rgb(177, 247, 160) 0px 0px 0px 3px;
-//         outline: none;
-//       }
-
-//       /* Autocomplete styles in Chrome*/
-//       &:-webkit-autofill,
-//       &:-webkit-autofill:hover,
-//       &:-webkit-autofill:focus {
-//         border: 1px solid rgb(0, 156, 38);
-//       }
-//     `}
-
-//   ${({ error }) =>
-//     error &&
-//     css`
-//       border: 1px solid rgb(191, 49, 12);
-//       outline: none;
-
-//       &:focus,
-//       &:active {
-//         box-shadow: rgb(244, 129, 116) 0px 0px 2px 1px,
-//           rgb(251, 178, 174) 0px 0px 0px 3px;
-//         border: 1px solid rgb(191, 49, 12);
-//         outline: none;
-//       }
-
-//       /* Autocomplete styles in Chrome*/
-//       &:-webkit-autofill,
-//       &:-webkit-autofill:hover,
-//       &:-webkit-autofill:focus {
-//         border: 1px solid rgb(191, 49, 12);
-//       }
-//     `}
-// `;
