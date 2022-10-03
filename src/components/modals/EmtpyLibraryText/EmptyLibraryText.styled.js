@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledList = styled.ul`
-  padding: 20px;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: ${({ theme }) => theme.shadows.header};
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     padding: 40px;
   }
@@ -59,13 +55,6 @@ export const StyledStepText = styled.p`
   }
 `;
 
-export const StyledNameBook = styled.p`
-  margin-bottom: 8px;
-  font-size: 14px;
-  line-height: 1.21;
-  color: ${({ theme }) => theme.colors.secondaryFontColor};
-`;
-
 export const StyledLibButton = styled.button`
   text-align: center;
   margin-left: auto;
@@ -94,6 +83,9 @@ export const StyledLibButton = styled.button`
 export const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.shadows.header};
+  padding: 20px;
   width: 280px;
   margin-left: auto;
   margin-right: auto;
