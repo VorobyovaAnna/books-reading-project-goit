@@ -19,14 +19,38 @@ const FormResult = ({ onSubmit }) => {
       onFinish={onSubmit}
     >
       <LabelList>
-        <Label label="Дата">
-          <DataPickerStyled size="110px" placeholder="" />
+        <Label
+          name="date"
+          label="Дата"
+          rules={[
+            {
+              required: true,
+              message: 'Please input date!',
+            },
+          ]}
+        >
+          <DataPickerStyled
+            size="110px"
+            placeholder=""
+            disabledDate={current => {
+              return current && current < new Date();
+            }}
+          />
         </Label>
-        <Label label="Кількість сторінок">
+        <Label
+          name="pages"
+          label="Кількість сторінок"
+          rules={[
+            {
+              required: true,
+              message: 'Please input pages!',
+            },
+          ]}
+        >
           <Input />
         </Label>
       </LabelList>
-      <ButtonStyled>Button</ButtonStyled>
+      <ButtonStyled htmlType="submit">Button</ButtonStyled>
     </FormStyled>
   );
 };

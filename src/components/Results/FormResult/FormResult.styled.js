@@ -37,6 +37,13 @@ export const Label = styled(Form.Item)`
     padding: 0;
     flex: 0 0 110px;
   }
+  .ant-form-item-label
+    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional):before {
+    display: none;
+  }
+  .ant-form-item-explain {
+    font-size: 10px;
+  }
 `;
 
 export const ButtonStyled = styled(Button)`
