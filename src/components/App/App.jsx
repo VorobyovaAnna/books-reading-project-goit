@@ -7,10 +7,12 @@ import SharedLayout from 'components/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
 import PublicRoute from 'components/PublicRoute';
 import GoogleRedirect from 'components/Login/GoogleRedirect';
+import AboutApp from 'components/Signup/AboutApp';
 
 import MobileRoute from 'components/MobileRoute/MobileRoute';
 import MobileAddBook from 'pages/MobileAddBook';
 import { getFetchingCurrent } from 'redux/auth';
+import { useMatchMedia } from 'hooks';
 
 // import MyGoal from 'components/MyGoal';
 // import { LoginForm } from 'components/LoginForm/LoginForm';
@@ -33,6 +35,8 @@ export default function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
+  const { isMobile } = useMatchMedia();
+
   return (
     !isFetchingUser && (
       <>
@@ -46,6 +50,10 @@ export default function App() {
       <ExitModal /> */}
         <Routes>
           <Route path="/" element={<SharedLayout />}>
+            <Route
+              path="/"
+              element={isMobile ? <AboutApp /> : <Navigate to="/login" />}
+            />
             <Route
               path="register"
               element={
