@@ -18,7 +18,7 @@ import { getFetchingCurrent } from 'redux/auth';
 // import ExitModal from 'components/modals/ExitModal';
 // import RatingModal from 'components/modals/RatingModal';
 // import ProgressChart from 'components/ProgressChart';
-import EmtpyLibraryText from 'components/modals/EmtpyLibraryText';
+// import EmtpyLibraryText from 'components/modals/EmtpyLibraryText';
 // import YearTimer from 'components/Timer/YearTimer';
 // import GoalTimer from 'components/Timer/GoalTimer';
 
@@ -52,7 +52,7 @@ export default function App() {
         <ExitModal />
         <YearTimer />
         <GoalTimer /> */}
-        <EmtpyLibraryText/>
+        
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route
