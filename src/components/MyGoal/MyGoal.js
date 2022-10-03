@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 import {
   NumberContainer,
   List,
@@ -14,8 +12,8 @@ import React from 'react';
 const MyHeader = () => {
   const books = 0;
   const days = 0;
-  // const [booksLeft, setBooksleft] = useState(0);
-  const booksLeft = 0;
+
+  const booksLeft = 2;
   return (
     <>
       <Section>

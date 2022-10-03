@@ -17,7 +17,7 @@ import { getFetchingCurrent } from 'redux/auth';
 // import WellDoneModal from 'components/modals/WellDoneModal';
 // import ExitModal from 'components/modals/ExitModal';
 // import RatingModal from 'components/modals/RatingModal';
-// import ProgressChart from 'components/ProgressChart';
+import ProgressChart from 'components/ProgressChart';
 // import EmtpyLibraryText from 'components/Library/EmtpyLibraryText';
 // import YearTimer from 'components/Timer/YearTimer';
 // import GoalTimer from 'components/Timer/GoalTimer';
@@ -117,6 +117,7 @@ export default function App() {
               path="statistics"
               element={
                 <PrivateRoute>
+                  <ProgressChart />
                   <Statistics />
                 </PrivateRoute>
               }

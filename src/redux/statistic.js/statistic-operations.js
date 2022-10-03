@@ -5,9 +5,9 @@ axios.defaults.baseURL = 'https://nodejs-final-project-goit.herokuapp.com/api';
 
 const fetchStatistics = createAsyncThunk(
   'statistics/fetch',
-  async (_, { rejectWithValue }) => {
+  async (statisticId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/statistics');
+      const { data } = await axios.get(`/statistics/${statisticId}`);
       return data.data.statistic;
     } catch (error) {
       rejectWithValue(error);
