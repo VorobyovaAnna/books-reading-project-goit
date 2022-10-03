@@ -2,29 +2,22 @@ import {
   StyledList,
   StyledStepText,
   StyledLibButton,
-  StyledNameBook,
   StyledBox,
 } from './EmptyLibraryText.styled';
-import { useContext } from 'react';
+import useMatchMedia from 'hooks/useMatchMedia';
 
-import { PageFormatContext, format } from 'context/pageFormatContext';
-import { ReactComponent as ArrowIcon } from '../assets/arrow.svg';
-import { ReactComponent as BookIcon } from '../assets/icon-book.svg';
-import { ReactComponent as FlagIcon } from '../assets/flag.svg';
+import { ReactComponent as ArrowIcon } from 'components/Library/assets/arrow.svg';
+import { ReactComponent as BookIcon } from 'components/Library/assets/icon-book.svg';
+import { ReactComponent as FlagIcon } from 'components/Library/assets/flag.svg';
 
 export default function EmtpyLibraryText({ isEmptyLibrary, onClick, style }) {
 
-  const pageFormat = useContext(PageFormatContext);
-  const isResponse = pageFormat === format.response;
-  const isMobile = pageFormat === format.mobile;
+  const { isMobile } = useMatchMedia();
 
   return (
     <>
       {!isEmptyLibrary && (
         <StyledBox style={style}>
-          {(isResponse || isMobile) && (
-            <StyledNameBook>Назва книги</StyledNameBook>
-          )}
           <StyledList>
             <li>
               <StyledStepText>Крок 1.</StyledStepText>
@@ -59,7 +52,7 @@ export default function EmtpyLibraryText({ isEmptyLibrary, onClick, style }) {
               </p>
             </li>
           </StyledList>
-          {(isMobile || isResponse) && (
+          {isMobile && (
             <StyledLibButton type="button" onClick={() => onClick(true)}>
               Ok
             </StyledLibButton>

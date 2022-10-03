@@ -1,22 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledList = styled.ul`
-  padding: 20px;
-  background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: ${({ theme }) => theme.shadows.header};
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: 40px;
-  }
-
-  margin-bottom: 40px;
-  background-color: ${({ theme }) => theme.colors.white};
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-bottom: 0px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
   }
 
   & li:not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   & .step-text {
@@ -59,17 +48,11 @@ export const StyledStepText = styled.p`
   }
 `;
 
-export const StyledNameBook = styled.p`
-  margin-bottom: 8px;
-  font-size: 14px;
-  line-height: 1.21;
-  color: ${({ theme }) => theme.colors.secondaryFontColor};
-`;
-
 export const StyledLibButton = styled.button`
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 40px;
   height: 40px;
   min-width: 127px;
   padding: 0;
@@ -94,13 +77,16 @@ export const StyledLibButton = styled.button`
 export const StyledBox = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: ${({ theme }) => theme.shadows.header};
+  padding: 20px;
   width: 280px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-top: 0px;
+    padding: 40px;
     width: 608px;
-    height: 272px;
   }
 `;
