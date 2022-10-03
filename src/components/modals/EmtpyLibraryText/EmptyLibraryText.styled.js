@@ -6,7 +6,7 @@ export const StyledList = styled.ul`
   }
 
   margin-bottom: 40px;
-  background-color: ${({ theme }) => theme.colors.white};
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-bottom: 0px;
   }
@@ -87,12 +87,12 @@ export const StyledBox = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.header};
   padding: 20px;
   width: 280px;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     margin-top: 0px;
     width: 608px;
-    height: 272px;
   }
 `;
