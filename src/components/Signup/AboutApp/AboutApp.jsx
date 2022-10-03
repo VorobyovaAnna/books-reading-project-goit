@@ -1,12 +1,19 @@
+import { useMatchMedia } from 'hooks';
+
 import {
   AboutAppWrapper,
   AppName,
   BulletsTitle,
   BulletList,
   Bullet,
+  ButtonsDiv,
+  ButtonWhite,
+  ButtonOrange,
 } from './AboutApp.styled';
 
 const AboutApp = () => {
+  const { isMobile } = useMatchMedia();
+
   return (
     <AboutAppWrapper>
       <AppName>Books Reading</AppName>
@@ -25,6 +32,13 @@ const AboutApp = () => {
         </Bullet>
         <Bullet>Стати цікавим співрозмовником</Bullet>
       </BulletList>
+
+      {isMobile && (
+        <ButtonsDiv>
+          <ButtonWhite to="/login">Увійти</ButtonWhite>
+          <ButtonOrange to="/register">Реєстрація</ButtonOrange>
+        </ButtonsDiv>
+      )}
     </AboutAppWrapper>
   );
 };
