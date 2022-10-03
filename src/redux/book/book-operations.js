@@ -29,7 +29,7 @@ const deleteBook = createAsyncThunk(
   'books/delete',
   async (bookId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/contacts/${bookId}`);
+      const { data } = await axios.delete(`/books/${bookId}`);
       return data.data.book;
     } catch (error) {
       rejectWithValue(error);
@@ -48,19 +48,13 @@ const fetchBookById = createAsyncThunk(
     }
   }
 );
+
 const updateBookReview = createAsyncThunk(
   'books/review',
-  // async ({ bookId, review }, { rejectWithValue }) => {
-  //   try {
-  //     const { data } = await axios.patch(`/books/${bookId}/review`, review);
-  //     return data.data.book;
-  async (reqparams, { rejectWithValue }) => {
+  async ({ bookId, review }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(
-        `/books/${reqparams.index}`,
-        reqparams.body
-      );
-      return data;
+      const { data } = await axios.patch(`/books/${bookId}/review`, review);
+      return data.data.book;
     } catch (error) {
       rejectWithValue(error);
     }

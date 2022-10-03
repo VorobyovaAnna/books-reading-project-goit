@@ -5,6 +5,7 @@ import operations from 'redux/auth/auth-operations';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import { MdOutlineHome } from 'react-icons/md';
 import { ImStatsDots } from 'react-icons/im';
+// import { ReactComponent as BookIconGrey } from 'images/svg/bookIconGrey.svg';
 import {
   HeaderWrapper,
   Logo,
@@ -28,12 +29,10 @@ const Header = () => {
   const navigate = useNavigate();
   const { isMobile } = useMatchMedia();
 
-  // видалити < ?? 'PLACEHOLDER' >
-  const userName = useSelector(getUserName) ?? 'PLACEHOLDER';
-  const firstLetter = userName[0];
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
-  // видалити < || true >
-  const isLoggedIn = useSelector(getIsLoggedIn) || true;
+  const userName = useSelector(getUserName) || '';
+  const firstLetter = userName[0];
 
   const toggleModal = () => setIsModalVisible(!isModalVisible);
   const handleLogOut = () => {
@@ -49,11 +48,11 @@ const Header = () => {
           <HeaderWrapper>
             {isMobile && (
               <>
-                <Logo>BR</Logo>
+                <Logo to="/library">BR</Logo>
                 {isLoggedIn && (
                   <FlexWrapper>
                     <StyledLink to="/library">
-                      <MdOutlineHome size={18} />
+                      <MdOutlineHome size={20} />
                     </StyledLink>
                     <StyledLink to="/training">
                       <HiOutlineBookOpen size={18} />
@@ -69,7 +68,7 @@ const Header = () => {
             )}
             {!isMobile && (
               <>
-                <Logo>BR</Logo>
+                <Logo to="/library">BR</Logo>
                 {isLoggedIn && (
                   <>
                     <FlexWrapper>
@@ -81,7 +80,7 @@ const Header = () => {
                         <MdOutlineHome size={20} />
                       </StyledLink>
                       <StyledLink to="/training">
-                        <HiOutlineBookOpen size={20} />
+                        <HiOutlineBookOpen size={18} />
                       </StyledLink>
                       <StatsLink to="/statistics">
                         <ImStatsDots size={16} />
