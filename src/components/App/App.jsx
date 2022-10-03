@@ -44,7 +44,8 @@ export default function App() {
     firstRenderEnded && (
       <>
         <GlobalStyle />
-        {/* <ProgressChart />
+        {/* <EmtpyLibraryText />
+        <ProgressChart />
         <MyGoal />
         <CongratsModal />
         <WellDoneModal />

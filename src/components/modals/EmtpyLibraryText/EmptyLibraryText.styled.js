@@ -1,18 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledList = styled.ul`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    padding: 40px;
-  }
-
-  margin-bottom: 40px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-bottom: 0px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.mobile}) {
   }
 
   & li:not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   & .step-text {
@@ -59,6 +52,7 @@ export const StyledLibButton = styled.button`
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 40px;
   height: 40px;
   min-width: 127px;
   padding: 0;
@@ -92,7 +86,7 @@ export const StyledBox = styled.div`
   margin-right: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-top: 0px;
+    padding: 40px;
     width: 608px;
   }
 `;
