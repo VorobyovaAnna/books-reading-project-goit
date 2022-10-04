@@ -43,7 +43,7 @@ export const ButtonWhite = styled.button`
   background: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.mainFontColor};
   box-shadow: ${({ theme }) => theme.shadows.instrustion};
-  transition: ${({ theme }) => theme.transition};
+  transition: ${({ theme }) => theme.transition.transitionFunction};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
     min-width: 130px;

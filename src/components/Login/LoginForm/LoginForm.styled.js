@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import { Form, Field, ErrorMessage } from 'formik';
 
 import device from 'styles/device';
-import theme from 'styles/theme';
-
-// import FilteredPropsInputField from './FilteredPropsInputField';
 
 import mobileBackground from 'images/auth-background/login-background-mob.jpg';
 import tabletBackground from 'images/auth-background/login-background-tablet.jpg';
@@ -23,27 +20,19 @@ export const FormWrapper = styled.div`
 
   background-repeat: no-repeat;
   background-position: center;
-
   font-family: Montserrat;
 
   @media ${device.mobile} {
-    /* padding: 20px; */
     background-image: url(${mobileBackground});
-
-    /* width: 100%; */
   }
 
   @media ${device.tablet} {
     padding: 65px;
     background-image: url(${tabletBackground});
-
-    /* width: 100%; */
   }
   @media ${device.desktop} {
     padding: 158px 75px;
     background-image: url(${desktopBackground});
-
-    /* width: 100%; */
   }
 `;
 
@@ -66,13 +55,12 @@ export const StyledForm = styled(Form)`
   @media ${device.mobile} {
     padding: 32px 20px;
     width: 320px;
-    /* background-image: url(${mobileBackground}); */
   }
 
   @media ${device.tablet} {
     padding: 40px;
     width: 400px;
-    background-color: ${theme.colors.white};
+    background-color: ${p => p.theme.colors.white};
   }
 
   @media ${device.desktop} {
@@ -91,20 +79,27 @@ export const GoogleButton = styled.a`
   height: 40px;
   outline: none;
   border: none;
-  color: #707375;
-  font-family: Roboto;
+  color: ${p => p.theme.colors.googleFontColor};
+  font-family: 'Roboto';
   font-size: 16px;
   font-weight: 700;
-  background-color: ${theme.colors.inputBackground};
-  box-shadow: ${theme.shadows.google};
+  background-color: ${p => p.theme.colors.inputBackground};
+  box-shadow: ${p => p.theme.shadows.hero};
   cursor: pointer;
+  transition: ${p => p.theme.transition.transitionFunction};
+
+  :hover,
+  :focus {
+    box-shadow: ${p => p.theme.shadows.google};
+    background-color: ${p => p.theme.colors.modalBackground};
+    color: ${p => p.theme.colors.googleFontColor};
+  }
 `;
 
 export const FieldWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  /* width: 280px; */
 
   @media ${device.mobile} {
   }
@@ -120,7 +115,7 @@ export const FieldName = styled.label`
   margin-bottom: 8px;
   font-size: 14px;
   line-height: 1.214;
-  color: ${theme.colors.white};
+  color: ${p => p.theme.colors.white};
 
   @media ${device.mobile} {
     font-weight: 600;
@@ -128,36 +123,37 @@ export const FieldName = styled.label`
 
   @media ${device.tablet} {
     font-weight: 500;
-    color: ${theme.colors.secondaryFontColor};
+    color: ${p => p.theme.colors.secondaryFontColor};
   }
 
   @media ${device.desktop} {
     font-weight: 500;
-    color: ${theme.colors.secondaryFontColor};
+    color: ${p => p.theme.colors.secondaryFontColor};
   }
 `;
 
 export const AccentedMark = styled.span`
-  color: ${theme.colors.accentColor};
+  color: ${p => p.theme.colors.accentColor};
 `;
 
 export const StyledField = styled(Field)`
   padding: 8px 12px;
   outline: none;
-  border: 1px solid ${theme.colors.inputBackground};
-  box-shadow: ${theme.shadows.input};
-  background-color: ${theme.colors.inputBackground};
+  border: 1px solid ${p => p.theme.colors.inputBackground};
+  box-shadow: ${p => p.theme.shadows.input};
+  background-color: ${p => p.theme.colors.inputBackground};
+  transition: ${p => p.theme.transition.transitionFunction};
 
   :hover,
   :focus {
-    border: 1px solid ${theme.colors.headerBackground};
+    border: 1px solid ${p => p.theme.colors.headerBackground};
   }
 `;
 
 export const ValidationError = styled(ErrorMessage)`
   font-size: 12px;
   font-weight: 600;
-  color: ${theme.colors.accentColor};
+  color: ${p => p.theme.colors.accentColor};
 `;
 
 export const SubmitButton = styled.button`
@@ -168,16 +164,21 @@ export const SubmitButton = styled.button`
   height: 60px;
   outline: none;
   border: none;
-  background-color: ${theme.colors.accentColor};
-  color: ${theme.colors.white};
+  background-color: ${p => p.theme.colors.accentColor};
+  color: ${p => p.theme.colors.white};
   font-weight: 600;
   font-size: 16px;
   line-height: 1.25;
   cursor: pointer;
+  transition: ${p => p.theme.transition.transitionFunction};
+
+  :hover {
+    background-color: ${p => p.theme.colors.hover};
+  }
 
   :disabled {
-    background-color: ${theme.colors.headerBackground};
-    color: ${theme.colors.secondaryFontColor};
+    background-color: ${p => p.theme.colors.headerBackground};
+    color: ${p => p.theme.colors.secondaryFontColor};
     cursor: not-allowed;
   }
 `;

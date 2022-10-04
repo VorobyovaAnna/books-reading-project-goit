@@ -13,6 +13,13 @@ import {
 import { Line } from 'react-chartjs-2';
 
 import { Container, GraphContainer } from './ProgressChart.styled';
+import { useSelector } from 'react-redux';
+
+// import { useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+
+// import operations from '../../redux/statistic.js/statistic-operations';
+// import { getStatistics } from '../../redux/statistic.js/statistic-selectors';
 
 Chart.register(
   CategoryScale,
@@ -72,44 +79,65 @@ const options = {
   maintainAspectRatio: false,
 };
 
-const labels = [
-  'Понеділок',
-  'Вівторок',
-  'Середа',
-  'Четвер',
-  "П'ятниця",
-  'Субота',
-  'Неділя',
-];
-
-const data = {
-  labels,
-  type: 'shadowLine',
-  datasets: [
-    {
-      label: 'План',
-      data: [10, 10, 10, 10, 10, 10, 10],
-      borderColor: '#091E3F',
-      backgroundColor: '#091E3F',
-      borderWidth: 2,
-      borderJoinStyle: 'round',
-      cubicInterpolationMode: 'default',
-      tension: 0.4,
-    },
-    {
-      label: 'Факт',
-      data: [12, 7, 14, 13, 9, 6, 17],
-      borderColor: ' #FF6B08',
-      backgroundColor: '#FF6B08',
-      borderWidth: 2,
-      borderJoinStyle: 'round',
-      cubicInterpolationMode: 'default',
-      tension: 0.4,
-    },
-  ],
-};
-
 export default function ProgressChart() {
+  // const dispatch = useDispatch();
+
+  // const id = useSelector()
+
+  // useEffect(() => {
+  //   dispatch(operations.fetchStatistics(id));
+  // }, [dispatch]);
+
+  // const stats = useSelector(getStatistics);
+
+  // const planAmountOfPages = stats.plan.map(item => {
+  //   return item.pages;
+  // });
+  // const realAmountOfPages = stats.result.map(item => {
+  //   return item.pages;
+  // });
+
+  // const dates = stats.result.map(item => {
+  //   return item.date;
+  // });
+
+  const labels = [
+    'Понеділок',
+    'Вівторок',
+    'Середа',
+    'Четвер',
+    "П'ятниця",
+    'Субота',
+    'Неділя',
+  ]; //dates
+
+  const data = {
+    labels,
+    type: 'shadowLine',
+    datasets: [
+      {
+        label: 'План',
+        data: [10, 10, 10, 10, 10, 10, 10], //planAmountOfPages,
+        borderColor: '#091E3F',
+        backgroundColor: '#091E3F',
+        borderWidth: 2,
+        borderJoinStyle: 'round',
+        cubicInterpolationMode: 'default',
+        tension: 0.4,
+      },
+      {
+        label: 'Факт',
+        data: [12, 7, 14, 13, 9, 6, 17], //realAmountOfPages,
+        borderColor: ' #FF6B08',
+        backgroundColor: '#FF6B08',
+        borderWidth: 2,
+        borderJoinStyle: 'round',
+        cubicInterpolationMode: 'default',
+        tension: 0.4,
+      },
+    ],
+  };
+
   return (
     <Container>
       <GraphContainer>

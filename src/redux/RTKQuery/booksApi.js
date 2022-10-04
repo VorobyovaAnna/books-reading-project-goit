@@ -6,7 +6,7 @@ export const booksApi = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: 'https://nodejs-final-project-goit.herokuapp.com/api',
   }),
-  tagTypes: ['Books'],
+  tagTypes: ['Books', 'BookById', 'Trainings', 'Statistics'],
   endpoints: builder => ({
     getBooks: builder.query({
       query: () => ({ url: '/books', method: 'GET' }),
@@ -22,22 +22,94 @@ export const booksApi = createApi({
     }),
     getBookById: builder.query({
       query: id => ({ url: `/books/${id}`, method: 'GET' }),
+      providesTags: ['BookById'],
     }),
     updateBookReview: builder.mutation({
-      query: (id, review) => ({
-        url: `/books/${id}/review`,
-        method: 'POST',
-        data: review,
+      query: params => ({
+        url: `/books/${params.id}/review`,
+        method: 'PATCH',
+        data: params.data,
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Books', 'BookById'],
+    }),
+    getTraining: builder.query({
+      query: () => ({ url: '/trainings', method: 'GET' }),
+      providesTags: ['Trainings'],
+    }),
+    addTraining: builder.mutation({
+      query: values => ({ url: '/trainings', method: 'POST', data: values }),
+      invalidatesTags: ['Books', 'BookById', 'Trainings', 'Statistics'],
+    }),
+    getStatisticsById: builder.query({
+      query: id => ({ url: `/statistics/${id}`, method: 'GET' }),
+      providesTags: ['Statistics', 'Trainings'],
+    }),
+    updateStatisticsById: builder.mutation({
+      query: params => ({
+        url: `/statistics/${params.id}`,
+        method: 'PATCH',
+        data: params.data,
+      }),
+      invalidatesTags: ['Books', 'BookById', 'Trainings', 'Statistics'],
     }),
   }),
 });
 
 export const {
+  useGetBooksQuery,
   useAddBookMutation,
   useDeleteBookMutation,
   useGetBookByIdQuery,
-  useGetBooksQuery,
   useUpdateBookReviewMutation,
+  useGetTrainingQuery,
+  useAddTrainingMutation,
+  useGetStatisticsByIdQuery,
+  useUpdateStatisticsByIdMutation,
 } = booksApi;
+
+// ------- Приклад використання хуків
+// const { data: trainings } = useGetTrainingQuery();
+// console.log('trainings:', trainings);
+
+// const statisticsId = trainings?.data.training[0].statistics;
+
+// console.log('statisticsId', statisticsId);
+
+// const { data: statistics } = useGetStatisticsByIdQuery(statisticsId);
+
+// console.log('statistics:', statistics);
+
+// const [addTraining, { isLoading }] =
+//   useAddTrainingMutation();
+
+// const [updateStatisticsById] = useUpdateStatisticsByIdMutation();
+
+// const dataValue = {
+//   start: '01-10-2022 13:13:13',
+//   finish: '11-10-2022 13:13:13',
+//   books: ['633b46275953dc5cd9e39ffa'],
+// };
+
+// const statisticsValue = {
+//   date: '12-10-2022 13:13:13',
+//   pages: 25,
+// };
+
+// ------- Приклад використання мутацій
+// <Button
+//   onClick={() => {
+//     addTraining(dataValue);
+//   }}
+// >
+//   add
+// </Button>
+// <Button
+//   onClick={() => {
+//     updateStatisticsById({
+//       id: statisticsId,
+//       data: { ...statisticsValue },
+//     });
+//   }}
+// >
+//   add stat
+// </Button>

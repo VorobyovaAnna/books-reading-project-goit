@@ -3,6 +3,7 @@ import AboutApp from './AboutApp';
 import { SignupSection } from './SignupComponent.styled';
 
 const SignupComponent = () => {
+
   return (
     <SignupSection>
       <SignupForm />

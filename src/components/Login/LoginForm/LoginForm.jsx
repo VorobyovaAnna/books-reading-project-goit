@@ -26,11 +26,24 @@ const validationSchema = yup.object().shape({
   email: yup
     .string('Enter your email')
     .email('Enter a valid email')
+    .min(10, 'Email must contain at least 10 characters')
+    .max(63, 'Email must contain no more than 63 characters')
+    .matches(/^[a-zA-Z0-9]/, 'Name must start with letter or number')
+    .matches(
+      /^([a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]{2,})+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+      'The Email field can only contain Latin letters, numbers and signs, and at least 2 charachters before "@"'
+    )
     .required('Email is a required field'),
   password: yup
     .string('Enter your password')
-    .min(8, 'Password is too short - should be 8 chars minimum.')
-    .required('Password is a required field'), //можна додати npm yup-password
+    .matches(/^[a-zA-Z0-9]/, 'Password must start with letter or number')
+    .matches(
+      /^([a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-])*$/,
+      'Password must not contain spaces'
+    )
+    .min(5, 'Password is too short - should be 5 chars minimum')
+    .max(30, 'Password must contain no more than 30 characters')
+    .required('Password is a required field'),
 });
 
 const initialValues = {
@@ -60,10 +73,7 @@ const LoginForm = () => {
           {({ isValid, touched, isSubmitting }) => {
             return (
               <StyledForm name="LoginForm">
-                <GoogleButton
-                  href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google"
-                  target="_blank"
-                >
+                <GoogleButton href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google">
                   <FcGoogle />
                   Google
                 </GoogleButton>

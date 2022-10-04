@@ -2,9 +2,6 @@ import LibraryForm from './LibraryForm/LibraryForm';
 import MobileTable from './MobileTable/MobileTable';
 import Table from './Table/Table';
 import ReadTable from './ReadTable/ReadTable';
-// import { tableData } from './Table/data';
-// import { tableData2 } from './Table/data';
-// import { tableData3 } from './ReadTable/data';
 import Container from 'components/Container';
 import {
   MobileAddBtn,
@@ -12,7 +9,6 @@ import {
   StyledSection,
 } from './LibraryComponent.styled';
 import useLibraryComponent from './useLibraryComponent';
-// import { Navigate } from 'react-router-dom';
 import { ReactComponent as PlusIcon } from './assets/plus.svg';
 
 const LibraryComponent = () => {

@@ -38,7 +38,6 @@ const useForm = () => {
     publication: yup
       .number()
       .typeError('Поле може містити тільки числа')
-      .required("Обов'язкове поле")
       .max(year, `Рік публікації не може бути більшим ${year}`)
       .positive('Поле може містити тільки додатні числа'),
     pages: yup
@@ -51,11 +50,28 @@ const useForm = () => {
 
   const yupSync = {
     async validator({ field }, value) {
-      await schema.validateSyncAt(field, { [field]: value });
+      if (value?.[0] === '-') {
+        return Promise.reject('Поле не може починатись з дефісу');
+      }
+
+      if (value?.[0] === ' ') {
+        return Promise.reject('Поле не може починатись з пробілу');
+      }
+
+      return await schema.validateSyncAt(field, { [field]: value });
     },
   };
 
   const onFinish = async values => {
+    if (values.title[0] === '-') {
+      console.log(values.title[0]);
+      return message.error('Поле "Назва книги" не може починатись з дефісу');
+    }
+
+    if (values.title[0] === ' ') {
+      console.log(values.title[0]);
+      return message.error('Поле "Назва книги" не може починатись з пробілу');
+    }
     const result = await addBook(values);
 
     if ('error' in result) {
