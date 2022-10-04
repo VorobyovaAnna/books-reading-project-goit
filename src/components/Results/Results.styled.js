@@ -13,6 +13,7 @@ export const Section = styled.div`
     justify-content: center;
     align-items: center;
     width: 704px;
+    flex-direction: column;
   }
   @media ${device.desktop} {
     width: 288px;

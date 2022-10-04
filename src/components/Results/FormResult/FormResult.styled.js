@@ -9,16 +9,17 @@ export const FormStyled = styled(Form)`
   & .ant-form-item:not(:last-child) {
     margin-right: 18px;
   }
+  & .ant-form-item:last-child {
+    flex-direction: column;
+  }
 `;
 export const LabelList = styled.div`
   display: flex;
-
   margin-bottom: 28px;
 
-  & .ant-form-item-row .ant-col-10 {
-    max-width: 110px;
-    width: 110px;
-    margin: 0;
+  @media ${device.tablet} {
+    display: flex;
+    flex-direction: row;
   }
 `;
 export const DataPickerStyled = styled(DatePicker)`
@@ -32,10 +33,15 @@ export const Label = styled(Form.Item)`
     font-size: 11px;
     line-height: 13px;
     height: 13px;
+    color: ${({ theme }) => theme.colors.secondaryFontColor};
   }
   .ant-col-24.ant-form-item-label {
     padding: 0;
     flex: 0 0 110px;
+  }
+  @media ${device.tablet} {
+    display: flex;
+    flex-direction: column;
   }
 `;
 

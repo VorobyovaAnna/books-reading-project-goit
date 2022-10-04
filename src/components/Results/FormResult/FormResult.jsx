@@ -26,7 +26,7 @@ const FormResult = ({ onSubmit }) => {
           <Input />
         </Label>
       </LabelList>
-      <ButtonStyled>Button</ButtonStyled>
+      <ButtonStyled>Додати результат</ButtonStyled>
     </FormStyled>
   );
 };
