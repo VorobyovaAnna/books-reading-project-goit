@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react';
 const Training = () => {
   const { isMobile } = useMatchMedia();
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState();
+  const [isTrainingFormVisible, setIsTrainingFormVisible] = useState();
 
   // const handleClick = () => navigate('/training/add');
 
@@ -30,7 +30,7 @@ const Training = () => {
   // training ?? console.log(training);
 
   const toggleForm = () => {
-    setIsVisible(!isVisible);
+    setIsTrainingFormVisible(!isTrainingFormVisible);
   };
 
   return (
@@ -38,16 +38,19 @@ const Training = () => {
       {isMobile && !isVisible && (
         <Container>
           <MyGoal />
-          <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
+          <MyTraining
+            isFormVisible={isTrainingFormVisible}
+            toggleForm={toggleForm}
+          />
           <ProgressChart />
           <StyledAddButton type="button" onClick={toggleForm}>
             <AddIcon />
           </StyledAddButton>
         </Container>
       )}
-      {isMobile && isVisible && (
+      {isMobile && isTrainingFormVisible && (
         <Container>
-          <MyTraining isFormVisible={isVisible} />
+          <MyTraining isFormVisible={isTrainingFormVisible} />
         </Container>
       )}
       {!isMobile && (
