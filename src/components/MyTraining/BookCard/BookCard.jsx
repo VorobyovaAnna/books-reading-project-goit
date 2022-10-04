@@ -9,14 +9,14 @@ import { ReactComponent as BookIcon } from 'images/svg/bookIconGrey.svg';
 import { FiTrash } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
-import { booksOperations } from 'redux/book';
-import { useDispatch } from 'react-redux';
+// import { booksOperations } from 'redux/book';
+// import { useDispatch } from 'react-redux';
 
-const BookCard = ({ id, title, author, year, pages }) => {
-  const dispatch = useDispatch();
+const BookCard = ({ id, title, author, year, pages, onClick }) => {
+  // const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(booksOperations.deleteBook(id));
+    onClick();
   };
 
   return (
@@ -56,6 +56,7 @@ BookCard.propTypes = {
   author: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
   pages: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default BookCard;

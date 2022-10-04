@@ -18,12 +18,11 @@ const Training = () => {
   const [isActiveTraining, setIsActiveTraining] = useState();
   const { data: trainings } = useGetTrainingQuery();
 
-  console.log(trainings);
-
   useEffect(() => {
     trainings?.training.length === 0
       ? setIsActiveTraining(false)
       : setIsActiveTraining(true);
+    console.log('записали тренінги');
   }, [trainings?.training.length]);
   // const handleClick = () => navigate('/training/add');
 

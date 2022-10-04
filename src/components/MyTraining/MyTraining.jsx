@@ -5,7 +5,6 @@ import BooksTable from './BooksTable';
 import StartTrainingButton from './StartTrainingButton';
 import { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { getBooks } from 'redux/book';
 import { booksOperations } from 'redux/book';
 import { trainingsOperations } from 'redux/training';
@@ -71,7 +70,7 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
     const queBook = booksForTable.filter(book => {
       return book._id === id;
     });
-    // console.log(queBook);
+
     setBooksForSelect([...booksForSelect, ...queBook]);
   };
 
@@ -85,7 +84,7 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
       )}
       {isMobile && !isFormVisible && booksForTable.length !== 0 && (
         <>
-          <BooksListFilledMobile books={booksForTable} />
+          <BooksListFilledMobile books={booksForTable} onClick={removeBook} />
           <StartTrainingButton
             htmlType="button"
             onClick={handleStartTraining}
