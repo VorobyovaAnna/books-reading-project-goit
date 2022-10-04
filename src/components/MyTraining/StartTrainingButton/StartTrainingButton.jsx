@@ -1,12 +1,8 @@
 import { StyledButton } from './StartTrainingButton.styled';
-import { useNavigate } from 'react-router-dom';
 
-const StartTrainingButton = () => {
-  const navigate = useNavigate();
-  const handleClick = () => navigate('/statistics');
-
+const StartTrainingButton = ({ onClick }) => {
   return (
-    <StyledButton type="button" onClick={handleClick}>
+    <StyledButton type="button" onClick={onClick}>
       Почати тренування
     </StyledButton>
   );
