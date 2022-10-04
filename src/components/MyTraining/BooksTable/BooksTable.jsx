@@ -1,8 +1,11 @@
 import { StyledTable, StyledBookIcon } from './BooksTable.styled';
 import TableRow from './TableRow';
 import PropTypes from 'prop-types';
+// import { useState, useEffect } from 'react';
 
-const BooksTable = ({ books }) => {
+const BooksTable = ({ books, onClick }) => {
+  // const [booksForRender, setBooksForRender] = useState(books);
+
   return (
     <StyledTable>
       <thead>
@@ -23,6 +26,7 @@ const BooksTable = ({ books }) => {
             author={author}
             year={publication}
             pages={pages}
+            onClick={onClick}
           />
         ))}
         <tr>

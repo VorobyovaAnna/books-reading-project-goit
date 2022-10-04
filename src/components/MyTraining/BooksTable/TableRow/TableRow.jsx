@@ -3,16 +3,8 @@ import { FiTrash } from 'react-icons/fi';
 import { StyledDeleteButton } from '../BooksTable.styled';
 import EllipsisText from 'react-ellipsis-text';
 import PropTypes from 'prop-types';
-import { booksOperations } from 'redux/book';
-import { useDispatch } from 'react-redux';
 
-const TableRow = ({ id, title, author, year, pages }) => {
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    dispatch(booksOperations.deleteBook(id));
-  };
-
+const TableRow = ({ id, title, author, year, pages, onClick }) => {
   return (
     <tr>
       <td>
@@ -23,7 +15,7 @@ const TableRow = ({ id, title, author, year, pages }) => {
       <td>{year}</td>
       <td>{pages}</td>
       <td>
-        <StyledDeleteButton htmlType="button" onClick={handleClick}>
+        <StyledDeleteButton htmlType="button" onClick={() => onClick(id)}>
           <FiTrash size={20} />
         </StyledDeleteButton>
       </td>
