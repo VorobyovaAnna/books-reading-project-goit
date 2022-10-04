@@ -7,9 +7,12 @@ import {
   MobileAddBtn,
   StyledButton,
   StyledSection,
+  TextStyled,
+  TextStyledPrimary,
 } from './LibraryComponent.styled';
 import useLibraryComponent from './useLibraryComponent';
 import { ReactComponent as PlusIcon } from './assets/plus.svg';
+import EmtpyLibraryText from 'components/modals/EmtpyLibraryText';
 
 const LibraryComponent = () => {
   const {
@@ -32,7 +35,10 @@ const LibraryComponent = () => {
             {isMobile ? (
               <>
                 {!isEmpty && (
-                  <p>Library is empty. Please add books to library :)</p>
+                  <>
+                    <TextStyledPrimary>Бібліотека пуста.</TextStyledPrimary>
+                    <TextStyled>Додайте книжки до бібліотеки.</TextStyled>
+                  </>
                 )}
 
                 {!!alreadyBooks.length && (
@@ -71,7 +77,7 @@ const LibraryComponent = () => {
                     data={alreadyBooks}
                   />
                 )}
-
+                <EmtpyLibraryText isEmptyLibrary={isEmpty} />
                 {!!nowBooks.length && (
                   <Table title={'Читаю'} status={true} data={nowBooks} />
                 )}
