@@ -18,13 +18,14 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     [authOperations.register.rejected](state) {
-      state.isLoggedIn = true;
+      state.isLoggedIn = false;
     },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+
     [authOperations.authGoogle.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
