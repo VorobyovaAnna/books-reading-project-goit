@@ -38,3 +38,20 @@ export const MobileAddBtn = styled(Button)`
   bottom: 12px;
   left: calc(50% - 26px);
 `;
+
+export const TextStyledPrimary = styled.p`
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+`;
+
+export const TextStyled = styled.span`
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+
+  color: ${p => p.theme.colors.secondaryFontColor};
+`;

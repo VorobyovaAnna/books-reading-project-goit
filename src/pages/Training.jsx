@@ -11,12 +11,20 @@ import { useState, useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { trainingsOperations } from 'redux/training';
 // import { getTraining } from 'redux/training';
+import { useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
 
 const Training = () => {
   const { isMobile } = useMatchMedia();
   const navigate = useNavigate();
-  const [isTrainingFormVisible, setIsTrainingFormVisible] = useState();
+  const [isVisible, setIsVisible] = useState();
+  const [isActiveTraining, setIsActiveTraining] = useState();
+  const { data: trainings } = useGetTrainingQuery();
 
+  useEffect(() => {
+    trainings?.training.length === 0
+      ? setIsActiveTraining(false)
+      : setIsActiveTraining(true);
+  }, [trainings?.training.length]);
   // const handleClick = () => navigate('/training/add');
 
   // const dispatch = useDispatch();
@@ -30,7 +38,7 @@ const Training = () => {
   // training ?? console.log(training);
 
   const toggleForm = () => {
-    setIsTrainingFormVisible(!isTrainingFormVisible);
+    setIsVisible(!isVisible);
   };
 
   return (
@@ -38,19 +46,16 @@ const Training = () => {
       {isMobile && !isVisible && (
         <Container>
           <MyGoal />
-          <MyTraining
-            isFormVisible={isTrainingFormVisible}
-            toggleForm={toggleForm}
-          />
+          <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
           <ProgressChart />
           <StyledAddButton type="button" onClick={toggleForm}>
             <AddIcon />
           </StyledAddButton>
         </Container>
       )}
-      {isMobile && isTrainingFormVisible && (
+      {isMobile && isVisible && (
         <Container>
-          <MyTraining isFormVisible={isTrainingFormVisible} />
+          <MyTraining isFormVisible={isVisible} />
         </Container>
       )}
       {!isMobile && (
