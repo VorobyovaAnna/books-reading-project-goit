@@ -40,6 +40,10 @@ export const booksApi = createApi({
       query: values => ({ url: '/trainings', method: 'POST', data: values }),
       invalidatesTags: ['Books', 'BookById', 'Trainings', 'Statistics'],
     }),
+    deleteTrainingById: builder.mutation({
+      query: id => ({ url: `/trainings/${id}`, method: 'DELETE' }),
+      invalidatesTags: ['Trainings'],
+    }),
     getStatisticsById: builder.query({
       query: id => ({ url: `/statistics/${id}`, method: 'GET' }),
       providesTags: ['Statistics', 'Trainings'],
@@ -52,6 +56,10 @@ export const booksApi = createApi({
       }),
       invalidatesTags: ['Books', 'BookById', 'Trainings', 'Statistics'],
     }),
+    deleteStatisticsById: builder.mutation({
+      query: id => ({ url: `/statistics/${id}`, method: 'DELETE' }),
+      invalidatesTags: ['Statistics'],
+    }),
   }),
 });
 
@@ -63,8 +71,10 @@ export const {
   useUpdateBookReviewMutation,
   useGetTrainingQuery,
   useAddTrainingMutation,
+  useDeleteTrainingByIdMutation,
   useGetStatisticsByIdQuery,
   useUpdateStatisticsByIdMutation,
+  useDeleteStatisticsByIdMutation,
 } = booksApi;
 
 // ------- Приклад використання хуків
