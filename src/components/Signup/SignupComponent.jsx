@@ -1,13 +1,16 @@
 import SignupForm from './SignupForm';
 import AboutApp from './AboutApp';
 import { SignupSection } from './SignupComponent.styled';
+import useMatchMedia from 'hooks/useMatchMedia';
 
 const SignupComponent = () => {
+
+  const { isMobile } = useMatchMedia()
 
   return (
     <SignupSection>
       <SignupForm />
-      <AboutApp />
+      {!isMobile && <AboutApp />}
     </SignupSection>
   );
 };

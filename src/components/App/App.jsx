@@ -57,7 +57,7 @@ export default function App() {
         
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Login />} />
+            <Route index element={<MobileRoute />} />
             <Route
               path="register"
               element={
