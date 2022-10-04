@@ -35,7 +35,7 @@ const Training = () => {
 
   return (
     <>
-      {isMobile & !isVisible && (
+      {isMobile && !isVisible && (
         <Container>
           <MyGoal />
           <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
@@ -45,7 +45,7 @@ const Training = () => {
           </StyledAddButton>
         </Container>
       )}
-      {isMobile & isVisible && (
+      {isMobile && isVisible && (
         <Container>
           <MyTraining isFormVisible={isVisible} />
         </Container>
