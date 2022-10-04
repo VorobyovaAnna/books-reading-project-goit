@@ -22,6 +22,10 @@ export const StyledHeading = styled.p`
   @media screen and (min-width: ${p => p.theme.breakpoints.desktop}) {
     width: 928px;
   }
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const StyledButtonBack = styled(Button)`
@@ -127,7 +131,7 @@ export const FlexWrapper = styled.div`
   @media screen and (max-width: 767px) {
     width: 100%;
     flex-direction: column;
-    /* align-items: center; */
+    margin-top: -20px;
   }
 `;
 
