@@ -9,10 +9,11 @@ export const Section = styled.div`
   background-color: ${theme.colors.white};
   box-shadow: ${theme.shadows.header};
   @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     width: 704px;
+    padding: 30px 96px;
   }
   @media ${device.desktop} {
     width: 288px;

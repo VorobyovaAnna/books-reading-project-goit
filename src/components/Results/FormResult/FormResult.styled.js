@@ -3,9 +3,18 @@ import styled from 'styled-components';
 import device from '../../../styles/device';
 import { Form, DatePicker, Button } from 'antd';
 export const FormStyled = styled(Form)`
+  @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
+    display: flex;
+    align-items: flex-end;
+    & .ant-row {
+      display: block;
+    }
+  }
+
   & .ant-form-item {
     margin: 0;
   }
+
   & .ant-form-item:not(:last-child) {
     margin-right: 18px;
   }
@@ -14,7 +23,10 @@ export const LabelList = styled.div`
   display: flex;
 
   margin-bottom: 28px;
-
+  @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
+    margin-right: 32px;
+    margin-bottom: 0;
+  }
   & .ant-form-item-row .ant-col-10 {
     max-width: 110px;
     width: 110px;
@@ -44,6 +56,14 @@ export const Label = styled(Form.Item)`
   .ant-form-item-explain {
     font-size: 10px;
   }
+  .ant-input,
+  .ant-picker-input > input {
+    font-size: 10px;
+  }
+  .ant-picker,
+  .ant-input {
+    padding: 11px;
+  }
 `;
 
 export const ButtonStyled = styled(Button)`
@@ -60,7 +80,7 @@ export const ButtonStyled = styled(Button)`
   transition: ${({ theme }) => theme.transition};
 
   @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
-    min-width: 130px;
+    min-width: 240px;
   }
 
   &:hover,
