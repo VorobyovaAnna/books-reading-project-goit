@@ -22,11 +22,16 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   const books = useSelector(getBooks);
 
   const [booksForTable, setBooksForTable] = useState([]);
+  const [booksForSelect, setBooksForSelect] = useState([]);
+
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
 
   const booksPlan = books?.filter(book => book.status === 'plan');
-  const [booksForSelect, setBooksForSelect] = useState(booksPlan);
+
+  useEffect(() => {
+    setBooksForSelect(booksPlan);
+  }, [booksPlan]);
 
   const handleSubmit = ({ start, finish, books }) => {
     console.log(start, finish, books);
