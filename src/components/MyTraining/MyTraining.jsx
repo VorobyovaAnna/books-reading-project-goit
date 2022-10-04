@@ -10,6 +10,8 @@ import { booksOperations } from 'redux/book';
 import { trainingsOperations } from 'redux/training';
 import TrainingForm from 'components/TrainingForm';
 import PropTypes from 'prop-types';
+import { StyledButtonBack, FormWrapper } from './MyTraining.styled';
+import { ReactComponent as IconBack } from 'images/svg/iconBack.svg';
 
 const MyTraining = ({ isFormVisible, toggleForm }) => {
   const { isMobile } = useMatchMedia();
@@ -77,7 +79,12 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   return (
     <>
       {isMobile && isFormVisible && (
-        <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+        <FormWrapper>
+          <StyledButtonBack htmlType="button" onClick={() => toggleForm()}>
+            <IconBack />
+          </StyledButtonBack>
+          <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+        </FormWrapper>
       )}
       {isMobile && !isFormVisible && booksForTable.length === 0 && (
         <BooksListEmptyMobile />
@@ -106,7 +113,7 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
 };
 
 MyTraining.propTypes = {
-  isFormVisible: PropTypes.bool.isRequired,
+  isFormVisible: PropTypes.bool,
   toggleForm: PropTypes.func.isRequired,
 };
 
