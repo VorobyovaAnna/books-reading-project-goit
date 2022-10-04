@@ -10,8 +10,9 @@ import { getBooks } from 'redux/book';
 import { booksOperations } from 'redux/book';
 import { trainingsOperations } from 'redux/training';
 import TrainingForm from 'components/TrainingForm';
+import PropTypes from 'prop-types';
 
-const MyTraining = ({ isFormVisible }) => {
+const MyTraining = ({ isFormVisible, toggleForm }) => {
   const { isMobile } = useMatchMedia();
   const dispatch = useDispatch();
 
@@ -26,8 +27,6 @@ const MyTraining = ({ isFormVisible }) => {
 
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
-
-  // const booksPlan = books?.filter(book => book.status === 'plan');
 
   const booksPlan = useMemo(
     () => books?.filter(book => book.status === 'plan'),
@@ -51,6 +50,8 @@ const MyTraining = ({ isFormVisible }) => {
       return !books.includes(_id);
     });
     setBooksForSelect([...restOfBooks]);
+
+    toggleForm();
   };
 
   const handleStartTraining = () => {
@@ -85,7 +86,10 @@ const MyTraining = ({ isFormVisible }) => {
       {isMobile && !isFormVisible && booksForTable.length !== 0 && (
         <>
           <BooksListFilledMobile books={booksForTable} />
-          <StartTrainingButton />
+          <StartTrainingButton
+            htmlType="button"
+            onClick={handleStartTraining}
+          />
         </>
       )}
       {!isMobile && (
@@ -100,6 +104,11 @@ const MyTraining = ({ isFormVisible }) => {
       )}
     </>
   );
+};
+
+MyTraining.propTypes = {
+  isFormVisible: PropTypes.bool.isRequired,
+  toggleForm: PropTypes.func.isRequired,
 };
 
 export default MyTraining;
