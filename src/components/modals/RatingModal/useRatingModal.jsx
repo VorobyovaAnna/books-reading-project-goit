@@ -33,8 +33,8 @@ const useRatingModal = (bookId, onClose) => {
   };
 
   useEffect(() => {
-    setRating(data?.data?.book?.rating);
-    setResume(data?.data?.book?.resume);
+    setRating(data?.book?.rating);
+    setResume(data?.book?.resume);
   }, [data]);
 
   useEffect(() => {

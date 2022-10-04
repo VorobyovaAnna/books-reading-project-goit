@@ -20,7 +20,7 @@ const MobileAddBookComponent = () => {
 
   useEffect(() => {
     if (data) {
-      setIsEmpty(!!!data?.data?.books.length);
+      setIsEmpty(!!!data?.books.length);
     }
   }, [data]);
 
