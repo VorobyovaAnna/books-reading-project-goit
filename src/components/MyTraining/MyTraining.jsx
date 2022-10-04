@@ -3,7 +3,7 @@ import BooksListEmptyMobile from './BooksListEmptyMobile';
 import BooksListFilledMobile from './BooksListFilledMobile';
 import BooksTable from './BooksTable';
 import StartTrainingButton from './StartTrainingButton';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getBooks } from 'redux/book';
@@ -11,7 +11,7 @@ import { booksOperations } from 'redux/book';
 import { trainingsOperations } from 'redux/training';
 import TrainingForm from 'components/TrainingForm';
 
-const MyTraining = ({ isFormVisible, toggleForm }) => {
+const MyTraining = ({ isFormVisible }) => {
   const { isMobile } = useMatchMedia();
   const dispatch = useDispatch();
 
@@ -27,14 +27,18 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
 
-  const booksPlan = books?.filter(book => book.status === 'plan');
+  // const booksPlan = books?.filter(book => book.status === 'plan');
+
+  const booksPlan = useMemo(
+    () => books?.filter(book => book.status === 'plan'),
+    [books]
+  );
 
   useEffect(() => {
     setBooksForSelect(booksPlan);
   }, [booksPlan]);
 
   const handleSubmit = ({ start, finish, books }) => {
-    console.log(start, finish, books);
     setStart(start);
     setFinish(finish);
 
@@ -47,7 +51,6 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
       return !books.includes(_id);
     });
     setBooksForSelect([...restOfBooks]);
-    toggleForm();
   };
 
   const handleStartTraining = () => {
@@ -73,13 +76,13 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
 
   return (
     <>
-      {isMobile & isFormVisible && (
+      {isMobile && isFormVisible && (
         <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
       )}
-      {isMobile & !isFormVisible & (booksForTable.length === 0) && (
+      {isMobile && !isFormVisible && booksForTable.length === 0 && (
         <BooksListEmptyMobile />
       )}
-      {isMobile & !isFormVisible & (booksForTable.length !== 0) && (
+      {isMobile && !isFormVisible && booksForTable.length !== 0 && (
         <>
           <BooksListFilledMobile books={booksForTable} />
           <StartTrainingButton />
