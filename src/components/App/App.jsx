@@ -11,6 +11,7 @@ import GoogleRedirect from 'components/Login/GoogleRedirect';
 import MobileRoute from 'components/MobileRoute/MobileRoute';
 import MobileAddBook from 'pages/MobileAddBook';
 import { getFetchingCurrent } from 'redux/auth';
+import AboutApp from 'components/Signup/AboutApp';
 
 // import MyGoal from 'components/MyGoal';
 // import CongratsModal from 'components/modals/CongratsModal';
@@ -39,7 +40,6 @@ export default function App() {
     setFirstRenderEnded(true);
   }, [dispatch]);
 
-
   return (
     !isFetchingUser &&
     firstRenderEnded && (
@@ -54,10 +54,19 @@ export default function App() {
         <ExitModal />
         <YearTimer />
         <GoalTimer /> */}
-        
+
         <Routes>
           <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Login />} />
+            <Route
+              index
+              element={
+                <PublicRoute restricted>
+                  <MobileRoute redirectTo="login">
+                    <AboutApp />
+                  </MobileRoute>
+                </PublicRoute>
+              }
+            />
             <Route
               path="register"
               element={
@@ -94,7 +103,7 @@ export default function App() {
               path="library/addBook"
               element={
                 <PrivateRoute>
-                  <MobileRoute>
+                  <MobileRoute redirectTo="library">
                     <MobileAddBook />
                   </MobileRoute>
                 </PrivateRoute>
