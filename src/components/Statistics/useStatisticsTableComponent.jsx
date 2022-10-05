@@ -1,6 +1,7 @@
 import { useMatchMedia } from 'hooks';
 import { useGetBooksQuery, useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
 import { useEffect, useState } from 'react';
+import usePreviousValue from 'hooks/usePreviousValue';
 
 const useStatisticsTableComponent = () => {
   const { data: trainingsData, isLoading: isLoadingTrainingsData } =
@@ -11,6 +12,24 @@ const useStatisticsTableComponent = () => {
   const [booksForTable, setBooksForTable] = useState([]);
 
   const { isMobile } = useMatchMedia();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => setIsModalVisible(!isModalVisible);
+
+  const prevStateRef = usePreviousValue(booksForTable);
+
+  useEffect(() => {
+    if (!!prevStateRef?.length && !!booksForTable?.length) {
+      const prevArray = prevStateRef.filter(item => item.title.status === true);
+      const newArray = booksForTable.filter(item => item.title.status === true);
+      if (prevArray.length < newArray.length) {
+        setIsModalVisible(true);
+      }
+    } else {
+      return;
+    }
+  }, [booksForTable, prevStateRef]);
 
   useEffect(() => {
     let array = [];
@@ -39,6 +58,8 @@ const useStatisticsTableComponent = () => {
     isLoadingBooksData,
     isMobile,
     booksForTable,
+    isModalVisible,
+    toggleModal,
   };
 };
 
