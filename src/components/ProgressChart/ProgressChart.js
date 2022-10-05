@@ -10,16 +10,18 @@ import {
   Legend,
   // LineController,
 } from 'chart.js';
+import moment from 'moment';
+import 'moment/locale/uk';
 import { Line } from 'react-chartjs-2';
 
 import { Container, GraphContainer } from './ProgressChart.styled';
+
 import { useSelector } from 'react-redux';
-
-// import { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-
-// import operations from '../../redux/statistic.js/statistic-operations';
-// import { getStatistics } from '../../redux/statistic.js/statistic-selectors';
+import { useEffect, useState } from 'react';
+import {
+  useGetTrainingQuery,
+  useGetStatisticsByIdQuery,
+} from 'redux/RTKQuery/booksApi';
 
 Chart.register(
   CategoryScale,
@@ -80,44 +82,30 @@ const options = {
 };
 
 export default function ProgressChart() {
-  // const dispatch = useDispatch();
+  const { data: trainings } = useGetTrainingQuery();
+  const statisticsId = trainings?.training?.map(item => {
+    return item.statistics;
+  });
+  const stats = useGetStatisticsByIdQuery(statisticsId);
+  const planAmountOfPages = stats?.data?.statistic?.plan?.map(item => {
+    return item.pages;
+  });
+  const realAmountOfPages = stats?.data?.statistic?.result?.map(item => {
+    return item.pages;
+  });
 
-  // const id = useSelector()
+  const dates = stats?.data?.statistic?.plan?.map(item => {
+    return moment(item.date).locale('uk').format('DD.MM/dd.');
+  });
 
-  // useEffect(() => {
-  //   dispatch(operations.fetchStatistics(id));
-  // }, [dispatch]);
-
-  // const stats = useSelector(getStatistics);
-
-  // const planAmountOfPages = stats.plan.map(item => {
-  //   return item.pages;
-  // });
-  // const realAmountOfPages = stats.result.map(item => {
-  //   return item.pages;
-  // });
-
-  // const dates = stats.result.map(item => {
-  //   return item.date;
-  // });
-
-  const labels = [
-    'Понеділок',
-    'Вівторок',
-    'Середа',
-    'Четвер',
-    "П'ятниця",
-    'Субота',
-    'Неділя',
-  ]; //dates
+  const labels = dates;
 
   const data = {
     labels,
-    type: 'shadowLine',
     datasets: [
       {
         label: 'План',
-        data: [10, 10, 10, 10, 10, 10, 10], //planAmountOfPages,
+        data: planAmountOfPages,
         borderColor: '#091E3F',
         backgroundColor: '#091E3F',
         borderWidth: 2,
@@ -127,7 +115,7 @@ export default function ProgressChart() {
       },
       {
         label: 'Факт',
-        data: [12, 7, 14, 13, 9, 6, 17], //realAmountOfPages,
+        data: realAmountOfPages,
         borderColor: ' #FF6B08',
         backgroundColor: '#FF6B08',
         borderWidth: 2,
@@ -141,7 +129,7 @@ export default function ProgressChart() {
   return (
     <Container>
       <GraphContainer>
-        <Line options={options} data={data} />;
+        <Line options={options} data={data} />
       </GraphContainer>
     </Container>
   );

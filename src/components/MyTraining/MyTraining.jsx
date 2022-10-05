@@ -5,13 +5,15 @@ import BooksTable from './BooksTable';
 import StartTrainingButton from './StartTrainingButton';
 import { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { getBooks } from 'redux/book';
 import { booksOperations } from 'redux/book';
 import { trainingsOperations } from 'redux/training';
 import TrainingForm from 'components/TrainingForm';
+import PropTypes from 'prop-types';
+import { StyledButtonBack, FormWrapper } from './MyTraining.styled';
+import { ReactComponent as IconBack } from 'images/svg/iconBack.svg';
 
-const MyTraining = ({ isFormVisible }) => {
+const MyTraining = ({ isFormVisible, toggleForm }) => {
   const { isMobile } = useMatchMedia();
   const dispatch = useDispatch();
 
@@ -26,8 +28,6 @@ const MyTraining = ({ isFormVisible }) => {
 
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
-
-  // const booksPlan = books?.filter(book => book.status === 'plan');
 
   const booksPlan = useMemo(
     () => books?.filter(book => book.status === 'plan'),
@@ -51,6 +51,8 @@ const MyTraining = ({ isFormVisible }) => {
       return !books.includes(_id);
     });
     setBooksForSelect([...restOfBooks]);
+
+    toggleForm();
   };
 
   const handleStartTraining = () => {
@@ -70,22 +72,30 @@ const MyTraining = ({ isFormVisible }) => {
     const queBook = booksForTable.filter(book => {
       return book._id === id;
     });
-    // console.log(queBook);
+
     setBooksForSelect([...booksForSelect, ...queBook]);
   };
 
   return (
     <>
       {isMobile && isFormVisible && (
-        <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+        <FormWrapper>
+          <StyledButtonBack htmlType="button" onClick={() => toggleForm()}>
+            <IconBack />
+          </StyledButtonBack>
+          <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+        </FormWrapper>
       )}
       {isMobile && !isFormVisible && booksForTable.length === 0 && (
         <BooksListEmptyMobile />
       )}
       {isMobile && !isFormVisible && booksForTable.length !== 0 && (
         <>
-          <BooksListFilledMobile books={booksForTable} />
-          <StartTrainingButton />
+          <BooksListFilledMobile books={booksForTable} onClick={removeBook} />
+          <StartTrainingButton
+            htmlType="button"
+            onClick={handleStartTraining}
+          />
         </>
       )}
       {!isMobile && (
@@ -100,6 +110,11 @@ const MyTraining = ({ isFormVisible }) => {
       )}
     </>
   );
+};
+
+MyTraining.propTypes = {
+  isFormVisible: PropTypes.bool,
+  toggleForm: PropTypes.func.isRequired,
 };
 
 export default MyTraining;
