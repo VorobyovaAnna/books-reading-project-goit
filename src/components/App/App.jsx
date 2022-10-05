@@ -26,7 +26,7 @@ const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
 const Library = lazy(() => import('pages/Library'));
 const Training = lazy(() => import('pages/Training'));
-const AddTraining = lazy(() => import('pages/AddTraining'));
+// const AddTraining = lazy(() => import('pages/AddTraining'));
 const Statistics = lazy(() => import('pages/Statistics'));
 
 export default function App() {
@@ -114,14 +114,14 @@ export default function App() {
                 </PrivateRoute>
               }
             />
-            <Route
+            {/* <Route
               path="training/add"
               element={
                 <PrivateRoute>
                   <AddTraining />
                 </PrivateRoute>
               }
-            />
+            /> */}
             <Route
               path="statistics"
               element={

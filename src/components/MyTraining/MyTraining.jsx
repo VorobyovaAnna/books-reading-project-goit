@@ -56,7 +56,6 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   };
 
   const handleStartTraining = () => {
-    // navigate('/statistics');
     const books = booksForTable.map(book => book._id);
     const trainingData = { start, finish, books };
     console.log('запит на бек для створення тренінгу', trainingData);
@@ -105,6 +104,7 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
           <StartTrainingButton
             htmlType="button"
             onClick={handleStartTraining}
+            disabled={!start}
           />
         </>
       )}

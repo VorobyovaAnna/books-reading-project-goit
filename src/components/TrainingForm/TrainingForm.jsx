@@ -30,7 +30,6 @@ const TrainingForm = ({ books, submitCallback }) => {
       start,
       finish,
     };
-    console.log(data);
     submitCallback(data);
     form.resetFields();
   };

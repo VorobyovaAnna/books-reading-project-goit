@@ -1,5 +1,4 @@
 import BookCard from '../BookCard';
-// import { tableData } from '../../Library/Table/data';
 import PropTypes from 'prop-types';
 
 const BooksListFilledMobile = ({ books, onClick }) => {

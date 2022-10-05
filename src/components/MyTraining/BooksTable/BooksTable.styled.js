@@ -72,27 +72,3 @@ export const StyledBookIcon = styled(BookIcon)`
   top: 21px;
   left: 0;
 `;
-
-// export const FlexWrapper = styled.div`
-//   display: flex;
-// `;
-
-// export const StyledHeading = styled.thead`
-//   height: 41px;
-
-//   border-top: 1px solid ${p => p.theme.colors.borderColor};
-//   border-bottom: 1px solid ${p => p.theme.colors.borderColor};
-
-//   font-weight: 500;
-//   font-size: 14px;
-//   line-height: 1.21;
-
-//   color: ${p => p.theme.colors.secondaryFontColor};
-// `;
-
-// export const StyledRow = styled.thead`
-//   height: 62px;
-
-//   border-bottom: 1px solid ${p => p.theme.colors.borderColor};
-// `;border-bottom: 1px solid ${p => p.theme.colors.borderColor};
-// `;
