@@ -60,7 +60,7 @@ const Training = () => {
       )}
       {!isMobile && (
         <Container>
-          {/* <MyGoal /> */}
+          <MyGoal />
           <MyTraining />
           {/* <ProgressChart /> */}
         </Container>
