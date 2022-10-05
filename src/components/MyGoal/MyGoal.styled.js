@@ -5,7 +5,9 @@ import device from '../../styles/device';
 export const NumberContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 44px 30px;
+  padding: ${props =>
+    props.theme.noBooksLeft ? '44px 30px' : '32px 36px 32px 31px'};
+
   width: fit-content;
 
   box-shadow: ${theme.shadows.header};
@@ -18,34 +20,34 @@ export const NumberContainer = styled.div`
   }
 
   @media ${device.desktop} {
-    padding: 48px 34px;
+    padding: ${props =>
+      props.theme.noBooksLeft ? '48px 34px' : '80px 25px 79px 18px'};
     box-shadow: ${theme.shadows.header};
   }
 `;
 
 export const List = styled.ul`
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  align-items: baseline;
+  justify-content: center;
 `;
 
 export const Item = styled.li`
+  max-width: ${props => props.theme.noBooksLeft === false && '63px'};
+  text-align: center;
   &:not(:last-child) {
-    margin-right: 20px;
+    margin-right: ${props => (props.theme.noBooksLeft ? '20px' : '12px')};
   }
 
   @media ${device.tablet} {
+    max-width: ${props => props.theme.noBooksLeft === false && '100px'};
     &:not(:last-child) {
-      margin-right: 40px;
-      margin-top: 20px;
-      margin-bottom: 8px;
+      ${props => (props.theme.noBooksLeft ? '40px' : '12px')};
     }
   }
-  @media ${device.tablet} {
+  @media ${device.desktop} {
     &:not(:last-child) {
       margin-right: 20px;
-      margin-top: 0px;
-      margin-bottom: 0px;
     }
   }
 `;
@@ -61,22 +63,23 @@ export const Number = styled.p`
   justify-content: center;
   align-items: center;
 
-  width: 100px;
-  height: 100px;
+  width: ${props => (props.theme.noBooksLeft ? '100px' : '63px')};
+  height: ${props => (props.theme.noBooksLeft ? '100px' : '63px')};
 
   margin-bottom: 14px;
 
-  color: #091e3f;
+  color: ${props => (props.primary ? '#FF6B08' : '#091e3f;')};
   background-color: ${theme.colors.inputBackground};
   box-shadow: ${theme.shadows.goals};
 
   @media ${device.tablet} {
     height: 60px;
+    width: 100px;
 
     font-size: 40px;
     line-height: 38px;
 
-    margin-bottom: 0px;
+    margin-bottom: 4px;
   }
   @media ${device.desktop} {
     height: 100px;
@@ -85,6 +88,9 @@ export const Number = styled.p`
     line-height: 38px;
 
     margin-bottom: 15px;
+
+    width: ${props => (props.theme.noBooksLeft ? '100px' : '66px')};
+    height: ${props => (props.theme.noBooksLeft ? '100px' : '66px')};
   }
 `;
 
@@ -116,29 +122,35 @@ export const Title = styled.h2`
   line-height: 24px;
   text-align: center;
 
+  width: 280px;
   padding: 18px 29px;
 
   color: ${theme.colors.white};
   background-color: ${theme.colors.headerBackground};
 
   @media ${device.tablet} {
-    height: 60px;
-    margin-right: 109px;
-    margin-top: 23px;
-    margin-bottom: 22px;
+    width: 275px;
+
+    margin-right: ${props => (props.theme.noBooksLeft ? '109px' : '20px')};
+
+    padding: 18px 27px 18px 28px;
   }
   @media ${device.desktop} {
-    margin: 0;
+    width: 288px;
   }
 `;
 
 export const Section = styled.div`
   width: 280px;
   @media ${device.tablet} {
+    display: flex;
+
+    padding: ${props =>
+      props.theme.noBooksLeft ? '20px 52px 8px 28px' : '20px 43px 15px 42px'};
     width: 704px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: ${theme.colors.white};
     box-shadow: ${theme.shadows.header};
   }
