@@ -19,7 +19,7 @@ const useLibraryComponent = () => {
       let already = [];
       let now = [];
 
-      data.data.books.forEach(item => {
+      data.books.forEach(item => {
         if (item.status === 'plan') {
           plan.push(item);
         }
