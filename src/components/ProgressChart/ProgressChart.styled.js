@@ -8,6 +8,7 @@ export const Container = styled.div`
   align-items: center;
   width: 280px;
   height: 290px;
+  background-color: ${theme.colors.white};
   box-shadow: ${theme.shadows.header};
   @media ${device.tablet} {
     width: 704px;
