@@ -11,12 +11,20 @@ import { useState, useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 // import { trainingsOperations } from 'redux/training';
 // import { getTraining } from 'redux/training';
+import { useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
 
 const Training = () => {
   const { isMobile } = useMatchMedia();
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState();
+  const [isActiveTraining, setIsActiveTraining] = useState();
+  const { data: trainings } = useGetTrainingQuery();
 
+  useEffect(() => {
+    trainings?.training.length === 0
+      ? setIsActiveTraining(false)
+      : setIsActiveTraining(true);
+  }, [trainings?.training.length]);
   // const handleClick = () => navigate('/training/add');
 
   // const dispatch = useDispatch();
@@ -35,7 +43,7 @@ const Training = () => {
 
   return (
     <>
-      {isMobile & !isVisible && (
+      {isMobile && !isVisible && (
         <Container>
           <MyGoal />
           <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
@@ -45,7 +53,7 @@ const Training = () => {
           </StyledAddButton>
         </Container>
       )}
-      {isMobile & isVisible && (
+      {isMobile && isVisible && (
         <Container>
           <MyTraining isFormVisible={isVisible} />
         </Container>
