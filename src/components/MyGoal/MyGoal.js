@@ -26,7 +26,6 @@ const MyGoal = () => {
   const books = data?.data?.statistic?.bookAmount;
   const days = data?.data?.statistic?.dayAmount;
   const booksLeft = data?.data?.statistic?.leftBooks;
-  console.log(data);
 
   useEffect(() => {
     booksLeft && booksLeft !== undefined && booksLeft !== 0
