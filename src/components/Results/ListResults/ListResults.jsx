@@ -1,4 +1,4 @@
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+// import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { ListResultsItem } from './ListResultsItem';
 import { Title, List } from './ListResults.styled';
 
@@ -10,35 +10,35 @@ const ListResults = ({ results }) => {
   return (
     <>
       <Title>Статистика</Title>
-      <OverlayScrollbarsComponent
+      {/* <OverlayScrollbarsComponent
         options={{
           scrollbars: {
             autoHide: 'scroll',
           },
         }}
-      >
-        <List>
-          {results.map(({ date, pointResult }, id) => {
-            const currentDate = new Date(date);
-            const day = pad(currentDate.getDate());
-            const month = pad(currentDate.getMonth() + 1);
-            const year = currentDate.getFullYear();
-            const hours = pad(currentDate.getHours());
-            const minutes = pad(currentDate.getMinutes());
-            const seconds = pad(currentDate.getSeconds());
-            const dateResult = `${day}.${month}.${year}`;
-            const time = `${hours}:${minutes}:${seconds}`;
-            return (
-              <ListResultsItem
-                key={id}
-                date={dateResult}
-                time={time}
-                pages={pointResult}
-              />
-            );
-          })}
-        </List>
-      </OverlayScrollbarsComponent>
+      > */}
+      <List>
+        {results.map(({ date, pages }, id) => {
+          const currentDate = new Date(date);
+          const day = pad(currentDate.getDate());
+          const month = pad(currentDate.getMonth() + 1);
+          const year = currentDate.getFullYear();
+          const hours = pad(currentDate.getHours());
+          const minutes = pad(currentDate.getMinutes());
+          const seconds = pad(currentDate.getSeconds());
+          const dateResult = `${day}.${month}.${year}`;
+          const time = `${hours}:${minutes}:${seconds}`;
+          return (
+            <ListResultsItem
+              key={id}
+              date={dateResult}
+              time={time}
+              pages={pages}
+            />
+          );
+        })}
+      </List>
+      {/* </OverlayScrollbarsComponent> */}
     </>
   );
 };
