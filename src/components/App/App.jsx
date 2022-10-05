@@ -1,7 +1,7 @@
 import GlobalStyle from '../../styles/GlobalStyle';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import SharedLayout from 'components/SharedLayout';
 import PrivateRoute from 'components/PrivateRoute';
@@ -11,6 +11,7 @@ import GoogleRedirect from 'components/Login/GoogleRedirect';
 import MobileRoute from 'components/MobileRoute/MobileRoute';
 import MobileAddBook from 'pages/MobileAddBook';
 import AboutApp from 'components/Signup/AboutApp';
+import { getFetchingCurrent } from 'redux/auth';
 
 // import MyGoal from 'components/MyGoal';
 // import CongratsModal from 'components/modals/CongratsModal';
@@ -31,6 +32,7 @@ const Statistics = lazy(() => import('pages/Statistics'));
 
 export default function App() {
   const dispatch = useDispatch();
+  const isFetching = useSelector(getFetchingCurrent);
   const [firstRenderEnded, setFirstRenderEnded] = useState(false);
 
   useEffect(() => {
@@ -39,6 +41,7 @@ export default function App() {
   }, [dispatch]);
 
   return (
+    !isFetching &&
     firstRenderEnded && (
       <>
         <GlobalStyle />
