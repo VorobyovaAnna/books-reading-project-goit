@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import PulseLoader from 'react-spinners/PulseLoader';
 
 import { authOperations } from 'redux/auth';
-import { getIsLoggedIn } from 'redux/auth';
+import { getIsLoggedIn, getFetchingCurrent } from 'redux/auth';
 
 import {
   FormWrapper,
@@ -38,7 +38,7 @@ const validationSchema = yup.object().shape({
     .string('Enter your password')
     .matches(/^[a-zA-Z0-9]/, 'Password must start with letter or number')
     .matches(
-      /^([a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-])*$/,
+      /^([a-zA-Z0-9@.!#$%&’*+/=?^_`{|}~-])*$/,
       'Password must not contain spaces'
     )
     .min(5, 'Password is too short - should be 5 chars minimum')
@@ -54,6 +54,7 @@ const initialValues = {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
+  // const isFetching = useSelector(getFetchingCurrent);
 
   const handleSubmit = (values, actions) => {
     dispatch(authOperations.logIn(values));

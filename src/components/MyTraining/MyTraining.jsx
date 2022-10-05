@@ -5,7 +5,7 @@ import BooksTable from './BooksTable';
 import StartTrainingButton from './StartTrainingButton';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { getBooks } from 'redux/book';
 import { booksOperations } from 'redux/book';
 import { trainingsOperations } from 'redux/training';
@@ -22,16 +22,11 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   const books = useSelector(getBooks);
 
   const [booksForTable, setBooksForTable] = useState([]);
-  const [booksForSelect, setBooksForSelect] = useState([]);
-
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
 
   const booksPlan = books?.filter(book => book.status === 'plan');
-
-  useEffect(() => {
-    setBooksForSelect(booksPlan);
-  }, [booksPlan]);
+  const [booksForSelect, setBooksForSelect] = useState(booksPlan);
 
   const handleSubmit = ({ start, finish, books }) => {
     console.log(start, finish, books);

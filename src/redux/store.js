@@ -46,3 +46,23 @@ export const store = configureStore({
 setupListeners(store.dispatch);
 
 export const persistor = persistStore(store);
+
+// export const store = configureStore({
+//   reducer: {
+//     auth: persistReducer(authPersistConfig, authReducer),
+//     books: booksReducer,
+//     trainings: trainingReducer,
+//     statistics: statisticsReducer,
+//     [booksApi.reducerPath]: booksApi.reducer,
+//   },
+//   middleware: getDefaultMiddleware => [
+//     ...getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+//     booksApi.middleware,
+//   ],
+
+//   devTools: process.env.NODE_ENV !== 'production',
+// });
