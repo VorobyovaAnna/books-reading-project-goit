@@ -83,10 +83,13 @@ const options = {
 
 export default function ProgressChart() {
   const { data: trainings } = useGetTrainingQuery();
-  const statisticsId = trainings?.training?.map(item => {
-    return item.statistics;
+
+  const statisticsId = trainings?.training[0]?.statistics;
+
+  const stats = useGetStatisticsByIdQuery(statisticsId, {
+    skip: !statisticsId,
   });
-  const stats = useGetStatisticsByIdQuery(statisticsId);
+
   const planAmountOfPages = stats?.data?.statistic?.plan?.map(item => {
     return item.pages;
   });
