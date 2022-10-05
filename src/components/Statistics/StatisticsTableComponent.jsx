@@ -1,3 +1,5 @@
+import CongratsModal from 'components/modals/CongratsModal';
+import Modal from 'components/modals/Modal/Modal';
 import StatisticsTable from './StatisticsTable/StatisticsTable';
 import StatisticsTableMobile from './StatisticsTableMobile/StatisticsTableMobile';
 import useStatisticsTableComponent from './useStatisticsTableComponent';
@@ -8,6 +10,8 @@ const StatisticsTableComponent = () => {
     isLoadingBooksData,
     isMobile,
     booksForTable,
+    isModalVisible,
+    toggleModal,
   } = useStatisticsTableComponent();
 
   return (
@@ -28,6 +32,11 @@ const StatisticsTableComponent = () => {
             </>
           )}
         </>
+      )}
+      {isModalVisible && (
+        <Modal onClose={toggleModal}>
+          <CongratsModal onBtnClick={toggleModal} />
+        </Modal>
       )}
     </>
   );
