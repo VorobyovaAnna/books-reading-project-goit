@@ -19,9 +19,16 @@ const TrainingForm = ({ books, submitCallback }) => {
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
 
-  const disabledDate = current => {
+  const disabledStartDate = current => {
     // Can not select days before today
-    return current < moment().startOf('minute');
+    return current < moment().startOf('hour');
+  };
+  const disabledFinishDate = current => {
+    // Can not select days before tomorrow & after month
+    return (
+      current < moment(start).add(1, 'day') ||
+      current > moment(start).add(32, 'day')
+    );
   };
 
   const handleSubmit = ({ books }) => {
@@ -32,6 +39,7 @@ const TrainingForm = ({ books, submitCallback }) => {
     };
     submitCallback(data);
     form.resetFields();
+    setStart('');
   };
 
   const validateMessages = {
@@ -60,7 +68,7 @@ const TrainingForm = ({ books, submitCallback }) => {
                 setStart(dateString);
               }}
               format="YYYY-MM-DD HH:mm:ss"
-              disabledDate={disabledDate}
+              disabledDate={disabledStartDate}
               showTime
               placeholder="Початок"
               style={{
@@ -81,9 +89,10 @@ const TrainingForm = ({ books, submitCallback }) => {
                 setFinish(dateString);
               }}
               format="YYYY-MM-DD HH:mm:ss"
-              disabledDate={disabledDate}
+              disabledDate={disabledFinishDate}
               showTime
               placeholder="Завершення"
+              disabled={!start}
             />
           </Form.Item>
         </CalendarWrapper>
