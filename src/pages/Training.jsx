@@ -2,6 +2,7 @@ import MyTraining from 'components/MyTraining';
 import MyGoal from 'components/MyGoal';
 import Container from 'components/Container';
 import ProgressChart from 'components/ProgressChart';
+import Result from 'components/Results/Results';
 // import BooksListEmptyMobile from 'components/MyTraining/BooksListEmptyMobile';
 import { useMatchMedia } from 'hooks';
 import { StyledAddButton } from 'components/MyTraining/MyTraining.styled';
@@ -64,6 +65,7 @@ const Training = () => {
           {/* <ProgressChart /> */}
         </Container>
       )}
+      {isActiveTraining && <Result />}
     </>
   );
 };
