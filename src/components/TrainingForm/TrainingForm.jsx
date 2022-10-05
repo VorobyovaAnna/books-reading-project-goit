@@ -24,16 +24,11 @@ const TrainingForm = ({ books, submitCallback }) => {
     return current < moment().startOf('hour');
   };
   const disabledFinishDate = current => {
-    // Can not select days before today
-    if (
+    // Can not select days before tomorrow & after month
+    return (
       current < moment(start).add(1, 'day') ||
       current > moment(start).add(32, 'day')
-    ) {
-      return true;
-    }
-    // if (current > moment(start).add(32, 'day')) {
-    //   return false;
-    // }
+    );
   };
 
   const handleSubmit = ({ books }) => {
