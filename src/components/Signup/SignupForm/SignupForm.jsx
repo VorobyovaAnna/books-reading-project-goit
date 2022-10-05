@@ -86,7 +86,7 @@ const SignupForm = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ isValid, touched, isSubmitting }) => {
+          {({ isValid, touched }) => {
             return (
               <StyledForm name="SignupForm">
                 <GoogleButton href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google">
@@ -164,7 +164,7 @@ const SignupForm = () => {
                   }
                 >
                   Зареєструватися
-                  {isSubmitting && <PulseLoader color="white" size="4px" />}
+                  {isFetching && <PulseLoader color="white" size="4px" />}
                 </SubmitButton>
                 <LoginLinkWrapper>
                   <IsRegistredParagraph>Вже з нами?</IsRegistredParagraph>

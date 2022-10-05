@@ -54,7 +54,7 @@ const initialValues = {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
-  // const isFetching = useSelector(getFetchingCurrent);
+  const isFetching = useSelector(getFetchingCurrent);
 
   const handleSubmit = (values, actions) => {
     dispatch(authOperations.logIn(values));
@@ -71,7 +71,7 @@ const LoginForm = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ isValid, touched, isSubmitting }) => {
+          {({ isValid, touched }) => {
             return (
               <StyledForm name="LoginForm">
                 <GoogleButton href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google">
@@ -112,7 +112,7 @@ const LoginForm = () => {
                   disabled={(!touched.email && !touched.password) || !isValid}
                 >
                   Увійти
-                  {isSubmitting && <PulseLoader color="white" size="4px" />}
+                  {isFetching && <PulseLoader color="white" size="4px" />}
                 </SubmitButton>
                 <StyledLink to="/register">Реєстрація</StyledLink>
               </StyledForm>
