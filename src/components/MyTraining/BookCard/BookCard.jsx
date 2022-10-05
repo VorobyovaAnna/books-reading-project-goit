@@ -9,16 +9,8 @@ import { ReactComponent as BookIcon } from 'images/svg/bookIconGrey.svg';
 import { FiTrash } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
-// import { booksOperations } from 'redux/book';
-// import { useDispatch } from 'react-redux';
 
 const BookCard = ({ id, title, author, year, pages, onClick }) => {
-  // const dispatch = useDispatch();
-
-  const handleClick = () => {
-    onClick();
-  };
-
   return (
     <StyledWrapper>
       <StyledIcon>
@@ -43,7 +35,7 @@ const BookCard = ({ id, title, author, year, pages, onClick }) => {
           </tr>
         </tbody>
       </StyledTable>
-      <StyledDeleteButton htmlType="button" onClick={handleClick}>
+      <StyledDeleteButton htmlType="button" onClick={() => onClick(id)}>
         <FiTrash size={20} />
       </StyledDeleteButton>
     </StyledWrapper>
