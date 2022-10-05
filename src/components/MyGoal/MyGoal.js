@@ -19,11 +19,10 @@ const MyGoal = () => {
   const [noBooksLeft, setNoBooksLeft] = useState(true);
 
   const { data: trainings } = useGetTrainingQuery();
-  const statisticsId = trainings?.training?.map(item => {
-    return item.statistics;
-  });
+  const statisticsId = trainings?.training[0]?.statistics;
+
   const data = useGetStatisticsByIdQuery(statisticsId, {
-    skip: statisticsId,
+    skip: !statisticsId,
   });
 
   const books = data?.data?.statistic?.bookAmount;
