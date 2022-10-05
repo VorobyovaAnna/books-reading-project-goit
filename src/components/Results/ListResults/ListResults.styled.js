@@ -72,20 +72,18 @@ export const Item = styled.li`
   display: flex;
   justify-content: space-between;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2;
   margin-top: 4px;
   margin-bottom: 4px;
 `;
 
 export const Date = styled.span`
-  width: 75px;
   color: ${({ theme }) => theme.colors.mainFontColor};
   text-align: center;
 `;
 
 export const Time = styled.span`
-  width: 65px;
   color: ${({ theme }) => theme.colors.secondaryFontColor};
   text-align: center;
 `;
@@ -98,8 +96,6 @@ export const Page = styled.span`
 `;
 
 export const PagesName = styled.span`
-  width: 85px;
-
   text-align: end;
   color: ${({ theme }) => theme.colors.secondaryFontColor};
 `;

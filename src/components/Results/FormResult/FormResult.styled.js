@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import device from '../../../styles/device';
 import { Form, DatePicker, Button } from 'antd';
 export const FormStyled = styled(Form)`
+  margin-bottom: 24px;
   @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
     display: flex;
     align-items: flex-end;
+    margin-bottom: 21px;
     & .ant-row {
       display: block;
     }

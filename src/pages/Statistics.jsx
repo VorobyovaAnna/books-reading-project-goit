@@ -1,6 +1,6 @@
 import Result from 'components/Results/Results';
 const Statistics = () => {
-  return <Result />;
+  return <p>Statistics page</p>;
 };
 
 export default Statistics;
