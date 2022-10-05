@@ -86,7 +86,10 @@ export default function ProgressChart() {
   const statisticsId = trainings?.training?.map(item => {
     return item.statistics;
   });
-  const stats = useGetStatisticsByIdQuery(statisticsId);
+  const stats = useGetStatisticsByIdQuery(statisticsId, {
+    skip: statisticsId,
+  });
+
   const planAmountOfPages = stats?.data?.statistic?.plan?.map(item => {
     return item.pages;
   });

@@ -22,7 +22,10 @@ const MyGoal = () => {
   const statisticsId = trainings?.training?.map(item => {
     return item.statistics;
   });
-  const data = useGetStatisticsByIdQuery(statisticsId);
+  const data = useGetStatisticsByIdQuery(statisticsId, {
+    skip: statisticsId,
+  });
+
   const books = data?.data?.statistic?.bookAmount;
   const days = data?.data?.statistic?.dayAmount;
   const booksLeft = data?.data?.statistic?.leftBooks;

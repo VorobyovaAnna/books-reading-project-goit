@@ -60,9 +60,9 @@ const Training = () => {
       )}
       {!isMobile && (
         <Container>
-          {/* <MyGoal /> */}
+          <MyGoal />
           <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
-          {/* <ProgressChart /> */}
+          <ProgressChart />
         </Container>
       )}
       {isActiveTraining && <Result />}
