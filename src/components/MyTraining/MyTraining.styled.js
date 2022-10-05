@@ -46,3 +46,20 @@ export const CalendarWrapper = styled(FlexWrapper)`
     width: 715px;
   }
 `;
+
+export const StyledButtonBack = styled(Button)`
+  background: none;
+  border: none;
+
+  margin-bottom: 32px;
+  padding: 0;
+
+  &:hover {
+    background: none;
+    transform: scale(1.1);
+  }
+`;
+
+export const FormWrapper = styled.div`
+  padding-top: 24px;
+`;

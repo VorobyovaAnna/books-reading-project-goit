@@ -22,6 +22,10 @@ export const StyledHeading = styled.p`
   @media screen and (min-width: ${p => p.theme.breakpoints.desktop}) {
     width: 928px;
   }
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const StyledButtonBack = styled(Button)`
@@ -102,6 +106,11 @@ export const SubmitButton = styled(Button)`
     background: none;
   }
 
+  @media screen and (max-width: 767px) {
+    margin-left: 70px;
+    /* margin-top: -10px; */
+  }
+
   @media screen and (min-width: ${p => p.theme.breakpoints.tablet}) {
     width: 171px;
   }
@@ -118,10 +127,21 @@ export const StyledOption = styled(Option)`
 export const FlexWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+    margin-top: -20px;
+  }
 `;
 
 export const CalendarWrapper = styled(FlexWrapper)`
   width: 540px;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+  }
 
   @media screen and (min-width: ${p => p.theme.breakpoints.desktop}) {
     justify-content: flex-end;

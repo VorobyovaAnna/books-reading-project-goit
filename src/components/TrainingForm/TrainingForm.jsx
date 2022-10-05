@@ -12,6 +12,7 @@ import {
 } from './TrainingForm.styled';
 import { Form } from 'antd';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const TrainingForm = ({ books, submitCallback }) => {
   const [form] = Form.useForm();
@@ -29,14 +30,23 @@ const TrainingForm = ({ books, submitCallback }) => {
       start,
       finish,
     };
+    console.log(data);
     submitCallback(data);
     form.resetFields();
+  };
+
+  const validateMessages = {
+    required: `Обов'язкове поле`,
   };
 
   return (
     <>
       <StyledHeading>Моє тренування</StyledHeading>
-      <StyledForm form={form} onFinish={handleSubmit}>
+      <StyledForm
+        form={form}
+        onFinish={handleSubmit}
+        validateMessages={validateMessages}
+      >
         <CalendarWrapper>
           <Form.Item
             name="start"
@@ -107,6 +117,19 @@ const TrainingForm = ({ books, submitCallback }) => {
       </StyledForm>
     </>
   );
+};
+
+TrainingForm.propTypes = {
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      publication: PropTypes.string.isRequired,
+      pages: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  submitCallback: PropTypes.func.isRequired,
 };
 
 export default TrainingForm;

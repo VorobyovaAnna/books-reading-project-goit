@@ -2,7 +2,7 @@ import BookCard from '../BookCard';
 // import { tableData } from '../../Library/Table/data';
 import PropTypes from 'prop-types';
 
-const BooksListFilledMobile = ({ books }) => {
+const BooksListFilledMobile = ({ books, onClick }) => {
   return (
     <>
       <ul>
@@ -14,6 +14,7 @@ const BooksListFilledMobile = ({ books }) => {
             author={author}
             year={publication}
             pages={pages}
+            onClick={onClick}
           />
         ))}
       </ul>
@@ -31,6 +32,7 @@ BooksListFilledMobile.propTypes = {
       pages: PropTypes.number.isRequired,
     })
   ).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default BooksListFilledMobile;
