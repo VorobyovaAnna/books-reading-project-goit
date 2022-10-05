@@ -1,5 +1,7 @@
+import StatisticsTableComponent from 'components/Statistics/StatisticsTableComponent';
+
 const Statistics = () => {
-  return <div>Statistics page</div>;
+  return <StatisticsTableComponent />;
 };
 
 export default Statistics;
