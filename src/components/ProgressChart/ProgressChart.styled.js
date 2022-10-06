@@ -11,6 +11,7 @@ export const Container = styled.div`
   background-color: ${theme.colors.white};
   box-shadow: ${theme.shadows.header};
   @media ${device.tablet} {
+    margin-top: 40px;
     width: 704px;
     height: 340px;
   }

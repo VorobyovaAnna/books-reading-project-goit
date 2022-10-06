@@ -2,8 +2,38 @@ import styled from 'styled-components';
 import device from 'styles/device';
 import theme from 'styles/theme';
 
+export const TimersMainWrapper = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+    margin-top: 40px;
+  }
+
+  @media (max-width: ${theme.breakpoints.desktop}) {
+    justify-content: center;
+  }
+
+  @media ${device.desktop} {
+    margin-top: 28px;
+    display: flex;
+  }
+`;
+
+export const YearTimerWrapper = styled.div`
+  @media ${device.mobile} and (max-width: ${theme.breakpoints.tablet}) {
+    margin-top: 20px;
+  }
+
+  @media ${device.tablet} {
+    margin-right: 32px;
+  }
+
+  @media ${device.desktop} {
+    padding-left: 137px;
+    margin-right: 74px;
+  }
+`;
+
 export const TimerСontainer = styled.div`
-  position: absolute;
   width: 100%;
   height: 100%;
   background-color: ${theme.colors.white};
@@ -12,28 +42,20 @@ export const TimerСontainer = styled.div`
   @media ${device.mobile} {
     width: 280px;
     height: 60px;
-    left: 20px;
-    top: 105px;
   }
 
   @media ${device.tablet} {
     width: 290px;
     height: 60px;
-    left: 78px;
-    top: 125px;
   }
 
   @media ${device.desktop} {
     width: 290px;
     height: 60px;
-    left: 153px;
-    top: 113px;
   }
 `;
 
 export const TimerHeader = styled.h1`
-  position: absolute;
-
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
@@ -42,21 +64,9 @@ export const TimerHeader = styled.h1`
   color: ${theme.colors.secondaryFontColor};
 
   width: 241px;
-
-  @media ${device.mobile} {
-    left: 40px;
-    top: 80px;
-  }
-
-  @media ${device.tablet} {
-    left: 103px;
-    top: 100px;
-  }
-
-  @media ${device.desktop} {
-    left: 181px;
-    top: 88px;
-  }
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Timer = styled.p`

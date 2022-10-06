@@ -63,3 +63,26 @@ export const StyledButtonBack = styled(Button)`
 export const FormWrapper = styled.div`
   padding-top: 24px;
 `;
+
+export const MyTrainingWrapper = styled.div`
+  @media screen and (min-width: ${p => p.theme.breakpoints.desktop}) {
+    margin-top: 40px;
+  }
+`;
+
+export const ChartResultWrapper = styled.div`
+  @media screen and (min-width: ${p => p.theme.breakpoints.desktop}) {
+    display: flex;
+  }
+
+  /* background: none;
+  border: none;
+
+  margin-bottom: 32px;
+  padding: 0;
+
+  &:hover {
+    background: none;
+    transform: scale(1.1);
+  } */
+`;

@@ -88,7 +88,12 @@ export const Wrapper = styled.div`
   height: 216px;
   overflow: auto;
 
+  @media (min-width: ${p => p.theme.breakpoints.tablet}) {
+    margin-top: 40px;
+  }
+
   @media (min-width: ${p => p.theme.breakpoints.desktop}) {
     width: 928px;
+    margin-top: 44px;
   }
 `;

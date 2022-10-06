@@ -1,5 +1,6 @@
 import moment from 'moment';
 import {
+  TrainingFormWrapper,
   StyledHeading,
   StyledForm,
   StyledDatePicker,
@@ -47,7 +48,7 @@ const TrainingForm = ({ books, submitCallback }) => {
   };
 
   return (
-    <>
+    <TrainingFormWrapper>
       <StyledHeading>Моє тренування</StyledHeading>
       <StyledForm
         form={form}
@@ -123,7 +124,7 @@ const TrainingForm = ({ books, submitCallback }) => {
           </Form.Item>
         </FlexWrapper>
       </StyledForm>
-    </>
+    </TrainingFormWrapper>
   );
 };
 

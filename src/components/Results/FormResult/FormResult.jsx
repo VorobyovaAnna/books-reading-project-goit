@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input } from 'antd';
+import { Input } from 'antd';
 import {
   Label,
   FormStyled,
@@ -6,9 +6,10 @@ import {
   DataPickerStyled,
   ButtonStyled,
 } from './FormResult.styled';
-const FormResult = ({ onSubmit }) => {
+const FormResult = ({ onSubmit, form }) => {
   return (
     <FormStyled
+      form={form}
       labelCol={{
         span: 24,
       }}
@@ -39,7 +40,7 @@ const FormResult = ({ onSubmit }) => {
         </Label>
         <Label
           name="pages"
-          label="Кількість сторінок"
+          label="К-сть сторінок"
           rules={[
             {
               required: true,
