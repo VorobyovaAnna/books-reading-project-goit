@@ -11,13 +11,14 @@ export const Container = styled.div`
   background-color: ${theme.colors.white};
   box-shadow: ${theme.shadows.header};
   @media ${device.tablet} {
-    margin-top: 0;
+    margin-top: 40px;
     width: 704px;
     height: 340px;
   }
   @media ${device.desktop} {
     width: 928px;
     height: 340px;
+    margin-top: 0;
   }
 `;
 
