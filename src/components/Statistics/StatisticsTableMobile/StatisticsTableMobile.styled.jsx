@@ -54,4 +54,6 @@ export const PropertyName = styled(StyledText)`
   width: 80px;
 `;
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  margin-top: 20px;
+`;

@@ -2,8 +2,13 @@ import styled from 'styled-components';
 import device from 'styles/device';
 import theme from 'styles/theme';
 
+export const GoalTimerWrapper = styled.div`
+  @media ${device.mobile} and (max-width: ${theme.breakpoints.tablet}) {
+    margin-top: 24px;
+  }
+`;
+
 export const TimerСontainer = styled.div`
-  position: absolute;
   width: 100%;
   height: 100%;
   background-color: ${theme.colors.white};
@@ -27,13 +32,10 @@ export const TimerСontainer = styled.div`
     width: 290px;
     height: 60px;
     left: 517px;
-    top: 113px;
   }
 `;
 
 export const TimerHeader = styled.h1`
-  position: absolute;
-
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 500;
@@ -42,21 +44,9 @@ export const TimerHeader = styled.h1`
   color: ${theme.colors.secondaryFontColor};
 
   width: 247px;
-
-  @media ${device.mobile} {
-    left: 36px;
-    top: 189px;
-  }
-
-  @media ${device.tablet} {
-    left: 422px;
-    top: 100px;
-  }
-
-  @media ${device.desktop} {
-    left: 539px;
-    top: 88px;
-  }
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Timer = styled.p`
