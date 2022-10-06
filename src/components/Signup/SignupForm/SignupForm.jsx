@@ -6,8 +6,7 @@ import { useDispatch } from 'react-redux';
 import PulseLoader from 'react-spinners/PulseLoader';
 
 import { authOperations } from 'redux/auth';
-import { getIsLoggedIn } from 'redux/auth';
-import { getFetchingCurrent } from 'redux/auth';
+import { getIsLoggedIn, getIsPendingState } from 'redux/auth';
 
 import {
   FormWrapper,
@@ -69,7 +68,7 @@ const initialValues = {
 const SignupForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const isFetching = useSelector(getFetchingCurrent);
+  const isPending = useSelector(getIsPendingState);
 
   const handleSubmit = (values, actions) => {
     dispatch(authOperations.register(values));
@@ -164,7 +163,7 @@ const SignupForm = () => {
                   }
                 >
                   Зареєструватися
-                  {isFetching && <PulseLoader color="white" size="4px" />}
+                  {isPending && <PulseLoader color="white" size="4px" />}
                 </SubmitButton>
                 <LoginLinkWrapper>
                   <IsRegistredParagraph>Вже з нами?</IsRegistredParagraph>

@@ -16,26 +16,26 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.isFetchingUser = false;
+      state.isPending = false;
     },
     [authOperations.register.pending](state) {
-      state.isFetchingUser = true;
+      state.isPending = true;
     },
     [authOperations.register.rejected](state) {
       state.isLoggedIn = false;
-      state.isFetchingUser = false;
+      state.isPending = false;
     },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.isFetchingUser = false;
+      state.isPending = false;
     },
     [authOperations.logIn.pending](state) {
-      state.isFetchingUser = true;
+      state.isPending = true;
     },
     [authOperations.logIn.rejected](state) {
-      state.isFetchingUser = false;
+      state.isPending = false;
       state.isLoggedIn = false;
     },
     [authOperations.authGoogle.fulfilled](state, action) {
