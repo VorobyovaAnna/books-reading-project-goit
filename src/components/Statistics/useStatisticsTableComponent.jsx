@@ -46,6 +46,7 @@ const useStatisticsTableComponent = () => {
             author: bookById.author,
             publication: bookById.publication,
             leftPages: book.leftPages,
+            _id: book._id,
           });
       });
 
