@@ -37,7 +37,7 @@ const useResult = () => {
     }
     form.resetFields();
   };
-  return { onSubmit, results, form };
+  return { onSubmit, results, form, training, statistic };
 };
 
 export default useResult;

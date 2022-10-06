@@ -1,4 +1,7 @@
 import { Input } from 'antd';
+import useDeleteTraining from 'hooks/useDeleteTraining';
+import useTrainingFinished from 'hooks/useIsTrainingFinished';
+import moment from 'moment';
 import {
   Label,
   FormStyled,
@@ -6,7 +9,10 @@ import {
   DataPickerStyled,
   ButtonStyled,
 } from './FormResult.styled';
-const FormResult = ({ onSubmit, form }) => {
+
+const FormResult = ({ onSubmit, form, start, finish }) => {
+  const { isTrainingFinished } = useTrainingFinished();
+  const { deleteTraining } = useDeleteTraining();
   return (
     <FormStyled
       form={form}
@@ -34,7 +40,11 @@ const FormResult = ({ onSubmit, form }) => {
             size="110px"
             placeholder=""
             disabledDate={current => {
-              return current && current < new Date();
+              return (
+                moment(current).isBefore(start, 'day') ||
+                moment(current).isAfter(finish) ||
+                moment(current).isBetween(new Date(), finish)
+              );
             }}
           />
         </Label>
@@ -51,7 +61,13 @@ const FormResult = ({ onSubmit, form }) => {
           <Input />
         </Label>
       </LabelList>
-      <ButtonStyled htmlType="submit">Button</ButtonStyled>
+      {!isTrainingFinished ? (
+        <ButtonStyled htmlType="submit">Button</ButtonStyled>
+      ) : (
+        <ButtonStyled onClick={deleteTraining}>
+          Почати нове тренування
+        </ButtonStyled>
+      )}
     </FormStyled>
   );
 };

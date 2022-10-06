@@ -8,34 +8,29 @@ import { StyledAddButton } from 'components/MyTraining/MyTraining.styled';
 import { ReactComponent as AddIcon } from 'images/svg/iconAdd.svg';
 import { useState, useEffect } from 'react';
 import { useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
+import useTrainingFinished from 'hooks/useIsTrainingFinished';
+import WellDoneModal from 'components/modals/WellDoneModal';
 
 const Training = () => {
   const { isMobile } = useMatchMedia();
   const [isVisible, setIsVisible] = useState();
   const [isActiveTraining, setIsActiveTraining] = useState();
-  // const [isTrainingFinished, useIsTrainingFinished] = useState();
-  const { data: trainings } = useGetTrainingQuery();
+  const { training, isTrainingFinished } = useTrainingFinished();
 
   useEffect(() => {
-    trainings?.training.length === 0
+    training?.training.length === 0
       ? setIsActiveTraining(false)
       : setIsActiveTraining(true);
-  }, [trainings?.training.length]);
+  }, [training?.training.length]);
 
   const toggleForm = () => {
     setIsVisible(!isVisible);
   };
-
-  // useEffect(() => {
-  //   const timeFinished =
-  //     new Date().getTime() >= new Date(trainings?.training[0].finish).getTime();
-  //   const pagesFinished = !trainings?.training[0].books.find(
-  //     ({ status }) => status === false
-  //   );
-  // }, [trainings?.training]);
+  // console.log(!!isTrainingFinished);
 
   return (
     <Container>
+      {!!isTrainingFinished && <WellDoneModal status={isTrainingFinished} />}
       {isMobile && !isVisible && <MyGoal />}
 
       {isMobile && (
