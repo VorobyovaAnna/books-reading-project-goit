@@ -4,8 +4,6 @@ import { getUserName, getIsLoggedIn } from 'redux/auth';
 import operations from 'redux/auth/auth-operations';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import { MdOutlineHome } from 'react-icons/md';
-import { ImStatsDots } from 'react-icons/im';
-// import { ReactComponent as BookIconGrey } from 'images/svg/bookIconGrey.svg';
 import {
   HeaderWrapper,
   Logo,
@@ -54,12 +52,10 @@ const Header = () => {
                     <StyledLink to="/library">
                       <MdOutlineHome size={20} />
                     </StyledLink>
-                    <StyledLink to="/training">
+                    <StatsLink to="/training">
                       <HiOutlineBookOpen size={18} />
-                    </StyledLink>
-                    <StatsLink to="/statistics">
-                      <ImStatsDots size={18} />
                     </StatsLink>
+
                     <UserLogo>{firstLetter}</UserLogo>
                     <ExitButton onClick={toggleModal}>Вихід</ExitButton>
                   </FlexWrapper>
@@ -79,11 +75,8 @@ const Header = () => {
                       <StyledLink to="/library">
                         <MdOutlineHome size={20} />
                       </StyledLink>
-                      <StyledLink to="/training">
+                      <StatsLink to="/training">
                         <HiOutlineBookOpen size={18} />
-                      </StyledLink>
-                      <StatsLink to="/statistics">
-                        <ImStatsDots size={16} />
                       </StatsLink>
                       <ExitButton onClick={toggleModal}>Вихід</ExitButton>
                     </FlexWrapper>
