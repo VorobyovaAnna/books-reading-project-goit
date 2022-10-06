@@ -13,6 +13,7 @@ const Training = () => {
   const { isMobile } = useMatchMedia();
   const [isVisible, setIsVisible] = useState();
   const [isActiveTraining, setIsActiveTraining] = useState();
+  // const [isTrainingFinished, useIsTrainingFinished] = useState();
   const { data: trainings } = useGetTrainingQuery();
 
   useEffect(() => {
@@ -24,6 +25,14 @@ const Training = () => {
   const toggleForm = () => {
     setIsVisible(!isVisible);
   };
+
+  // useEffect(() => {
+  //   const timeFinished =
+  //     new Date().getTime() >= new Date(trainings?.training[0].finish).getTime();
+  //   const pagesFinished = !trainings?.training[0].books.find(
+  //     ({ status }) => status === false
+  //   );
+  // }, [trainings?.training]);
 
   return (
     <Container>
