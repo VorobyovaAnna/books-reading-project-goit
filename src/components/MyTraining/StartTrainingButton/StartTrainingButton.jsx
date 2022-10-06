@@ -1,11 +1,17 @@
 import { StyledButton } from './StartTrainingButton.styled';
+import PropTypes from 'prop-types';
 
-const StartTrainingButton = ({ onClick }) => {
+const StartTrainingButton = ({ onClick, disabled }) => {
   return (
-    <StyledButton type="button" onClick={onClick}>
+    <StyledButton htmlType="button" onClick={onClick} disabled={disabled}>
       Почати тренування
     </StyledButton>
   );
+};
+
+StartTrainingButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default StartTrainingButton;

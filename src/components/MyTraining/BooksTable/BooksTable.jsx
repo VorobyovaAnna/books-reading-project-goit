@@ -47,6 +47,7 @@ BooksTable.propTypes = {
       pages: PropTypes.number.isRequired,
     })
   ).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default BooksTable;

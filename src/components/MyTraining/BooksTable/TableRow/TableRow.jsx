@@ -15,7 +15,12 @@ const TableRow = ({ id, title, author, year, pages, onClick }) => {
       <td>{year}</td>
       <td>{pages}</td>
       <td>
-        <StyledDeleteButton htmlType="button" onClick={() => onClick(id)}>
+        <StyledDeleteButton
+          htmlType="button"
+          onClick={() => {
+            onClick(id);
+          }}
+        >
           <FiTrash size={20} />
         </StyledDeleteButton>
       </td>
@@ -29,6 +34,7 @@ TableRow.propTypes = {
   author: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
   pages: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default TableRow;
