@@ -50,7 +50,7 @@ const Training = () => {
           <WellDoneModal onClose={onModalClose} status={isTrainingFinished} />
         </Modal>
       )}
-      {isMobile && !isVisible && <MyGoal />}
+      {isMobile && !isVisible && !isActiveTraining && <MyGoal />}
 
 
       {isMobile && !isActiveTraining && (
