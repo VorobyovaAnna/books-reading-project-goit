@@ -19,13 +19,10 @@ export const Section = styled.div`
   }
 
   @media ${device.desktop} {
-    position: absolute;
     left: 976px;
     top: 487px;
     width: 288px;
     height: 340px;
-
-    margin-left: 32px;
   }
 `;
 

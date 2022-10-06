@@ -5,13 +5,14 @@ import ProgressChart from 'components/ProgressChart';
 import Result from 'components/Results/Results';
 import YearTimer from 'components/Timer/YearTimer';
 import GoalTimer from 'components/Timer/GoalTimer';
-import StatisticsTableComponent from 'components/Statistics/StatisticsTableComponent'
+import StatisticsTableComponent from 'components/Statistics/StatisticsTableComponent';
 import { useMatchMedia } from 'hooks';
-import { StyledAddButton, MyTrainingWrapper } from 'components/MyTraining/MyTraining.styled';
+import { StyledAddButton } from 'components/MyTraining/MyTraining.styled';
 import { ReactComponent as AddIcon } from 'images/svg/iconAdd.svg';
 import { useState, useEffect } from 'react';
 import { useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
-import { TimersMainWrapper } from 'components/Timer/YearTimer/YearTimer.styled'
+import { TimersMainWrapper } from 'components/Timer/YearTimer/YearTimer.styled';
+import styled from 'styled-components';
 
 const Training = () => {
   const { isMobile, isTablet, isDesktop } = useMatchMedia();
@@ -70,43 +71,65 @@ const Training = () => {
 
       {isTablet && (
         <>
-          {isActiveTraining &&
-            (<div>
+          {isActiveTraining && (
+            <div>
               <TimersMainWrapper>
                 <YearTimer />
                 <GoalTimer />
               </TimersMainWrapper>
-            </div>)}
-            <MyGoal />
-            {!isActiveTraining && <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />}
-            {isActiveTraining &&
-              (<>
-                <StatisticsTableComponent />
-                <ProgressChart />
-                <Result />
-              </>)}
+            </div>
+          )}
+          <MyGoal />
+          {!isActiveTraining && (
+            <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
+          )}
+          {isActiveTraining && (
+            <>
+              <StatisticsTableComponent />
+              <ProgressChart />
+              <Result />
+            </>
+          )}
           {!isActiveTraining && <ProgressChart />}
         </>
       )}
 
       {isDesktop && (
-        <MyTrainingWrapper>
-          <MyGoal />
-          {!isActiveTraining && <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />}
-          {isActiveTraining &&
-            (<div>
+        <StyledContainer>
+          {!isActiveTraining && (
+            <div>
+              <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
+            </div>
+          )}
+
+          {isActiveTraining && (
+            <div>
               <TimersMainWrapper>
                 <YearTimer />
                 <GoalTimer />
               </TimersMainWrapper>
               <StatisticsTableComponent />
-              <Result />
-            </div>)}
+            </div>
+          )}
+          <MyGoal />
+
           <ProgressChart />
-        </MyTrainingWrapper>
+          {isActiveTraining && (
+            <>
+              <Result />
+            </>
+          )}
+        </StyledContainer>
       )}
     </Container>
   );
 };
 
 export default Training;
+
+export const StyledContainer = styled.div`
+  padding-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 32px;
+`;
