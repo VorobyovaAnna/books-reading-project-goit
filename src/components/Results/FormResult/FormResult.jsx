@@ -39,12 +39,17 @@ const FormResult = ({ onSubmit, form, start, finish }) => {
           <DataPickerStyled
             size="110px"
             placeholder=""
+            disabled={!!isTrainingFinished}
             disabledDate={current => {
               return (
-                moment(current).isBefore(start, 'day') ||
-                moment(current).isAfter(finish) ||
-                moment(current).isBetween(new Date(), finish)
+                moment(current).isBefore(moment(start).add(-1, 'day'), 'day') ||
+                moment(current).isAfter(moment(finish), 'day') ||
+                moment(current).isBetween(
+                  moment(),
+                  moment(finish).add(1, 'day')
+                )
               );
+              //
             }}
           />
         </Label>
