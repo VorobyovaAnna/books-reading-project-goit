@@ -10,7 +10,7 @@ export const Title = styled.h2`
   line-height: 1.2;
   justify-content: center;
   align-items: center;
-  margin: 4px;
+  margin-bottom: 4px;
 
   &::before,
   ::after {
@@ -23,8 +23,7 @@ export const Title = styled.h2`
     justify-content: start;
     align-items: start;
     font-size: 14px;
-    margin: 7px;
-    margin-left: 96px;
+    margin-bottom: 7px;
     &::before {
       content: none;
     }
@@ -57,10 +56,11 @@ export const List = styled.ul`
   width: 245px;
   padding-right: 7px;
   margin: 0 auto;
-
+  overflow-y: auto;
+  height: 107px;
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    margin-left: 96px;
     height: 127px;
+    margin: 0;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
     margin: 0 auto;

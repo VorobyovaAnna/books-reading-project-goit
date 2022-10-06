@@ -6,7 +6,9 @@ import {
 } from 'redux/RTKQuery/booksApi';
 
 import openNotificationWithIcon from 'components/Notification';
+import { Form } from 'antd';
 const useResult = () => {
+  const [form] = Form.useForm();
   const [results, setResults] = useState();
   const [statisticId, setStatisticId] = useState(undefined);
   const { data: training } = useGetTrainingQuery();
@@ -23,18 +25,19 @@ const useResult = () => {
   }, [training?.training, statistic]);
 
   const onSubmit = async ({ date, pages }) => {
-    const newDate = date.format();
+    const newDate = new Date(date.utc());
     const update = await updateStatisticsById({
       id: statisticId,
-      data: { date: newDate, pages },
+      data: { date: newDate, pages: Number(pages) },
     });
     if ('error' in update) {
       openNotificationWithIcon('error', update.error.data.message);
     } else {
       openNotificationWithIcon('success', 'Результат успішно додано!');
     }
+    form.resetFields();
   };
-  return { onSubmit, results };
+  return { onSubmit, results, form };
 };
 
 export default useResult;
