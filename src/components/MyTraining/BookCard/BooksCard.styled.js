@@ -4,7 +4,6 @@ import { Button } from 'antd';
 export const StyledWrapper = styled.li`
   position: relative;
   height: 168px;
-  /* margin-bottom: 20px; */
   padding: 20px 46px 0px 34px;
 
   border-bottom: 1px solid ${p => p.theme.colors.borderColor};
