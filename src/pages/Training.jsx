@@ -9,39 +9,49 @@ import StatisticsTableComponent from 'components/Statistics/StatisticsTableCompo
 import { useMatchMedia } from 'hooks';
 import { StyledAddButton } from 'components/MyTraining/MyTraining.styled';
 import { ReactComponent as AddIcon } from 'images/svg/iconAdd.svg';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
+import useTrainingFinished from 'hooks/useIsTrainingFinished';
+import WellDoneModal from 'components/modals/WellDoneModal';
+import Modal from 'components/modals/Modal/Modal';
 import { TimersMainWrapper } from 'components/Timer/YearTimer/YearTimer.styled';
 import styled from 'styled-components';
+
 
 const Training = () => {
   const { isMobile, isTablet, isDesktop } = useMatchMedia();
   const [isVisible, setIsVisible] = useState();
   const [isActiveTraining, setIsActiveTraining] = useState();
-  // const [isTrainingFinished, useIsTrainingFinished] = useState();
-  const { data: trainings } = useGetTrainingQuery();
+  const { training, isTrainingFinished } = useTrainingFinished();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
-    trainings?.training.length === 0
+    training?.training.length === 0
       ? setIsActiveTraining(false)
       : setIsActiveTraining(true);
-  }, [trainings?.training.length]);
+  }, [training?.training.length]);
+  useEffect(() => {
+    !!isTrainingFinished && setIsModalVisible(true);
+  }, [isTrainingFinished]);
 
   const toggleForm = () => {
     setIsVisible(!isVisible);
   };
 
-  // useEffect(() => {
-  //   const timeFinished =
-  //     new Date().getTime() >= new Date(trainings?.training[0].finish).getTime();
-  //   const pagesFinished = !trainings?.training[0].books.find(
-  //     ({ status }) => status === false
-  //   );
-  // }, [trainings?.training]);
+  const onModalClose = useCallback(() => {
+    setIsModalVisible(!isModalVisible);
+  }, [isModalVisible]);
 
   return (
     <Container>
-      {isMobile && !isVisible && !isActiveTraining && <MyGoal />}
+
+      {isModalVisible && (
+        <Modal onClose={onModalClose}>
+          <WellDoneModal onClose={onModalClose} status={isTrainingFinished} />
+        </Modal>
+      )}
+      {isMobile && !isVisible && <MyGoal />}
+
 
       {isMobile && !isActiveTraining && (
         <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
