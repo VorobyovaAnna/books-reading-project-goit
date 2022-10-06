@@ -23,6 +23,7 @@ export const NumberContainer = styled.div`
     padding: ${props =>
       props.theme.noBooksLeft ? '48px 34px' : '80px 25px 79px 18px'};
     box-shadow: ${theme.shadows.header};
+    width: 288px;
     height: 269px;
   }
 `;

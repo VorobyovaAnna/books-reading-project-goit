@@ -90,24 +90,21 @@ const Training = () => {
       )}
 
       {isDesktop && (
-        <>
-          <MyTrainingWrapper>
-            <MyGoal />
-            {!isActiveTraining && <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />}
-            {isActiveTraining &&
-              (<div>
-                <TimersMainWrapper>
-                  <YearTimer />
-                  <GoalTimer />
-                </TimersMainWrapper>
-                <StatisticsTableComponent />
-                <Result />
-              </div>)}
-          </MyTrainingWrapper>
+        <MyTrainingWrapper>
+          <MyGoal />
+          {!isActiveTraining && <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />}
+          {isActiveTraining &&
+            (<div>
+              <TimersMainWrapper>
+                <YearTimer />
+                <GoalTimer />
+              </TimersMainWrapper>
+              <StatisticsTableComponent />
+              <Result />
+            </div>)}
           <ProgressChart />
-        </>
+        </MyTrainingWrapper>
       )}
-      {/* {isActiveTraining && <Result />} */}
     </Container>
   );
 };
