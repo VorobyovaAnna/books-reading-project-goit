@@ -1,7 +1,26 @@
+import theme from '../../styles/theme';
+import device from '../../styles/device';
 import { Form, Button, DatePicker, Select } from 'antd';
 import styled from 'styled-components';
 
 const { Option } = Select;
+
+export const TrainingFormWrapper = styled.div`
+  @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
+    margin-top: 40px;
+  }
+  /* width: 540px;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  @media screen and (min-width: ${p => p.theme.breakpoints.desktop}) {
+    justify-content: flex-end;
+    width: 715px;
+  } */
+`;
 
 export const StyledHeading = styled.p`
   display: flex;

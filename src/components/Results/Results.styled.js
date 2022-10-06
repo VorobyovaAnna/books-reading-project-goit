@@ -9,14 +9,23 @@ export const Section = styled.div`
   background-color: ${theme.colors.white};
   box-shadow: ${theme.shadows.header};
   @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    margin-top: 40px;
     width: 704px;
     padding: 30px 96px;
   }
+
+  @media ${device.mobile} and (max-width: ${theme.breakpoints.tablet}) {
+    margin-top: 32px;
+  }
+
   @media ${device.desktop} {
+    position: absolute;
+    left: 976px;
+    top: 487px;
     width: 288px;
+    height: 340px;
+
+    margin-left: 32px;
   }
 `;
 
