@@ -13,7 +13,7 @@ export const TimersMainWrapper = styled.div`
   }
 
   @media ${device.desktop} {
-    margin-top: 28px;
+    margin-top: 0;
     display: flex;
   }
 `;

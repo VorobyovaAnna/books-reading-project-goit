@@ -157,7 +157,7 @@ export const Section = styled.div`
     width: 704px;
     justify-content: center;
     align-items: flex-start;
-    background-color: ${theme.colors.white};
+    /* background-color: ${theme.colors.white}; */
     box-shadow: ${theme.shadows.header};
   }
 
@@ -166,11 +166,9 @@ export const Section = styled.div`
     padding: 20px 43px 15px 42px;
   }
   @media ${device.desktop} {
-    position: absolute;
     left: 976px;
-    margin-left: 32px;
     display: block;
-    background-color: ${theme.colors.white};
+    /* background-color: ${theme.colors.white}; */
     box-shadow: none;
     width: 288px;
   }
