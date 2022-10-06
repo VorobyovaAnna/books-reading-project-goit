@@ -23,6 +23,7 @@ export const NumberContainer = styled.div`
     padding: ${props =>
       props.theme.noBooksLeft ? '48px 34px' : '80px 25px 79px 18px'};
     box-shadow: ${theme.shadows.header};
+    height: 269px;
   }
 `;
 
@@ -142,19 +143,31 @@ export const Title = styled.h2`
 
 export const Section = styled.div`
   width: 280px;
+  @media ${device.mobile} and (max-width: ${theme.breakpoints.tablet}) {
+    margin-top: 40px;
+  }
   @media ${device.tablet} {
     display: flex;
 
-    padding: ${props =>
-      props.theme.noBooksLeft ? '20px 52px 8px 28px' : '20px 43px 15px 42px'};
+    /* padding: ${props =>
+      props.theme.noBooksLeft
+        ? '20px 52px 8px 28px'
+        : '20px 43px 15px 42px'}; */
     width: 704px;
-    display: flex;
     justify-content: center;
     align-items: flex-start;
     background-color: ${theme.colors.white};
     box-shadow: ${theme.shadows.header};
   }
+
+  @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
+    margin-top: 36px;
+    padding: 20px 43px 15px 42px;
+  }
   @media ${device.desktop} {
+    position: absolute;
+    left: 976px;
+    margin-left: 32px;
     display: block;
     background-color: ${theme.colors.white};
     box-shadow: none;
