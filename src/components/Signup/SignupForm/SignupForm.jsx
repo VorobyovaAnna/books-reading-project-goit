@@ -7,6 +7,7 @@ import PulseLoader from 'react-spinners/PulseLoader';
 
 import { authOperations } from 'redux/auth';
 import { getIsLoggedIn, getIsPendingState } from 'redux/auth';
+import { booksApi } from 'redux/RTKQuery/booksApi';
 
 import {
   FormWrapper,
@@ -71,6 +72,14 @@ const SignupForm = () => {
   const isPending = useSelector(getIsPendingState);
 
   const handleSubmit = (values, actions) => {
+    dispatch(
+      booksApi.util.invalidateTags([
+        { type: 'Books' },
+        { type: 'BookById' },
+        { type: 'Trainings' },
+        { type: 'Statistics' },
+      ])
+    );
     dispatch(authOperations.register(values));
 
     isLoggedIn && actions.resetForm();

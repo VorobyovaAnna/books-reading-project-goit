@@ -4,30 +4,29 @@ import BooksListFilledMobile from './BooksListFilledMobile';
 import BooksTable from './BooksTable';
 import StartTrainingButton from './StartTrainingButton';
 import { useState, useEffect, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getBooks } from 'redux/book';
-import { booksOperations } from 'redux/book';
-import { trainingsOperations } from 'redux/training';
 import TrainingForm from 'components/TrainingForm';
 import PropTypes from 'prop-types';
 import { StyledButtonBack, FormWrapper } from './MyTraining.styled';
 import { ReactComponent as IconBack } from 'images/svg/iconBack.svg';
+import { useGetBooksQuery } from 'redux/RTKQuery/booksApi';
+import { useAddTrainingMutation } from 'redux/RTKQuery/booksApi';
 
 const MyTraining = ({ isFormVisible, toggleForm }) => {
-  const { isMobile } = useMatchMedia();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(booksOperations.fetchBooks());
-  }, [dispatch]);
-
-  const books = useSelector(getBooks);
-
+  const [books, setBooks] = useState([]);
   const [booksForTable, setBooksForTable] = useState([]);
   const [booksForSelect, setBooksForSelect] = useState([]);
-
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
+
+  const { isMobile } = useMatchMedia();
+  const { data } = useGetBooksQuery();
+  const [addTraining] = useAddTrainingMutation();
+
+  useEffect(() => {
+    if (data) {
+      setBooks(data.books);
+    }
+  }, [data]);
 
   const booksPlan = useMemo(
     () => books?.filter(book => book.status === 'plan'),
@@ -58,8 +57,8 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   const handleStartTraining = () => {
     const books = booksForTable.map(book => book._id);
     const trainingData = { start, finish, books };
-    console.log('запит на бек для створення тренінгу', trainingData);
-    dispatch(trainingsOperations.createTraining(trainingData));
+
+    addTraining(trainingData);
   };
 
   const removeBook = id => {
