@@ -37,7 +37,6 @@ const logIn = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', credentials);
       token.set(data.data.token);
-      openNotificationWithIcon('success', 'You have successfully logged in 😎');
       return data.data;
     } catch (error) {
       openNotificationWithIcon('error', error.response.data.message);
@@ -51,16 +50,16 @@ const authGoogle = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       token.set(data.token);
-      openNotificationWithIcon(
-        'success',
-        'You have successfully logged in with Google 😎'
-      );
+      // openNotificationWithIcon(
+      //   'success',
+      //   'You have successfully logged in with Google 😎'
+      // );
       return data;
     } catch (error) {
-      openNotificationWithIcon(
-        'error',
-        '😓 Oops. Something went wrong. Please try again'
-      );
+      // openNotificationWithIcon(
+      //   'error',
+      //   '😓 Oops. Something went wrong. Please try again'
+      // );
       return rejectWithValue(error);
     }
   }
