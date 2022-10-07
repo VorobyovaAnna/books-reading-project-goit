@@ -8,16 +8,15 @@ import {
   Title,
   Tooltip,
   Legend,
-  // LineController,
 } from 'chart.js';
+import zoomPlugin from 'chartjs-plugin-zoom';
 import moment from 'moment';
+
 import 'moment/locale/uk';
 import { Line } from 'react-chartjs-2';
 
 import { Container, GraphContainer } from './ProgressChart.styled';
 
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import {
   useGetTrainingQuery,
   useGetStatisticsByIdQuery,
@@ -30,32 +29,9 @@ Chart.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  zoomPlugin
 );
-
-//Попытка сделать тень к линии чарта
-
-// class Custom extends LineController {
-//   draw() {
-//     super.draw(arguments);
-
-//     const ctx = this.chart.ctx;
-//     let _stroke = ctx.stroke;
-//     ctx.stroke = function () {
-//       ctx.save();
-//       ctx.shadowColor = "black";
-//       ctx.shadowBlur = 10;
-//       ctx.shadowOffsetX = 0;
-//       ctx.shadowOffsetY = 4;
-//       _stroke.apply(this, arguments);
-//       ctx.restore();
-//     };
-//   }
-// }
-
-// Custom.id = "shadowLine";
-// Custom.defaults = LineController.defaults;
-// Chart.register(Custom);
 
 const options = {
   type: 'shadowLine',
@@ -67,6 +43,30 @@ const options = {
     title: {
       display: true,
       text: 'Мій прогрес',
+    },
+    transitions: {
+      zoom: {
+        animation: {
+          duration: 1000,
+          easing: 'easeOutCubic',
+        },
+      },
+    },
+    zoom: {
+      limits: {
+        min: 0,
+        max: 100,
+      },
+      zoom: {
+        wheel: {
+          enabled: true,
+          speed: 0.02,
+        },
+        pinch: {
+          enabled: true,
+        },
+        mode: 'xy',
+      },
     },
   },
   scales: {

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import device from '../../styles/device';
 
 export const NumberContainer = styled.div`
+  background-color: ${theme.colors.white};
   display: flex;
   align-items: center;
   padding: ${props =>
@@ -147,28 +148,21 @@ export const Section = styled.div`
   @media ${device.mobile} and (max-width: ${theme.breakpoints.tablet}) {
     margin-top: 40px;
   }
-  @media ${device.tablet} {
-    display: flex;
 
-    /* padding: ${props =>
-      props.theme.noBooksLeft
-        ? '20px 52px 8px 28px'
-        : '20px 43px 15px 42px'}; */
+  @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
+    display: flex;
+    background-color: ${theme.colors.white};
+    margin-top: 36px;
+    padding: ${props =>
+      props.theme.noBooksLeft ? '20px 52px 8px 28px' : '20px 43px 15px 42px'};
     width: 704px;
     justify-content: center;
     align-items: flex-start;
-    /* background-color: ${theme.colors.white}; */
     box-shadow: ${theme.shadows.header};
-  }
-
-  @media ${device.tablet} and (max-width: ${theme.breakpoints.desktop}) {
-    margin-top: 36px;
-    padding: 20px 43px 15px 42px;
   }
   @media ${device.desktop} {
     left: 976px;
     display: block;
-    /* background-color: ${theme.colors.white}; */
     box-shadow: none;
     width: 288px;
   }
