@@ -49,7 +49,6 @@ const FormResult = ({ onSubmit, form, start, finish }) => {
                   moment(finish).add(1, 'day')
                 )
               );
-              //
             }}
           />
         </Label>
