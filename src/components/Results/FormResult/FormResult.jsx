@@ -42,7 +42,7 @@ const FormResult = ({ onSubmit, form, start, finish }) => {
             disabled={!!isTrainingFinished}
             disabledDate={current => {
               return (
-                moment(current).isBefore(moment(start).add(-1, 'day'), 'day') ||
+                moment(current).isBefore(moment(start), 'day') ||
                 moment(current).isAfter(moment(finish), 'day') ||
                 moment(current).isBetween(
                   moment(),
