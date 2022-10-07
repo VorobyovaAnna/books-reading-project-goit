@@ -17,6 +17,7 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   const [booksForSelect, setBooksForSelect] = useState([]);
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
+  const [startTimer, setStartTimer] = useState(false);
 
   const { isMobile } = useMatchMedia();
   const { data } = useGetBooksQuery();
@@ -57,6 +58,7 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
   const handleStartTraining = () => {
     const books = booksForTable.map(book => book._id);
     const trainingData = { start, finish, books };
+    setStartTimer(true);
 
     addTraining(trainingData);
   };
