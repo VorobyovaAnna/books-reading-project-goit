@@ -8,6 +8,7 @@ export default function WellDoneModal({ status, onClose }) {
 
   const handleNewTraining = () => {
     deleteTraining();
+    onClose();
   };
 
   return (
