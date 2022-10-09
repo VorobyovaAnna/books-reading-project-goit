@@ -21,8 +21,8 @@ const Training = () => {
   const { isMobile, isTablet, isDesktop } = useMatchMedia();
   const [isVisible, setIsVisible] = useState();
   const [isActiveTraining, setIsActiveTraining] = useState();
-  const [startDate, setStartDate] = useState();
-  const [finishDate, setFinishDate] = useState();
+  const [startDate, setStartDate] = useState('');
+  const [finishDate, setFinishDate] = useState('');
   const { training, isTrainingFinished } = useTrainingFinished();
   const [isModalVisible, setIsModalVisible] = useState(false);
 

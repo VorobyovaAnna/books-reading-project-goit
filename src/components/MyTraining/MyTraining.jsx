@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useMatchMedia } from 'hooks';
 import BooksListEmptyMobile from './BooksListEmptyMobile';
 import BooksListFilledMobile from './BooksListFilledMobile';
@@ -16,12 +17,12 @@ const MyTraining = ({
   toggleForm,
   handleStartChange,
   handleFinishChange,
+  start,
+  finish,
 }) => {
   const [books, setBooks] = useState([]);
   const [booksForTable, setBooksForTable] = useState([]);
   const [booksForSelect, setBooksForSelect] = useState([]);
-  const [start, setStart] = useState();
-  const [finish, setFinish] = useState();
   const [startTimer, setStartTimer] = useState(false);
 
   const { isMobile } = useMatchMedia();
@@ -43,10 +44,7 @@ const MyTraining = ({
     setBooksForSelect(booksPlan);
   }, [booksPlan]);
 
-  const handleSubmit = ({ start, finish, books }) => {
-    setStart(start);
-    setFinish(finish);
-
+  const handleSubmit = books => {
     const addedBooks = booksPlan.filter(({ _id }) => {
       return books.includes(_id);
     });
@@ -93,6 +91,8 @@ const MyTraining = ({
             submitCallback={handleSubmit}
             handleStartChange={handleStartChange}
             handleFinishChange={handleFinishChange}
+            start={start ? moment(`${start}`, 'YYYY-MM-DD HH:mm:ss') : ''}
+            finish={finish ? moment(`${finish}`, 'YYYY-MM-DD HH:mm:ss') : ''}
           />
         </FormWrapper>
       )}
@@ -115,12 +115,14 @@ const MyTraining = ({
             submitCallback={handleSubmit}
             handleStartChange={handleStartChange}
             handleFinishChange={handleFinishChange}
+            start={start ? moment(`${start}`, 'YYYY-MM-DD HH:mm:ss') : null}
+            finish={finish ? moment(`${finish}`, 'YYYY-MM-DD HH:mm:ss') : null}
           />
           <BooksTable books={booksForTable} onClick={removeBook} />
           <StartTrainingButton
             htmlType="button"
             onClick={handleStartTraining}
-            disabled={!start}
+            disabled={booksForTable.length === 0}
           />
         </>
       )}
@@ -133,6 +135,8 @@ MyTraining.propTypes = {
   toggleForm: PropTypes.func.isRequired,
   handleStartChange: PropTypes.func.isRequired,
   handleFinishChange: PropTypes.func.isRequired,
+  start: PropTypes.string.isRequired,
+  finish: PropTypes.string.isRequired,
 };
 
 export default MyTraining;
