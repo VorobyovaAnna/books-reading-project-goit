@@ -13,16 +13,6 @@ import MobileAddBook from 'pages/MobileAddBook';
 import AboutApp from 'components/Signup/AboutApp';
 import { getFetchingCurrent } from 'redux/auth';
 
-// import MyGoal from 'components/MyGoal';
-// import CongratsModal from 'components/modals/CongratsModal';
-// import WellDoneModal from 'components/modals/WellDoneModal';
-// import ExitModal from 'components/modals/ExitModal';
-// import RatingModal from 'components/modals/RatingModal';
-// import ProgressChart from 'components/ProgressChart';
-// import EmtpyLibraryText from 'components/modals/EmtpyLibraryText';
-// import YearTimer from 'components/Timer/YearTimer';
-// import GoalTimer from 'components/Timer/GoalTimer';
-
 const Register = lazy(() => import('pages/Register'));
 const Login = lazy(() => import('pages/Login'));
 const Library = lazy(() => import('pages/Library'));
@@ -43,16 +33,6 @@ export default function App() {
     firstRenderEnded && (
       <>
         <GlobalStyle />
-        {/* <EmtpyLibraryText />
-        <ProgressChart />
-        <MyGoal />
-        <CongratsModal />
-        <WellDoneModal />
-        <RatingModal/>
-        <ExitModal />
-        <YearTimer />
-        <GoalTimer /> */}
-
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route
