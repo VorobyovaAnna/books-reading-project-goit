@@ -12,13 +12,17 @@ import {
   StyledInputWrapper,
 } from './TrainingForm.styled';
 import { Form } from 'antd';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const TrainingForm = ({ books, submitCallback }) => {
+const TrainingForm = ({
+  books,
+  submitCallback,
+  handleStartChange,
+  handleFinishChange,
+  start,
+  finish,
+}) => {
   const [form] = Form.useForm();
-  const [start, setStart] = useState();
-  const [finish, setFinish] = useState();
 
   const disabledStartDate = current => {
     // Can not select days before today
@@ -33,14 +37,10 @@ const TrainingForm = ({ books, submitCallback }) => {
   };
 
   const handleSubmit = ({ books }) => {
-    const data = {
-      books,
-      start,
-      finish,
-    };
-    submitCallback(data);
-    form.resetFields();
-    setStart('');
+    submitCallback(books);
+    form.setFieldsValue({
+      books: null,
+    });
   };
 
   const validateMessages = {
@@ -58,6 +58,7 @@ const TrainingForm = ({ books, submitCallback }) => {
         <CalendarWrapper>
           <Form.Item
             name="start"
+            initialValue={start}
             rules={[
               {
                 required: true,
@@ -66,7 +67,7 @@ const TrainingForm = ({ books, submitCallback }) => {
           >
             <StyledDatePicker
               onChange={(_, dateString) => {
-                setStart(dateString);
+                handleStartChange(dateString);
               }}
               format="YYYY-MM-DD HH:mm:ss"
               disabledDate={disabledStartDate}
@@ -79,6 +80,7 @@ const TrainingForm = ({ books, submitCallback }) => {
           </Form.Item>
           <Form.Item
             name="finish"
+            initialValue={finish}
             rules={[
               {
                 required: true,
@@ -87,7 +89,7 @@ const TrainingForm = ({ books, submitCallback }) => {
           >
             <StyledDatePicker
               onChange={(_, dateString) => {
-                setFinish(dateString);
+                handleFinishChange(dateString);
               }}
               format="YYYY-MM-DD HH:mm:ss"
               disabledDate={disabledFinishDate}
@@ -107,7 +109,6 @@ const TrainingForm = ({ books, submitCallback }) => {
             ]}
           >
             <StyledSelect
-              mode="multiple"
               showArrow="true"
               placeholder="Обрати книги з бібліотеки"
               allowClear
@@ -139,6 +140,8 @@ TrainingForm.propTypes = {
     })
   ).isRequired,
   submitCallback: PropTypes.func.isRequired,
+  handleStartChange: PropTypes.func.isRequired,
+  handleFinishChange: PropTypes.func.isRequired,
 };
 
 export default TrainingForm;

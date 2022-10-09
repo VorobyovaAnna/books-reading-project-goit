@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useMatchMedia } from 'hooks';
 import BooksListEmptyMobile from './BooksListEmptyMobile';
 import BooksListFilledMobile from './BooksListFilledMobile';
@@ -11,12 +12,17 @@ import { ReactComponent as IconBack } from 'images/svg/iconBack.svg';
 import { useGetBooksQuery } from 'redux/RTKQuery/booksApi';
 import { useAddTrainingMutation } from 'redux/RTKQuery/booksApi';
 
-const MyTraining = ({ isFormVisible, toggleForm }) => {
+const MyTraining = ({
+  isFormVisible,
+  toggleForm,
+  handleStartChange,
+  handleFinishChange,
+  start,
+  finish,
+}) => {
   const [books, setBooks] = useState([]);
   const [booksForTable, setBooksForTable] = useState([]);
   const [booksForSelect, setBooksForSelect] = useState([]);
-  const [start, setStart] = useState();
-  const [finish, setFinish] = useState();
   const [startTimer, setStartTimer] = useState(false);
 
   const { isMobile } = useMatchMedia();
@@ -38,10 +44,7 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
     setBooksForSelect(booksPlan);
   }, [booksPlan]);
 
-  const handleSubmit = ({ start, finish, books }) => {
-    setStart(start);
-    setFinish(finish);
-
+  const handleSubmit = books => {
     const addedBooks = booksPlan.filter(({ _id }) => {
       return books.includes(_id);
     });
@@ -83,7 +86,14 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
           <StyledButtonBack htmlType="button" onClick={() => toggleForm()}>
             <IconBack />
           </StyledButtonBack>
-          <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+          <TrainingForm
+            books={booksForSelect}
+            submitCallback={handleSubmit}
+            handleStartChange={handleStartChange}
+            handleFinishChange={handleFinishChange}
+            start={start ? moment(`${start}`, 'YYYY-MM-DD HH:mm:ss') : ''}
+            finish={finish ? moment(`${finish}`, 'YYYY-MM-DD HH:mm:ss') : ''}
+          />
         </FormWrapper>
       )}
       {isMobile && !isFormVisible && booksForTable.length === 0 && (
@@ -100,12 +110,19 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
       )}
       {!isMobile && (
         <>
-          <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+          <TrainingForm
+            books={booksForSelect}
+            submitCallback={handleSubmit}
+            handleStartChange={handleStartChange}
+            handleFinishChange={handleFinishChange}
+            start={start ? moment(`${start}`, 'YYYY-MM-DD HH:mm:ss') : null}
+            finish={finish ? moment(`${finish}`, 'YYYY-MM-DD HH:mm:ss') : null}
+          />
           <BooksTable books={booksForTable} onClick={removeBook} />
           <StartTrainingButton
             htmlType="button"
             onClick={handleStartTraining}
-            disabled={!start}
+            disabled={booksForTable.length === 0}
           />
         </>
       )}
@@ -116,6 +133,10 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
 MyTraining.propTypes = {
   isFormVisible: PropTypes.bool,
   toggleForm: PropTypes.func.isRequired,
+  handleStartChange: PropTypes.func.isRequired,
+  handleFinishChange: PropTypes.func.isRequired,
+  start: PropTypes.string.isRequired,
+  finish: PropTypes.string.isRequired,
 };
 
 export default MyTraining;
