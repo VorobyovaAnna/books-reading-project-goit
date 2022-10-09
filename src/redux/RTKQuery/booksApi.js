@@ -42,7 +42,7 @@ export const booksApi = createApi({
     }),
     deleteTrainingById: builder.mutation({
       query: id => ({ url: `/trainings/${id}`, method: 'DELETE' }),
-      invalidatesTags: ['Trainings'],
+      invalidatesTags: ['Trainings', 'Statistics'],
     }),
     getStatisticsById: builder.query({
       query: id => ({ url: `/statistics/${id}`, method: 'GET' }),
@@ -58,7 +58,7 @@ export const booksApi = createApi({
     }),
     deleteStatisticsById: builder.mutation({
       query: id => ({ url: `/statistics/${id}`, method: 'DELETE' }),
-      invalidatesTags: ['Statistics'],
+      invalidatesTags: ['Statistics', 'Trainings'],
     }),
   }),
 });
