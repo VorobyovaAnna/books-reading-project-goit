@@ -17,11 +17,12 @@ import Modal from 'components/modals/Modal/Modal';
 import { TimersMainWrapper } from 'components/Timer/YearTimer/YearTimer.styled';
 import styled from 'styled-components';
 
-
 const Training = () => {
   const { isMobile, isTablet, isDesktop } = useMatchMedia();
   const [isVisible, setIsVisible] = useState();
   const [isActiveTraining, setIsActiveTraining] = useState();
+  const [startDate, setStartDate] = useState();
+  const [finishDate, setFinishDate] = useState();
   const { training, isTrainingFinished } = useTrainingFinished();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -42,9 +43,15 @@ const Training = () => {
     setIsModalVisible(!isModalVisible);
   }, [isModalVisible]);
 
+  const handleStartChange = date => {
+    setStartDate(date);
+  };
+  const handleFinishChange = date => {
+    setFinishDate(date);
+  };
+
   return (
     <Container>
-
       {isModalVisible && (
         <Modal onClose={onModalClose}>
           <WellDoneModal onClose={onModalClose} status={isTrainingFinished} />
@@ -52,9 +59,15 @@ const Training = () => {
       )}
       {isMobile && !isVisible && !isActiveTraining && <MyGoal />}
 
-
       {isMobile && !isActiveTraining && (
-        <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
+        <MyTraining
+          isFormVisible={isVisible}
+          toggleForm={toggleForm}
+          handleStartChange={handleStartChange}
+          handleFinishChange={handleFinishChange}
+          start={startDate}
+          finish={finishDate}
+        />
       )}
 
       {isMobile && !isVisible && !isActiveTraining && (
@@ -91,7 +104,14 @@ const Training = () => {
           )}
           <MyGoal />
           {!isActiveTraining && (
-            <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
+            <MyTraining
+              isFormVisible={isVisible}
+              toggleForm={toggleForm}
+              handleStartChange={handleStartChange}
+              handleFinishChange={handleFinishChange}
+              start={startDate}
+              finish={finishDate}
+            />
           )}
           {isActiveTraining && (
             <>
@@ -108,7 +128,14 @@ const Training = () => {
         <StyledContainer>
           {!isActiveTraining && (
             <div>
-              <MyTraining isFormVisible={isVisible} toggleForm={toggleForm} />
+              <MyTraining
+                isFormVisible={isVisible}
+                toggleForm={toggleForm}
+                handleStartChange={handleStartChange}
+                handleFinishChange={handleFinishChange}
+                start={startDate}
+                finish={finishDate}
+              />
             </div>
           )}
 

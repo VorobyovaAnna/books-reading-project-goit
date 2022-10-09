@@ -15,7 +15,12 @@ import { Form } from 'antd';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const TrainingForm = ({ books, submitCallback }) => {
+const TrainingForm = ({
+  books,
+  submitCallback,
+  handleStartChange,
+  handleFinishChange,
+}) => {
   const [form] = Form.useForm();
   const [start, setStart] = useState();
   const [finish, setFinish] = useState();
@@ -39,12 +44,22 @@ const TrainingForm = ({ books, submitCallback }) => {
       finish,
     };
     submitCallback(data);
-    form.resetFields();
-    setStart('');
+    form.setFieldsValue({
+      books: null,
+    });
   };
 
   const validateMessages = {
     required: `Обов'язкове поле`,
+  };
+
+  const startChange = date => {
+    setStart(date);
+    handleStartChange(date);
+  };
+  const finishChange = date => {
+    setFinish(date);
+    handleFinishChange(date);
   };
 
   return (
@@ -66,7 +81,7 @@ const TrainingForm = ({ books, submitCallback }) => {
           >
             <StyledDatePicker
               onChange={(_, dateString) => {
-                setStart(dateString);
+                startChange(dateString);
               }}
               format="YYYY-MM-DD HH:mm:ss"
               disabledDate={disabledStartDate}
@@ -87,7 +102,7 @@ const TrainingForm = ({ books, submitCallback }) => {
           >
             <StyledDatePicker
               onChange={(_, dateString) => {
-                setFinish(dateString);
+                finishChange(dateString);
               }}
               format="YYYY-MM-DD HH:mm:ss"
               disabledDate={disabledFinishDate}
@@ -107,7 +122,7 @@ const TrainingForm = ({ books, submitCallback }) => {
             ]}
           >
             <StyledSelect
-              mode="multiple"
+              // mode="multiple"
               showArrow="true"
               placeholder="Обрати книги з бібліотеки"
               allowClear
@@ -139,6 +154,8 @@ TrainingForm.propTypes = {
     })
   ).isRequired,
   submitCallback: PropTypes.func.isRequired,
+  handleStartChange: PropTypes.func.isRequired,
+  handleFinishChange: PropTypes.func.isRequired,
 };
 
 export default TrainingForm;

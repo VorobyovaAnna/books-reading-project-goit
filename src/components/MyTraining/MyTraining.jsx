@@ -11,7 +11,12 @@ import { ReactComponent as IconBack } from 'images/svg/iconBack.svg';
 import { useGetBooksQuery } from 'redux/RTKQuery/booksApi';
 import { useAddTrainingMutation } from 'redux/RTKQuery/booksApi';
 
-const MyTraining = ({ isFormVisible, toggleForm }) => {
+const MyTraining = ({
+  isFormVisible,
+  toggleForm,
+  handleStartChange,
+  handleFinishChange,
+}) => {
   const [books, setBooks] = useState([]);
   const [booksForTable, setBooksForTable] = useState([]);
   const [booksForSelect, setBooksForSelect] = useState([]);
@@ -83,7 +88,12 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
           <StyledButtonBack htmlType="button" onClick={() => toggleForm()}>
             <IconBack />
           </StyledButtonBack>
-          <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+          <TrainingForm
+            books={booksForSelect}
+            submitCallback={handleSubmit}
+            handleStartChange={handleStartChange}
+            handleFinishChange={handleFinishChange}
+          />
         </FormWrapper>
       )}
       {isMobile && !isFormVisible && booksForTable.length === 0 && (
@@ -100,7 +110,12 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
       )}
       {!isMobile && (
         <>
-          <TrainingForm books={booksForSelect} submitCallback={handleSubmit} />
+          <TrainingForm
+            books={booksForSelect}
+            submitCallback={handleSubmit}
+            handleStartChange={handleStartChange}
+            handleFinishChange={handleFinishChange}
+          />
           <BooksTable books={booksForTable} onClick={removeBook} />
           <StartTrainingButton
             htmlType="button"
@@ -116,6 +131,8 @@ const MyTraining = ({ isFormVisible, toggleForm }) => {
 MyTraining.propTypes = {
   isFormVisible: PropTypes.bool,
   toggleForm: PropTypes.func.isRequired,
+  handleStartChange: PropTypes.func.isRequired,
+  handleFinishChange: PropTypes.func.isRequired,
 };
 
 export default MyTraining;
