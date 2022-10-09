@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 import { Form, Field, ErrorMessage } from 'formik';
+import { GoEyeClosed, GoEye } from 'react-icons/go';
 
 import device from 'styles/device';
 
@@ -20,6 +21,7 @@ export const FormWrapper = styled.div`
 
   background-repeat: no-repeat;
   background-position: center;
+  font-family: Montserrat;
 
   @media ${device.mobile} {
     background-image: url(${mobileBackground});
@@ -96,9 +98,12 @@ export const GoogleButton = styled.a`
 `;
 
 export const FieldWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+
+  color: ${p => p.theme.colors.secondaryFontColor};
 
   @media ${device.mobile} {
   }
@@ -108,6 +113,29 @@ export const FieldWrapper = styled.div`
 
   @media ${device.desktop} {
   }
+`;
+
+export const ClosedEyeIcon = styled(GoEyeClosed)`
+  position: absolute;
+  z-index: 10;
+  right: 10px;
+  top: 38px;
+  opacity: ${props => (props.visibility === 'true' ? 1 : 0)};
+
+  color: currentColor;
+  cursor: pointer;
+`;
+
+export const OpenEyeIcon = styled(GoEye)`
+  position: absolute;
+  z-index: 10;
+  right: 10px;
+  top: 38px;
+
+  opacity: ${props => (props.visibility === 'false' ? 1 : 0)};
+
+  color: currentColor;
+  cursor: pointer;
 `;
 
 export const FieldName = styled.label`

@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -23,6 +24,8 @@ import {
   StyledLink,
   IsRegistredParagraph,
   LoginLinkWrapper,
+  ClosedEyeIcon,
+  OpenEyeIcon,
 } from './SignupForm.styled';
 
 const validationSchema = yup.object().shape({
@@ -71,6 +74,8 @@ const SignupForm = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isPending = useSelector(getIsPendingState);
 
+  const [isVisiblePassword, setIsVisiblePassword] = useState(false);
+
   const handleSubmit = (values, actions) => {
     dispatch(
       booksApi.util.invalidateTags([
@@ -83,6 +88,10 @@ const SignupForm = () => {
     dispatch(authOperations.register(values));
 
     isLoggedIn && actions.resetForm();
+  };
+
+  const toggleEye = () => {
+    setIsVisiblePassword(!isVisiblePassword);
   };
 
   return (
@@ -137,12 +146,19 @@ const SignupForm = () => {
                   <StyledField
                     id="password"
                     name="password"
-                    type="password"
+                    type={isVisiblePassword ? 'text' : 'password'}
                     maxLength="30"
                     placeholder="..."
                     autoComplete="off"
                   />
-
+                  <ClosedEyeIcon
+                    visibility={isVisiblePassword.toString()}
+                    onClick={toggleEye}
+                  />
+                  <OpenEyeIcon
+                    visibility={isVisiblePassword.toString()}
+                    onClick={toggleEye}
+                  />
                   <ValidationError name="password" component="div" />
                 </FieldWrapper>
 
