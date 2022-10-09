@@ -7,7 +7,7 @@ import { GoEyeClosed, GoEye } from 'react-icons/go';
 import device from 'styles/device';
 
 import mobileBackground from 'images/auth-background/login-background-mob.jpg';
-import tabletBackground from 'images/aut-background/login-background-tablet.jpg';
+import tabletBackground from 'images/auth-background/login-background-tablet.jpg';
 import desktopBackground from 'images/auth-background/login-background-desktop.jpg';
 
 export const FormWrapper = styled.div`
