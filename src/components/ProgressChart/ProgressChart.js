@@ -84,10 +84,8 @@ const options = {
 export default function ProgressChart() {
   const { data: trainings } = useGetTrainingQuery();
 
-  const statisticsId = trainings?.training[0]?.statistics;
-
-  const stats = useGetStatisticsByIdQuery(statisticsId, {
-    skip: !statisticsId,
+  const stats = useGetStatisticsByIdQuery(trainings?.training[0]?.statistics, {
+    skip: !trainings?.training[0]?.statistics,
   });
 
   const planAmountOfPages = stats?.data?.statistic?.plan?.map(item => {
@@ -101,6 +99,10 @@ export default function ProgressChart() {
     return moment(item.date).locale('uk').format('DD.MM/dd.');
   });
 
+  function validateData(data) {
+    return trainings?.training[0] ? data : [];
+  }
+
   const labels = dates;
 
   const data = {
@@ -108,7 +110,7 @@ export default function ProgressChart() {
     datasets: [
       {
         label: 'План',
-        data: planAmountOfPages,
+        data: validateData(planAmountOfPages),
         borderColor: '#091E3F',
         backgroundColor: '#091E3F',
         borderWidth: 2,
@@ -118,7 +120,7 @@ export default function ProgressChart() {
       },
       {
         label: 'Факт',
-        data: realAmountOfPages,
+        data: validateData(realAmountOfPages),
         borderColor: ' #FF6B08',
         backgroundColor: '#FF6B08',
         borderWidth: 2,
