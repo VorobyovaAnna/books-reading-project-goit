@@ -10,7 +10,7 @@ import { useMatchMedia } from 'hooks';
 import { StyledAddButton } from 'components/MyTraining/MyTraining.styled';
 import { ReactComponent as AddIcon } from 'images/svg/iconAdd.svg';
 import { useState, useEffect, useCallback } from 'react';
-import { useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
+// import { useGetTrainingQuery } from 'redux/RTKQuery/booksApi';
 import useTrainingFinished from 'hooks/useIsTrainingFinished';
 import WellDoneModal from 'components/modals/WellDoneModal';
 import Modal from 'components/modals/Modal/Modal';
@@ -41,6 +41,8 @@ const Training = () => {
 
   const onModalClose = useCallback(() => {
     setIsModalVisible(!isModalVisible);
+    setStartDate(null);
+    setFinishDate(null);
   }, [isModalVisible]);
 
   const handleStartChange = date => {

@@ -42,12 +42,8 @@ const FormResult = ({ onSubmit, form, start, finish }) => {
             disabled={!!isTrainingFinished}
             disabledDate={current => {
               return (
-                moment(current).isBefore(moment(start), 'day') ||
-                moment(current).isAfter(moment(finish), 'day') ||
-                moment(current).isBetween(
-                  moment(),
-                  moment(finish).add(1, 'day')
-                )
+                moment(current).isBefore(moment(start).add(-1, 'day'), 'day') ||
+                moment(current).isAfter(moment(), 'day')
               );
             }}
           />
@@ -66,7 +62,7 @@ const FormResult = ({ onSubmit, form, start, finish }) => {
         </Label>
       </LabelList>
       {!isTrainingFinished ? (
-        <ButtonStyled htmlType="submit">Button</ButtonStyled>
+        <ButtonStyled htmlType="submit">Додати</ButtonStyled>
       ) : (
         <ButtonStyled onClick={deleteTraining}>
           Почати нове тренування
