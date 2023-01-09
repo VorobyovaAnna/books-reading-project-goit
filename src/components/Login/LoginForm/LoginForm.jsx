@@ -92,7 +92,7 @@ const LoginForm = () => {
           {({ isValid, touched }) => {
             return (
               <StyledForm name="LoginForm">
-                <GoogleButton href="https://nodejs-final-project-goit.herokuapp.com/api/auth/google">
+                <GoogleButton href="https://books-reading-nodejs-final-project.onrender.com/api/auth/google">
                   <FcGoogle />
                   Google
                 </GoogleButton>
