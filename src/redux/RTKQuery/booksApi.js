@@ -4,7 +4,7 @@ import { axiosBaseQuery } from '../axiosBaseQuery';
 export const booksApi = createApi({
   reducerPath: 'booksRTK',
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://nodejs-final-project-goit.herokuapp.com/api',
+    baseUrl: 'https://books-reading-nodejs-final-project.onrender.com/api',
   }),
   tagTypes: ['Books', 'BookById', 'Trainings', 'Statistics'],
   endpoints: builder => ({
