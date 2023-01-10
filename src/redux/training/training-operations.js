@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://nodejs-final-project-goit.herokuapp.com/api';
+axios.defaults.baseURL =
+  'https://books-reading-nodejs-final-project.onrender.com/api';
 
 const fetchTraining = createAsyncThunk(
   'training/fetch',
